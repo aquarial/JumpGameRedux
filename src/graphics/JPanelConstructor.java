@@ -9,5 +9,6 @@ public class JPanelConstructor {
 		JPanel pan = new JPanel();
 		pan.setBackground(Color.BLUE);
 		return pan;
+
 	}
 }
