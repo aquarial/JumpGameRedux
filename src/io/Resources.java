@@ -8,20 +8,22 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 public class Resources {
 
-	public void getDocumentForLevel(int level) {
+	public Element getDocumentForLevel(int level) {
 		try {
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder dBuilder;
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(getInputFile(level));
 			doc.getDocumentElement().normalize();
-			System.out.println("Root element :"
-					+ doc.getDocumentElement().getNodeName());
+			return doc.getDocumentElement();
+
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
@@ -29,6 +31,7 @@ public class Resources {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public File getInputFile(int level) {
