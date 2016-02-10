@@ -1,5 +1,7 @@
 package testing;
 
+import graphics.JPanelConstructor;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -12,8 +14,8 @@ public class MainTester {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setSize(600, 400);
 				f.setVisible(true);
+				f.add(JPanelConstructor.makeNewGamePanel());
 			}
 		});
 	}
-
 }
