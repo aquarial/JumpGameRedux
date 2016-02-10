@@ -1,0 +1,16 @@
+<root>
+	<player>
+		<location>
+			1
+			2
+		</location>
+	<player>
+	<leveldata>
+		<quad>
+			0
+			0
+			4
+			1
+		</quad>
+	</leveldata>
+</root>
