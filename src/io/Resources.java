@@ -32,7 +32,7 @@ public class Resources {
 	}
 
 	public File getInputFile(int level) {
-		Class classloader = Thread.currentThread().getClass();
+		Class<? extends Thread> classloader = Thread.currentThread().getClass();
 
 		return new File(classloader.getResource("/levels/001.xml").getPath());
 	}
