@@ -4,11 +4,41 @@ public class Jumper {
 
 	// Gravity pulls down, negative is down
 	public static final float GRAVITY_CONSTANT = -0.1f;
+	public static final float JUMPER_WIDTH = 1;
 
 	private float xposition;
 	private float yposition;
 	private float xvelocity;
 	private float yvelocity;
+
+	/**
+	 * Calculates a potential update
+	 * <p>
+	 * Does <b>NOT</b> change state
+	 * 
+	 * @param deltaTime
+	 * @return new x and y positions.
+	 */
+	public Point calculateUpdate(float deltaTime) {
+		float tmpxpos = xposition + deltaTime * xvelocity;
+		float tmpypos = yposition + deltaTime * yvelocity;
+		return new Point(tmpxpos, tmpypos);
+	}
+	
+	/**
+	 * Calculates the coordinates of the jumper's corners
+	 *  
+	 * @return
+	 */
+	public Quad calculateCornerPositions() {
+		float x1, x2, y1, y2, radius;
+		radius = JUMPER_WIDTH / 2;
+		x1 = xposition - radius;
+		x2 = xposition + radius;
+		y1 = yposition - radius;
+		y2 = yposition + radius;
+		return new Quad(x1, y1, x2, y2);
+	}
 
 	/**
 	 * Updates jumper position based on time
