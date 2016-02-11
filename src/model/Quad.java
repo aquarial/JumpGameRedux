@@ -16,8 +16,7 @@ public class Quad {
 	private float y2;
 
 	public Quad(float x1, float y1, float x2, float y2) {
-		// Keep quads positive
-		// helps calculating if a point is inside
+		// Keep quads positive, helps calculating if a point is inside
 		if (y2 < y1) {
 			float tmp = y1;
 			y1 = y2;
