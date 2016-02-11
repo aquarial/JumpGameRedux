@@ -39,19 +39,12 @@ public class Quad {
 		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
 	}
 
-	public boolean containsPoint(Point p) {
-		if (p.getX() < x1 || p.getX() > x2) {
-			return false;
-		}
-		if (p.getY() < y1 || p.getY() > y2) {
-			return false;
-		}
-
-		return true;
+	public boolean containsQuad(Quad p) {
+		// TODO http://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
 	}
 
 	public Point removeOtherFromThis(Quad other, float angle) {
-		
+		// TODO Calculate
 	}
 
 }
