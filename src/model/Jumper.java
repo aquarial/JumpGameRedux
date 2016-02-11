@@ -6,6 +6,21 @@ public class Jumper {
 	public static final float GRAVITY_CONSTANT = -0.1f;
 	public static final float JUMPER_WIDTH = 1;
 
+	/**
+	 * Calculates the coordinates of the jumper's corners
+	 * 
+	 * @return
+	 */
+	public static Quad calculateQuadAtPosition(Point pos) {
+		float x1, x2, y1, y2, radius;
+		radius = JUMPER_WIDTH / 2;
+		x1 = pos.getX() - radius;
+		x2 = pos.getX() + radius;
+		y1 = pos.getY() - radius;
+		y2 = pos.getY() + radius;
+		return new Quad(x1, y1, x2, y2);
+	}
+
 	private float xposition;
 	private float yposition;
 	private float xvelocity;
@@ -23,21 +38,6 @@ public class Jumper {
 		float tmpxpos = xposition + deltaTime * xvelocity;
 		float tmpypos = yposition + deltaTime * yvelocity;
 		return new Point(tmpxpos, tmpypos);
-	}
-	
-	/**
-	 * Calculates the coordinates of the jumper's corners
-	 *  
-	 * @return
-	 */
-	public Quad calculateCornerPositions() {
-		float x1, x2, y1, y2, radius;
-		radius = JUMPER_WIDTH / 2;
-		x1 = xposition - radius;
-		x2 = xposition + radius;
-		y1 = yposition - radius;
-		y2 = yposition + radius;
-		return new Quad(x1, y1, x2, y2);
 	}
 
 	/**
@@ -152,6 +152,15 @@ public class Jumper {
 	 */
 	public void setYposition(float yposition) {
 		this.yposition = yposition;
+	}
+
+	/**
+	 * Get angle jumper is moving at
+	 * 
+	 * @return
+	 */
+	public float getAngularVelocityAngle() {
+		return (float) Math.tan(yvelocity / xvelocity);
 	}
 
 	/**
