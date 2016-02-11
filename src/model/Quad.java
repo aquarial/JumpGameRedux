@@ -35,7 +35,11 @@ public class Quad {
 
 	}
 
-	boolean containsPoint(Point p) {
+	public Point[] toPointArray() {
+		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
+	}
+
+	public boolean containsPoint(Point p) {
 		if (p.getX() < x1 || p.getX() > x2) {
 			return false;
 		}
@@ -44,6 +48,10 @@ public class Quad {
 		}
 
 		return true;
+	}
+
+	public void minimalRemovial(Point intersection, float angle) {
+
 	}
 
 }
