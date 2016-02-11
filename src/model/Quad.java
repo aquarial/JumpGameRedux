@@ -50,8 +50,8 @@ public class Quad {
 		return true;
 	}
 
-	public void minimalRemovial(Point intersection, float angle) {
-
+	public Point removeOtherFromThis(Quad other, float angle) {
+		
 	}
 
 }
