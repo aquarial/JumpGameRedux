@@ -22,7 +22,7 @@ public class Quad {
 			y1 = y2;
 			y2 = tmp;
 		}
-		if (x2 < y1) {
+		if (x2 < x1) {
 			double tmp = x1;
 			x1 = x2;
 			x2 = tmp;
@@ -53,6 +53,8 @@ public class Quad {
 	public Point removeOtherFromThis(Quad other, double angle) {
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
 			System.out.print("RIGHT"); // this.x1 from other.x2
+			double difference = other.x2 - this.x1;
+			System.out.println(difference);
 		}
 
 		if ((angle < Math.PI) && (angle > 0)) {
