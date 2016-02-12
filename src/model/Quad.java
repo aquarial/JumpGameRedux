@@ -6,7 +6,7 @@ package model;
  * Models an obsticle in the game
  * 
  * @author karl
- *
+ * 
  */
 public class Quad {
 
@@ -36,11 +36,18 @@ public class Quad {
 	}
 
 	public Point[] toPointArray() {
-		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
+		return new Point[] { new Point(x1, y1), new Point(x1, y2),
+				new Point(x2, y1), new Point(y2, y2) };
 	}
 
-	public boolean containsQuad(Quad p) {
-		// TODO http://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other
+	public boolean containsQuad(Quad other) {
+		//@formatter:off
+		return 
+				this.x1 < other.x2 && 
+				this.x2 > other.x1 && 
+				this.y1 < other.y2 && 
+				this.y2 > other.y1;
+		//@formatter:on
 	}
 
 	public Point removeOtherFromThis(Quad other, float angle) {
