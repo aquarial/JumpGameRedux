@@ -6,11 +6,12 @@ public class MainTester {
 
 	public static void main(String[] args) {
 
-		Quad q = new Quad(0, 0, 0, 0);
+		Quad q1 = new Quad(0, 2, 2, 0);
+		Quad q2 = new Quad(-1, 1, 0.5, 0);
 
 		for (double ang = -Math.PI; ang < Math.PI; ang += Math.PI / 8) {
 			System.out.print(ang / Math.PI + " ");
-			q.removeOtherFromThis(null, ang);
+			q1.removeOtherFromThis(q2, ang);
 		}
 
 		// SwingUtilities.invokeLater(new Runnable() {

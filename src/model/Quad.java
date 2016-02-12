@@ -59,10 +59,13 @@ public class Quad {
 
 		if ((angle < Math.PI) && (angle > 0)) {
 			System.out.print("UP"); // this.y1 from other.y2
+			double difference = this.y2 - other.y1;
+			System.out.println(difference);
 		}
 
 		if ((angle > -1 * Math.PI) && (angle < 0)) {
 			System.out.print("DOWN");
+			double difference = this.y1 - other.y2;
 		}
 
 		if ((angle > Math.PI / 2) || (angle < -1 * Math.PI / 2)) {
