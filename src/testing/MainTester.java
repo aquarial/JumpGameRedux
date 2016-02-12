@@ -9,7 +9,7 @@ public class MainTester {
 		Quad q = new Quad(0, 0, 0, 0);
 
 		for (double ang = -Math.PI; ang < Math.PI; ang += Math.PI / 8) {
-			System.out.print(ang / Math.PI);
+			System.out.print(ang / Math.PI + " ");
 			q.removeOtherFromThis(null, ang);
 		}
 
