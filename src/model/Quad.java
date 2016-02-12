@@ -51,21 +51,23 @@ public class Quad {
 	}
 
 	public Point removeOtherFromThis(Quad other, double angle) {
-		if ((angle < Math.PI / 4) && (angle > -1 * Math.PI / 4)) {
-			System.out.println("RIGHT"); // this.x1 from other.x2
+		if ((angle <= Math.PI / 4) && (angle >= -1 * Math.PI / 4)) {
+			System.out.print("RIGHT"); // this.x1 from other.x2
 		}
 
-		if ((angle < 3 * Math.PI / 4) && (angle > Math.PI / 4)) {
-			System.out.println("UP"); // this.y1 from other.y2
+		if ((angle <= 3 * Math.PI / 4) && (angle >= Math.PI / 4)) {
+			System.out.print("UP"); // this.y1 from other.y2
 		}
 
-		if ((angle < -1 * Math.PI / 4) && (angle < -3 * Math.PI / 4)) {
-			System.out.println("DOWN");
+		if ((angle <= -1 * Math.PI / 4) && (angle >= -3 * Math.PI / 4)) {
+			System.out.print("DOWN");
 		}
 
-		if ((angle > 3 * Math.PI / 4) || (angle < -3 * Math.PI / 4)) {
-			System.out.println("LEFT");
+		if ((angle >= 3 * Math.PI / 4) || (angle <= -3 * Math.PI / 4)) {
+			System.out.print("LEFT");
 		}
+
+		System.out.println();
 
 		return null;
 	}
