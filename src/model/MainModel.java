@@ -21,15 +21,15 @@ public class MainModel {
 		Point[] newJumperPositions = new Point[4];
 		for (int index = 0; index < 4; index++) {
 			Point corner = corners[index];
-			
+
 		}
 	}
 
-	public float jumperXPos() {
+	public double jumperXPos() {
 		return jumper.getXposition();
 	}
 
-	public float jumperYPos() {
+	public double jumperYPos() {
 		return jumper.getYposition();
 	}
 

@@ -10,20 +10,20 @@ package model;
  */
 public class Quad {
 
-	private float x1;
-	private float y1;
-	private float x2;
-	private float y2;
+	private double x1;
+	private double y1;
+	private double x2;
+	private double y2;
 
-	public Quad(float x1, float y1, float x2, float y2) {
+	public Quad(double x1, double y1, double x2, double y2) {
 		// Keep quads positive, helps calculating if a point is inside
 		if (y2 < y1) {
-			float tmp = y1;
+			double tmp = y1;
 			y1 = y2;
 			y2 = tmp;
 		}
 		if (x2 < y1) {
-			float tmp = x1;
+			double tmp = x1;
 			x1 = x2;
 			x2 = tmp;
 		}
@@ -50,8 +50,9 @@ public class Quad {
 		//@formatter:on
 	}
 
-	public Point removeOtherFromThis(Quad other, float angle) {
-		// TODO Calculate
+	public Point removeOtherFromThis(Quad other, double angle) {
+		return null;
+		// TODO finish this
 	}
 
 }

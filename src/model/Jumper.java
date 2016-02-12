@@ -12,7 +12,7 @@ public class Jumper {
 	 * @return
 	 */
 	public static Quad calculateQuadAtPosition(Point pos) {
-		float x1, x2, y1, y2, radius;
+		double x1, x2, y1, y2, radius;
 		radius = JUMPER_WIDTH / 2;
 		x1 = pos.getX() - radius;
 		x2 = pos.getX() + radius;
@@ -21,10 +21,10 @@ public class Jumper {
 		return new Quad(x1, y1, x2, y2);
 	}
 
-	private float xposition;
-	private float yposition;
-	private float xvelocity;
-	private float yvelocity;
+	private double xposition;
+	private double yposition;
+	private double xvelocity;
+	private double yvelocity;
 
 	/**
 	 * Calculates a potential update
@@ -34,9 +34,9 @@ public class Jumper {
 	 * @param deltaTime
 	 * @return new x and y positions.
 	 */
-	public Point calculateUpdate(float deltaTime) {
-		float tmpxpos = xposition + deltaTime * xvelocity;
-		float tmpypos = yposition + deltaTime * yvelocity;
+	public Point calculateUpdate(double deltaTime) {
+		double tmpxpos = xposition + deltaTime * xvelocity;
+		double tmpypos = yposition + deltaTime * yvelocity;
 		return new Point(tmpxpos, tmpypos);
 	}
 
@@ -127,7 +127,7 @@ public class Jumper {
 	/**
 	 * @return the xposition
 	 */
-	public float getXposition() {
+	public double getXposition() {
 		return xposition;
 	}
 
@@ -142,7 +142,7 @@ public class Jumper {
 	/**
 	 * @return the yposition
 	 */
-	public float getYposition() {
+	public double getYposition() {
 		return yposition;
 	}
 
@@ -150,7 +150,7 @@ public class Jumper {
 	 * @param yposition
 	 *            the y position to set
 	 */
-	public void setYposition(float yposition) {
+	public void setYposition(double yposition) {
 		this.yposition = yposition;
 	}
 
@@ -177,7 +177,7 @@ public class Jumper {
 	/**
 	 * @return the xvelocity
 	 */
-	public float getXvelocity() {
+	public double getXvelocity() {
 		return xvelocity;
 	}
 
@@ -192,7 +192,7 @@ public class Jumper {
 	/**
 	 * @return the yvelocity
 	 */
-	public float getYvelocity() {
+	public double getYvelocity() {
 		return yvelocity;
 	}
 
@@ -200,7 +200,7 @@ public class Jumper {
 	 * @param yvelocity
 	 *            the y velocity to set
 	 */
-	public void setYvelocity(float yvelocity) {
+	public void setYvelocity(double yvelocity) {
 		this.yvelocity = yvelocity;
 	}
 
