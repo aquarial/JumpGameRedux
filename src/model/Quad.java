@@ -18,6 +18,15 @@ public class Quad {
 	private double x2;
 	private double y2;
 
+	/**
+	 * Construct a quad from an array instead of passing doubles
+	 * 
+	 * @param corners Array with <b>LENGTH OF 4</b>
+	 */
+	public Quad(double[] corners) {
+		this(corners[0], corners[1], corners[2], corners[3]);
+	}
+
 	public Quad(double x1, double y1, double x2, double y2) {
 		// Keep quads positive, helps calculating if a point is inside
 		if (y2 < y1) {
