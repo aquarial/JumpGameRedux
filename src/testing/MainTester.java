@@ -9,7 +9,7 @@ public class MainTester {
 		Quad q1 = new Quad(4, 4, 9, 9);
 		Quad q2 = new Quad(10, 6, 11, 7);
 
-		q1.removeJumperFromThis(q2, 1, -1);
+		q1.calculatePushingOtherToThis(q2, 1, -1);
 		//
 		// for (double ang = -Math.PI; ang < Math.PI; ang += Math.PI / 8) {
 		// System.out.print(ang / Math.PI + " ");
