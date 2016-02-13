@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainModel {
@@ -14,15 +15,27 @@ public class MainModel {
 
 	public void update(float deltaTime) {
 		Point newPosition = jumper.calculateUpdate(deltaTime);
+		Quad currentJumperQuad = jumper.positionToQuad();
+		Quad futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
 
-		Quad jumperQuad = Jumper.calculateQuadAtPosition(newPosition);
-		Point[] corners = jumperQuad.toPointArray();
+		ArrayList<Point> minMovements = new ArrayList<Point>();
+		for (Quad blockade : stickyBlocks) {
+			if (blockade.containsQuad(futureJumperQuad)) {
 
-		Point[] newJumperPositions = new Point[4];
-		for (int index = 0; index < 4; index++) {
-			Point corner = corners[index];
+				double x = jumper.getXvelocity();
+				double y = jumper.getYvelocity();
+				Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
+				minMovements.add(newMinMovement);
 
+			}
 		}
+
+		if (minMovements.size() > 0) {
+			Point minimumMove = minMovements.stream().min(new PointComparator()).get();
+			jumper.setVelocityToZero();
+			jumper.moveBy(minimumMove.getX(), minimumMove.getY());
+		}
+
 	}
 
 	public double jumperXPos() {
