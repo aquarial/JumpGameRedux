@@ -1,4 +1,4 @@
-package view;
+package model;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import io.Resources;
-import model.Point;
-import model.Quad;
 
 public class Level {
 
