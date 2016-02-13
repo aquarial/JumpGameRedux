@@ -36,8 +36,7 @@ public class Quad {
 	}
 
 	public Point[] toPointArray() {
-		return new Point[] { new Point(x1, y1), new Point(x1, y2),
-				new Point(x2, y1), new Point(y2, y2) };
+		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
 	}
 
 	public boolean containsQuad(Quad other) {
@@ -53,19 +52,14 @@ public class Quad {
 	public Point removeOtherFromThis(Quad other, double angle) {
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
 			System.out.print("RIGHT"); // this.x1 from other.x2
-			double difference = other.x2 - this.x1;
-			System.out.println(difference);
 		}
 
 		if ((angle < Math.PI) && (angle > 0)) {
 			System.out.print("UP"); // this.y1 from other.y2
-			double difference = this.y2 - other.y1;
-			System.out.println(difference);
 		}
 
 		if ((angle > -1 * Math.PI) && (angle < 0)) {
 			System.out.print("DOWN");
-			double difference = this.y1 - other.y2;
 		}
 
 		if ((angle > Math.PI / 2) || (angle < -1 * Math.PI / 2)) {
