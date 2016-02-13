@@ -25,6 +25,7 @@ public class Jumper {
 	private double yposition;
 	private double xvelocity;
 	private double yvelocity;
+	private boolean isStuck;
 
 	/**
 	 * Calculates a potential update
@@ -64,6 +65,7 @@ public class Jumper {
 		this.yposition = ypos;
 		this.xvelocity = 0;
 		this.yvelocity = 0;
+		this.isStuck = false;
 	}
 
 	/**
@@ -208,6 +210,20 @@ public class Jumper {
 	 */
 	public void setYvelocity(double yvelocity) {
 		this.yvelocity = yvelocity;
+	}
+
+	/**
+	 * @return the isStuck
+	 */
+	public boolean isStuck() {
+		return isStuck;
+	}
+
+	/**
+	 * @param isStuck the isStuck to set
+	 */
+	public void setStuck(boolean isStuck) {
+		this.isStuck = isStuck;
 	}
 
 }
