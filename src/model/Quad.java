@@ -77,7 +77,7 @@ public class Quad {
 
 		// intersect with TOP
 		double m = yvel / xvel;
-		System.out.println(lowerLeftCornerToTopLine(other, m));
+		System.out.println(lowerRightCornerToLeftLine(other, m));
 		return null;
 	}
 
@@ -94,31 +94,43 @@ public class Quad {
 		return new Point(0, 0);
 	}
 
-	Point lowerLeftCornerToTopLine(Quad other, double slope) {
+	Point lowerLeftCornerToTopLine(Quad other, double m) {
 		double x;
 
 		// this.y2 - other.y1 = m * ( SOLUTION - other.x1)
-		x = (this.y2 - other.y1) / slope + other.x1;
+		x = (this.y2 - other.y1) / m + other.x1;
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
-			double y = slope * (x - other.x1) + other.y1;
-			System.out.println("point = " + x + " " + y);
+			double y = this.y2;
 			return new Point(x - other.x1, y - other.y1);
 		}
 		return new Point(0, 0);
 	}
 
-	Point lowerLeftCornerToRightLine(Quad other, double slope) {
-		double x;
+	Point lowerLeftCornerToRightLine(Quad other, double m) {
+		double y;
 
-		// this.y2 - other.y1 = m * ( SOLUTION - other.x1)
-		x = (this.y2 - other.y1) / slope + other.x1;
+		// SOLUTION - other.y1 = m * (other.x2 - this.x1)
+		y = m * (this.x2 - other.x1) + other.y1;
 
-		if ((this.x1 <= x) && (x <= this.x2)) {
-			double y = slope * (x - other.x1) + other.y1;
-			System.out.println("point = " + x + " " + y);
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x2;
 			return new Point(x - other.x1, y - other.y1);
 		}
+
+		return new Point(0, 0);
+	}
+
+	Point lowerRightCornerToLeftLine(Quad other, double m) {
+		double y;
+
+		y = m * (this.x1 - other.x2) + other.y1;
+
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x1;
+			return new Point(x - other.x2, y - other.y1);
+		}
+
 		return new Point(0, 0);
 	}
 
