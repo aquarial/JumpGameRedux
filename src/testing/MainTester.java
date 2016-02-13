@@ -15,9 +15,8 @@ public class MainTester {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setSize(600, 400);
 				f.setVisible(true);
-				f.add(JPanelConstructor.makeNewGamePanel("1"));
+				f.add(JPanelConstructor.makeNewGamePanel("001"));
 			}
 		});
-
 	}
 }
