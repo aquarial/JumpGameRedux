@@ -12,10 +12,17 @@ public class Point {
 
 	private double x;
 	private double y;
+	private String debug = "";
 
 	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
+	}
+
+	public Point(double x, double y, String d) {
+		this.x = x;
+		this.y = y;
+		debug = d;
 	}
 
 	public double getX() {
@@ -35,7 +42,7 @@ public class Point {
 	}
 
 	public String toString() {
-		return "(" + this.x + ", " + this.y + ")";
+		return "(" + this.x + ", " + this.y + ")     " + debug;
 	}
 
 }
