@@ -101,7 +101,7 @@ public class Jumper {
 	 * 
 	 * @see update(float deltaTime)
 	 */
-	public void moveBy(float deltaX, float deltaY) {
+	public void moveBy(double deltaX, double deltaY) {
 		xposition += deltaX;
 		yposition += deltaY;
 	}
