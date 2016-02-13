@@ -107,6 +107,21 @@ public class Jumper {
 	}
 
 	/**
+	 * Changes position coordinates into a Quad
+	 * 
+	 * @return Quad representing corners
+	 */
+	public Quad positionToQuad() {
+		double x1, x2, y1, y2, radius;
+		radius = JUMPER_WIDTH / 2;
+		x1 = this.xposition - radius;
+		x2 = this.xposition + radius;
+		y1 = this.yposition - radius;
+		y2 = this.yposition + radius;
+		return new Quad(x1, y1, x2, y2);
+	}
+
+	/**
 	 * 
 	 * @return p the x and y position
 	 */
@@ -152,15 +167,6 @@ public class Jumper {
 	 */
 	public void setYposition(double yposition) {
 		this.yposition = yposition;
-	}
-
-	/**
-	 * Get angle jumper is moving at
-	 * 
-	 * @return
-	 */
-	public float getAngularVelocityAngle() {
-		return (float) Math.tan(yvelocity / xvelocity);
 	}
 
 	/**
