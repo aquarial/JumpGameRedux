@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a quadrilateral
  * <p>
@@ -53,26 +56,45 @@ public class Quad {
 		double angle;
 		if (xvel == 0) {
 			angle = Math.signum(yvel) * Math.PI / 2;
+			xvel = 0.0001;
 		} else {
 			angle = Math.tan(yvel / xvel);
 		}
 
+		double m = yvel / xvel;
+
+		List<Point> movements = new ArrayList<Point>();
+
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
+			movements.add(upperRightCornerToLeftLine(other, m));
+			movements.add(lowerRightCornerToLeftLine(other, m));
 			// System.out.print("RIGHT"); // other.x2 to this.x1
 		}
 
 		if ((angle < Math.PI) && (angle > 0)) {
+			movements.add(upperRightCornerToBottomtLine(other, m));
+			movements.add(upperLeftCornerToBottomLine(other, m));
 			// System.out.print("UP"); // other.y2 to this.y1
 		}
 
 		if ((angle > -1 * Math.PI) && (angle < 0)) {
+			movements.add(lowerLeftCornerToTopLine(other, m));
+			movements.add(lowerRightCornerToTopLine(other, m));
 			// System.out.print("DOWN"); // other.y1 to this.y2
 		}
 
 		if ((angle > Math.PI / 2) || (angle < -1 * Math.PI / 2)) {
+			movements.add(upperLeftCornerToRightLine(other, m));
+			movements.add(lowerLeftCornerToRightLine(other, m));
 			// System.out.print("LEFT"); // other.x1 to this.x2
 		}
+		//@formatter:off
+		Point minMovement = movements.stream()
+				.filter( (Point p) -> p.getX() != 0 && p.getY() != 0 )
+				.min(new PointComparator()).get();
+		//@formatter:on
 
+		System.out.println(minMovement);
 		System.out.println();
 
 		// intersect with TOP
