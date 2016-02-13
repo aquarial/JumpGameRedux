@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import model.MainModel;
+import model.Point;
 import model.Quad;
 
 public class GamePanel extends JPanel {
@@ -23,7 +24,6 @@ public class GamePanel extends JPanel {
 	}
 
 	public void paint(Graphics g) {
-		System.out.println("print");
 		Graphics2D g2 = (Graphics2D) g;
 
 		g2.setColor(Color.BLUE);
@@ -37,7 +37,18 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawStickyQuad(Quad stickyQuad, Graphics2D g2) {
-		System.out.println("draw quad at " + stickyQuad.getX2() + " , " + stickyQuad.getY2());
+		double x1 = (stickyQuad.getX1() - model.getPlayerXPos());
+		double y1 = (stickyQuad.getY1() - model.getPlayerYPos());
+		double x2 =(stickyQuad.getX2() - model.getPlayerXPos());
+		double y2 = (stickyQuad.getY2() - model.getPlayerYPos());
+		System.out.println("draw quad at " + x1 + " " + y1 + " " + x2 + " " + y2);
+		//g2.drawRect(x1, y1, x2 - x1, y2 - y1);
+	}
+
+	public void pointRelativeToPlayerPos(double quadX, double quadY) {
+		int newx = modelUnitToPixels(quadX - model.getPlayerXPos());
+		int newy = modelUnitToPixels(model.getPlayerYPos() - quadY);
+
 	}
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
