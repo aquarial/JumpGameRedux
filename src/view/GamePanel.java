@@ -22,6 +22,27 @@ public class GamePanel extends JPanel {
 		model = m;
 	}
 
+	public void startlevel() {
+		long oldTime = System.currentTimeMillis();
+		long newTime;
+		for (int i = 0; i < 50; i++) {
+			sleep(100);
+			newTime = System.currentTimeMillis();
+			model.updateModel((newTime - oldTime) / 1000.0);
+			System.out.println("pos = " + model.getPlayerYPos());
+			this.repaint();
+			oldTime = newTime;
+		}
+	}
+
+	private void sleep(long mili) {
+		try {
+			Thread.sleep(mili);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 
@@ -41,7 +62,6 @@ public class GamePanel extends JPanel {
 		int x2 = modelUnitToPixels(stickyQuad.getX2() - model.getPlayerXPos());
 		int y2 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY1());
 
-		System.out.println("draw quad at " + x1 + " " + y1 + " " + (x2 - x1) + " " + (y2 - y1));
 		g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
 	}
 
