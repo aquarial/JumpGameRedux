@@ -1,11 +1,10 @@
 <root>
 
 	<name>Basic level</name>
+	
 	<player>
-		<location>
-			<x>1</x>
-			<y>4</y>
-		</location>
+		<xpos>1</xpos>
+		<ypos>4</ypos>
 	</player>
 	<leveldata>
 		<quad>
