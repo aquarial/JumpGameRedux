@@ -1,16 +1,22 @@
-<root>
-	<player>
-		<location>
-			1
-			2
-		</location>
-	</player>
-	<leveldata>
-		<quad>
-			0
-			0
-			4
-			1
-		</quad>
-	</leveldata>
-</root>
+<levelpack>
+	<name>Testing Pack</name>
+	
+	<level>
+		<name>Basic level</name>
+		<player>
+			<location>
+				<x>1</x>
+				<y>4</y>
+			</location>
+		</player>
+		<leveldata>
+			<quad>
+				<x1>0</x1>
+				<y1>0</y1>
+				<x2>4</x2>
+				<y2>1</y2>
+			</quad>
+		</leveldata>
+	</level>
+	
+</levelpack>
