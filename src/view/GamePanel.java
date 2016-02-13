@@ -22,20 +22,37 @@ public class GamePanel extends JPanel {
 		model = m;
 	}
 
-	public void startlevel() {
-		long oldTime = System.currentTimeMillis();
-		long newTime;
-		for (int i = 0; i < 50; i++) {
-			sleep(100);
-			newTime = System.currentTimeMillis();
-			model.updateModel((newTime - oldTime) / 1000.0);
-			System.out.println("pos = " + model.getPlayerYPos());
-			this.repaint();
-			oldTime = newTime;
+	class MyThread extends Thread {
+
+		private GamePanel panel;
+
+		public MyThread(GamePanel gp) {
+			panel = gp;
+		}
+
+		@Override
+		public void run() {
+			long oldTime = System.currentTimeMillis();
+			long newTime;
+			for (int i = 0; i < 50; i++) {
+				safesleep(100);
+				newTime = System.currentTimeMillis();
+				model.updateModel((newTime - oldTime) / 1000.0);
+				System.out.println("pos = " + model.getPlayerYPos());
+				panel.repaint();
+				panel.revalidate();
+
+				oldTime = newTime;
+			}
 		}
 	}
 
-	private void sleep(long mili) {
+	public void startlevel() {
+		Thread th = new MyThread(this);
+		th.start();
+	}
+
+	private void safesleep(long mili) {
 		try {
 			Thread.sleep(mili);
 		} catch (InterruptedException e) {
@@ -43,6 +60,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 
@@ -63,6 +81,7 @@ public class GamePanel extends JPanel {
 		int y2 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY1());
 
 		g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
+		System.out.println("(" + model.getPlayerXPos() + ", " + model.getPlayerYPos() + ")");
 	}
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
