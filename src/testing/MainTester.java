@@ -14,6 +14,7 @@ public class MainTester {
 				JFrame f = new JFrame("Game Test Frame");
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setSize(600, 400);
+				f.setResizable(false);
 				f.setVisible(true);
 				f.add(JPanelConstructor.makeNewGamePanel("001"));
 			}
