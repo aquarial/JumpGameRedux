@@ -14,26 +14,31 @@ public class MainModel {
 	}
 
 	public void update(float deltaTime) {
-		Point newPosition = jumper.calculateUpdate(deltaTime);
-		Quad currentJumperQuad = jumper.positionToQuad();
-		Quad futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
 
-		ArrayList<Point> minMovements = new ArrayList<Point>();
-		for (Quad blockade : stickyBlocks) {
-			if (blockade.containsQuad(futureJumperQuad)) {
+		if (!jumper.isStuck()) {
+			Point newPosition = jumper.calculateUpdate(deltaTime);
+			Quad currentJumperQuad = jumper.positionToQuad();
+			Quad futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
 
-				double x = jumper.getXvelocity();
-				double y = jumper.getYvelocity();
-				Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
-				minMovements.add(newMinMovement);
+			ArrayList<Point> minMovements = new ArrayList<Point>();
+			for (Quad blockade : stickyBlocks) {
+				if (blockade.containsQuad(futureJumperQuad)) {
 
+					double x = jumper.getXvelocity();
+					double y = jumper.getYvelocity();
+					Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
+					minMovements.add(newMinMovement);
+
+				}
 			}
-		}
 
-		if (minMovements.size() > 0) {
-			Point minimumMove = minMovements.stream().min(new PointComparator()).get();
-			jumper.setVelocityToZero();
-			jumper.moveBy(minimumMove.getX(), minimumMove.getY());
+			if (minMovements.size() > 0) {
+				Point minimumMove = minMovements.stream().min(new PointComparator()).get();
+				jumper.setVelocityToZero();
+				jumper.moveBy(minimumMove.getX(), minimumMove.getY());
+			}
+		} else {
+			// if I ever add moving platforms!
 		}
 
 	}
