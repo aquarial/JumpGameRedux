@@ -13,7 +13,7 @@ import org.xml.sax.SAXException;
 
 public class Resources {
 
-	public Element getDocumentForLevel(String level) {
+	public Document getDocumentForLevel(String level) {
 		try {
 
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
@@ -22,7 +22,7 @@ public class Resources {
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(getInputFile(level));
 			doc.getDocumentElement().normalize();
-			return doc.getDocumentElement();
+			return doc;
 
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
