@@ -5,16 +5,21 @@ import java.util.List;
 
 public class MainModel {
 
-	private List<Quad> stickyBlocks;
+	private List<Quad> stickyQuads;
 	private Jumper jumper;
+
+	public MainModel(Level level) {
+		this(level.getPlayerPosition(), level.getStickyQuads());
+	}
 
 	public MainModel(Point playerLocation, List<Quad> obsticales) {
 		this.jumper = new Jumper(playerLocation);
-		this.stickyBlocks = obsticales;
+		this.stickyQuads = obsticales;
 	}
 
 	/**
 	 * Updates the model based on time passed. Moves the Jumper/Player.
+	 * 
 	 * @param deltaTime
 	 */
 	public void updateModel(float deltaTime) {
@@ -25,7 +30,7 @@ public class MainModel {
 			Quad futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
 
 			ArrayList<Point> minMovements = new ArrayList<Point>();
-			for (Quad blockade : stickyBlocks) {
+			for (Quad blockade : stickyQuads) {
 				if (blockade.containsQuad(futureJumperQuad)) {
 
 					double x = jumper.getXvelocity();
