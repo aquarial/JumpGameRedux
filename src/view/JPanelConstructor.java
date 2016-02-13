@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 public class JPanelConstructor {
 	public static JPanel makeNewGamePanel() {
 		Resources r = new Resources();
-		Element root = r.getDocumentForLevel(1);
+		Element root = r.getDocumentForLevel("1");
 
 		System.out.println("baseURI = " + root.getBaseURI());
 

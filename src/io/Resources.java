@@ -13,7 +13,7 @@ import org.xml.sax.SAXException;
 
 public class Resources {
 
-	public Element getDocumentForLevel(int level) {
+	public Element getDocumentForLevel(String level) {
 		try {
 
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
@@ -34,9 +34,9 @@ public class Resources {
 		return null;
 	}
 
-	public File getInputFile(int level) {
+	public File getInputFile(String level) {
 		Class<? extends Thread> classloader = Thread.currentThread().getClass();
 
-		return new File(classloader.getResource("/levels/001.xml").getPath());
+		return new File(classloader.getResource("/levels/" + level + ".xml").getPath());
 	}
 }
