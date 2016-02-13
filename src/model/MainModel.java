@@ -64,13 +64,17 @@ public class MainModel {
 	public double getPlayerYPos() {
 		return jumper.getYposition();
 	}
-	
+
 	public double getPlayerWidth() {
 		return Jumper.JUMPER_WIDTH;
 	}
-	
+
 	public List<Quad> getStickyQuads() {
 		return this.stickyQuads;
+	}
+
+	public boolean jumperReachedEnd() {
+		return false;
 	}
 
 }
