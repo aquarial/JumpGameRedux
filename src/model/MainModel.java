@@ -22,7 +22,7 @@ public class MainModel {
 	 * 
 	 * @param deltaTime
 	 */
-	public void updateModel(float deltaTime) {
+	public void updateModel(double deltaTime) {
 
 		if (!jumper.isStuck()) {
 			Point newPosition = jumper.calculateUpdate(deltaTime);

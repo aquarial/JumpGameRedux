@@ -46,7 +46,7 @@ public class Jumper {
 	 * 
 	 * @param deltaTime
 	 */
-	public void update(float deltaTime) {
+	public void update(double deltaTime) {
 		xposition += deltaTime * xvelocity;
 		yposition += deltaTime * yvelocity;
 		yvelocity += GRAVITY_CONSTANT;
