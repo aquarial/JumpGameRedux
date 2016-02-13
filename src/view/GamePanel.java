@@ -37,13 +37,13 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawStickyQuad(Quad stickyQuad, Graphics2D g2) {
-		double x1 = modelUnitToPixels(stickyQuad.getX1() - model.getPlayerXPos());
-		double y1 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY2());
-		double x2 = modelUnitToPixels(stickyQuad.getX2() - model.getPlayerXPos());
-		double y2 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY1());
+		int x1 = modelUnitToPixels(stickyQuad.getX1() - model.getPlayerXPos());
+		int y1 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY2());
+		int x2 = modelUnitToPixels(stickyQuad.getX2() - model.getPlayerXPos());
+		int y2 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY1());
 
 		System.out.println("draw quad at " + x1 + " " + y1 + " " + (x2 - x1) + " " + (y2 - y1));
-		// g2.drawRect(x1, y1, x2 - x1, y2 - y1);
+		g2.drawRect(x1, y1, x2 - x1, y2 - y1);
 	}
 
 	public void pointRelativeToPlayerPos(double quadX, double quadY) {
