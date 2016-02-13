@@ -38,9 +38,9 @@ public class GamePanel extends JPanel {
 
 	private void drawStickyQuad(Quad stickyQuad, Graphics2D g2) {
 		double x1 = (stickyQuad.getX1() - model.getPlayerXPos());
-		double y1 = (stickyQuad.getY1() - model.getPlayerYPos());
+		double y1 = (model.getPlayerYPos() - stickyQuad.getY1());
 		double x2 = (stickyQuad.getX2() - model.getPlayerXPos());
-		double y2 = (stickyQuad.getY2() - model.getPlayerYPos());
+		double y2 = (model.getPlayerYPos() - stickyQuad.getY2());
 		System.out.println("draw quad at " + x1 + " " + y1 + " " + x2 + " " + y2);
 		// g2.drawRect(x1, y1, x2 - x1, y2 - y1);
 	}
