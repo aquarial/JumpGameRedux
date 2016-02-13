@@ -11,7 +11,7 @@ public class JPanelConstructor {
 		Level level = new Level(levelname);
 		MainModel m = new MainModel(level);
 
-		JPanel pan = new GamePanel();
+		JPanel pan = new GamePanel(m);
 		return pan;
 	}
 }
