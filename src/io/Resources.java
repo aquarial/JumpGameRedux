@@ -34,6 +34,6 @@ public class Resources {
 
 	public File getInputFile(String level) {
 		Class<? extends Thread> classloader = Thread.currentThread().getClass();
-		return new File(classloader.getResource("/levels/" + level + ".xml").getPath());
+		return new File(classloader.getResource("/levels/"+level+".xml").getPath());
 	}
 }
