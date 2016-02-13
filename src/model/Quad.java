@@ -77,15 +77,14 @@ public class Quad {
 
 		// intersect with TOP
 		double m = yvel / xvel;
-		System.out.println(lowerRightCornerToLeftLine(other, m));
+		System.out.println(upperLeftCornerToRightLine(other, m));
 		return null;
 	}
 
 	Point lowerRightCornerToTopLine(Quad other, double slope) {
-		double x;
 
 		// this.y2 - other.y1 = m * ( SOLUTION - other.x2)
-		x = (this.y2 - other.y1) / slope + other.x2;
+		double x = (this.y2 - other.y1) / slope + other.x2;
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = slope * (x - other.x2) + other.y1;
@@ -94,11 +93,23 @@ public class Quad {
 		return new Point(0, 0);
 	}
 
+	Point lowerRightCornerToLeftLine(Quad other, double m) {
+
+		// SOLUTION - other.y1 = m * (this.x1 - other.x2)
+		double y = m * (this.x1 - other.x2) + other.y1;
+
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x1;
+			return new Point(x - other.x2, y - other.y1);
+		}
+
+		return new Point(0, 0);
+	}
+
 	Point lowerLeftCornerToTopLine(Quad other, double m) {
-		double x;
 
 		// this.y2 - other.y1 = m * ( SOLUTION - other.x1)
-		x = (this.y2 - other.y1) / m + other.x1;
+		double x = (this.y2 - other.y1) / m + other.x1;
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = this.y2;
@@ -108,10 +119,9 @@ public class Quad {
 	}
 
 	Point lowerLeftCornerToRightLine(Quad other, double m) {
-		double y;
 
 		// SOLUTION - other.y1 = m * (other.x2 - this.x1)
-		y = m * (this.x2 - other.x1) + other.y1;
+		double y = m * (this.x2 - other.x1) + other.y1;
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x2;
@@ -121,14 +131,27 @@ public class Quad {
 		return new Point(0, 0);
 	}
 
-	Point lowerRightCornerToLeftLine(Quad other, double m) {
-		double y;
+	Point upperLeftCornerToBottomLine(Quad other, double m) {
 
-		y = m * (this.x1 - other.x2) + other.y1;
+		// this.y1 = m * (SOLUTION - other.x1) + other.y2
+		double x = (this.y1 - other.y2) / m + other.x1;
+
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = this.y1;
+			return new Point(x - other.x1, y - other.y2);
+		}
+
+		return new Point(0, 0);
+	}
+
+	Point upperLeftCornerToRightLine(Quad other, double m) {
+
+		// SOLUTION = m * (this.x2 - other.x1) + other.y2
+		double y = m * (this.x2 - other.x1) + other.y2;
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
-			double x = this.x1;
-			return new Point(x - other.x2, y - other.y1);
+			double x = this.x2;
+			return new Point(x - other.x1, y - other.y2);
 		}
 
 		return new Point(0, 0);
