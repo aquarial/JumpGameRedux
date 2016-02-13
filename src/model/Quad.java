@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents a quadrilateral
@@ -123,9 +124,9 @@ public class Quad {
 			// System.out.print("LEFT"); // other.x1 to this.x2
 		}
 		//@formatter:off
-		Point minMovement = movements.stream()
+		Optional<Point> minMovement = movements.stream()
 				.filter( (Point p) -> p.getX() != 0 || p.getY() != 0 )
-				.min(new PointComparator()).get();
+				.min(new PointComparator());
 		//@formatter:on
 
 		// DEBUG :
@@ -137,7 +138,11 @@ public class Quad {
 		// .forEach(System.out::println);
 
 		// intersect with TOP
-		return minMovement;
+		if (minMovement.isPresent()) {
+			return minMovement.get();
+		} else {
+			return Point.ZERO;
+		}
 	}
 
 	/**
