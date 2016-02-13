@@ -13,7 +13,11 @@ public class MainModel {
 		this.stickyBlocks = obsticales;
 	}
 
-	public void update(float deltaTime) {
+	/**
+	 * Updates the model based on time passed. Moves the Jumper/Player.
+	 * @param deltaTime
+	 */
+	public void updateModel(float deltaTime) {
 
 		if (!jumper.isStuck()) {
 			Point newPosition = jumper.calculateUpdate(deltaTime);
@@ -32,10 +36,15 @@ public class MainModel {
 				}
 			}
 
+			// if encountered platform...
 			if (minMovements.size() > 0) {
+				// stick to platfrom
 				Point minimumMove = minMovements.stream().min(new PointComparator()).get();
 				jumper.setVelocityToZero();
 				jumper.moveBy(minimumMove.getX(), minimumMove.getY());
+			} else {
+				// move to new Position
+				jumper.update(deltaTime);
 			}
 		} else {
 			// if I ever add moving platforms!
@@ -43,11 +52,11 @@ public class MainModel {
 
 	}
 
-	public double jumperXPos() {
+	public double getPlayerXPos() {
 		return jumper.getXposition();
 	}
 
-	public double jumperYPos() {
+	public double getPlayerYPos() {
 		return jumper.getYposition();
 	}
 
