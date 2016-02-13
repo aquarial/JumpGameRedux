@@ -11,7 +11,7 @@ public class MainTester {
 
 		for (double ang = -Math.PI; ang < Math.PI; ang += Math.PI / 8) {
 			System.out.print(ang / Math.PI + " ");
-			q1.removeOtherFromThis(q2, ang);
+			q1.removeJumperFromThis(q2, 1, 0);
 		}
 
 		// SwingUtilities.invokeLater(new Runnable() {

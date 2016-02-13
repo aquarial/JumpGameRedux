@@ -49,7 +49,14 @@ public class Quad {
 		//@formatter:on
 	}
 
-	public Point removeOtherFromThis(Quad other, double angle) {
+	public Point removeJumperFromThis(Quad other, double xvel, double yvel) {
+		double angle;
+		if (xvel == 0) {
+			angle = Math.signum(yvel) * Math.PI / 2;
+		} else {
+			angle = Math.tan(yvel / xvel);
+		}
+
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
 			System.out.print("RIGHT"); // this.x1 from other.x2
 		}
