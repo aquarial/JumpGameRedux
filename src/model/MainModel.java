@@ -68,5 +68,9 @@ public class MainModel {
 	public double getPlayerWidth() {
 		return Jumper.JUMPER_WIDTH;
 	}
+	
+	public List<Quad> getStickyQuads() {
+		return this.stickyQuads;
+	}
 
 }
