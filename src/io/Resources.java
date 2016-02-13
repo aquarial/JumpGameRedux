@@ -15,9 +15,7 @@ public class Resources {
 
 	public Document getDocumentForLevel(String level) {
 		try {
-
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(getInputFile(level));
@@ -36,7 +34,6 @@ public class Resources {
 
 	public File getInputFile(String level) {
 		Class<? extends Thread> classloader = Thread.currentThread().getClass();
-
 		return new File(classloader.getResource("/levels/" + level + ".xml").getPath());
 	}
 }
