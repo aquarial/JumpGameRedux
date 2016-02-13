@@ -58,26 +58,24 @@ public class Quad {
 		}
 
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
-			// System.out.print("RIGHT"); // this.x1 from other.x2
+			// System.out.print("RIGHT"); // other.x2 to this.x1
 		}
 
 		if ((angle < Math.PI) && (angle > 0)) {
-			// System.out.print("UP"); // this.y1 from other.y2
+			// System.out.print("UP"); // other.y2 to this.y1
 		}
 
 		if ((angle > -1 * Math.PI) && (angle < 0)) {
-			// System.out.print("DOWN");
+			// System.out.print("DOWN"); // other.y1 to this.y2
 		}
 
 		if ((angle > Math.PI / 2) || (angle < -1 * Math.PI / 2)) {
-			// System.out.print("LEFT");
+			// System.out.print("LEFT"); // other.x1 to this.x2
 		}
 
 		System.out.println();
 
 		// intersect with TOP
-		double m = yvel / xvel;
-		System.out.println(upperLeftCornerToRightLine(other, m));
 		return null;
 	}
 
