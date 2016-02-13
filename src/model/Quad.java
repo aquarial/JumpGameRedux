@@ -77,15 +77,35 @@ public class Quad {
 
 		// intersect with TOP
 		double m = yvel / xvel;
-		double x;
-		double xsolution;
-
-		// this.y2 - other.y1 = m * ( A - other.x2)
-		x = (this.y2 - other.y1) / m + other.x2;
-
-		System.out.println("x = " + x);
-		// System.out.println("y = " + ( m * (x - other.x2) + other.y1) );
+		System.out.println(lowerLeftCornerToTopLine(other, m));
 		return null;
+	}
+
+	Point lowerRightCornerToTopLine(Quad other, double slope) {
+		double x;
+
+		// this.y2 - other.y1 = m * ( SOLUTION - other.x2)
+		x = (this.y2 - other.y1) / slope + other.x2;
+
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = slope * (x - other.x2) + other.y1;
+			return new Point(x - other.x2, y - other.y1);
+		}
+		return new Point(0, 0);
+	}
+
+	Point lowerLeftCornerToTopLine(Quad other, double slope) {
+		double x;
+
+		// this.y2 - other.y1 = m * ( SOLUTION - other.x1)
+		x = (this.y2 - other.y1) / slope + other.x1;
+
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = slope * (x - other.x1) + other.y1;
+			System.out.println("point = " + x + " " + y);
+			return new Point(x - other.x1, y - other.y1);
+		}
+		return new Point(0, 0);
 	}
 
 }
