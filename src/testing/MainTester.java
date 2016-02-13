@@ -3,6 +3,7 @@ package testing;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import view.GamePanel;
 import view.JPanelConstructor;
 
 public class MainTester {
@@ -16,7 +17,9 @@ public class MainTester {
 				f.setSize(600, 400);
 				f.setResizable(false);
 				f.setVisible(true);
+				GamePanel gp = JPanelConstructor.makeNewGamePanel("001");
 				f.add(JPanelConstructor.makeNewGamePanel("001"));
+				gp.startlevel();
 			}
 		});
 	}
