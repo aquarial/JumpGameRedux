@@ -4,14 +4,16 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import model.Level;
+import model.MainModel;
+
 public class JPanelConstructor {
 	public static JPanel makeNewGamePanel(String levelname) {
 
 		Level level = new Level(levelname);
-		// MainModel m = new MainModel(level);
+		MainModel m = new MainModel(level);
 
-		JPanel pan = new JPanel();
-		pan.setBackground(Color.BLUE);
+		JPanel pan = new GamePanel();
 		return pan;
 	}
 }
