@@ -12,8 +12,8 @@ public class Level {
 
 	private static Resources r = new Resources();
 
-	private ArrayList<Quad> stickyQuads;
 	private Point playerPosition;
+	private ArrayList<Quad> stickyQuads;
 
 	/**
 	 * Builds a level based off of a the xml file of the same name.
@@ -23,45 +23,40 @@ public class Level {
 	public Level(String levelName) {
 		Document level = r.getDocumentForLevel(levelName);
 		level.normalize();
-
 		clean(level);
 
 		NodeList nodes = level.getChildNodes().item(0).getChildNodes();
 
 		// Node name = nodes.item(0);
+
 		Node player = nodes.item(1);
-		Node levelData = nodes.item(2);
+		double xpos = Double.parseDouble(player.getFirstChild().getTextContent());
+		double ypos = Double.parseDouble(player.getLastChild().getTextContent());
+		playerPosition = new Point(xpos, ypos);
 
-		String p_xpos = player.getFirstChild().getTextContent();
-		String p_ypos = player.getLastChild().getTextContent();
+		NodeList listOfQuadNodes = nodes.item(2).getChildNodes();
+		stickyQuads = new ArrayList<Quad>();
+		for (int index = 0; index < listOfQuadNodes.getLength(); index++) {
+			double[] cornerData = parseQuadCorners(listOfQuadNodes.item(index));
+			stickyQuads.add(new Quad(cornerData));
+		}
 
-		System.out.println(p_xpos + ", " + p_ypos);
-		// Node player = nodes.item(1);
-		// Node p_location = player.getFirstChild();
-		// Node p_loc_x = p_location.getFirstChild();
-		// Node p_loc_y = p_loc_x.getNextSibling();
-		//
-		// System.out.println("x = " + p_loc_x.getNodeValue());
-		// System.out.println("y = " + p_loc_y.getNodeValue());
-		//
-		// Node quads = nodes.item(2);
 	}
 
-	double[] parserQuadCorners(Node childOfLevelData) {
+	/**
+	 * 
+	 * Parses the corner coordinates from the xml
+	 * 
+	 * @param childOfLevelData
+	 * @return The coordinates the child held
+	 */
+	double[] parseQuadCorners(Node childOfLevelData) {
 		NodeList childern = childOfLevelData.getChildNodes();
 		double[] data = new double[4];
 		for (int index = 0; index < 4; index++) {
 			data[index] = Double.parseDouble(childern.item(index).getTextContent());
 		}
-
 		return data;
-	}
-
-	void printNodes(String name, NodeList nodes) {
-		for (int i = 0; i < nodes.getLength(); i++) {
-			Node n = nodes.item(i);
-			System.out.println(name + "[" + i + "]" + " = " + n.getNodeName());
-		}
 	}
 
 	/**
@@ -90,6 +85,20 @@ public class Level {
 			} else if (nodeType == Node.COMMENT_NODE)
 				node.removeChild(child);
 		}
+	}
+
+	/**
+	 * @return the playerPosition
+	 */
+	public Point getPlayerPosition() {
+		return playerPosition;
+	}
+
+	/**
+	 * @return the stickyQuads
+	 */
+	public ArrayList<Quad> getStickyQuads() {
+		return stickyQuads;
 	}
 
 }
