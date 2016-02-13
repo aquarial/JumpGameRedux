@@ -13,6 +13,8 @@ public class Point {
 	private double x;
 	private double y;
 	private String debug = "";
+	
+	public static final Point ZERO = new Point(0, 0);
 
 	public Point(double x, double y) {
 		this.x = x;
