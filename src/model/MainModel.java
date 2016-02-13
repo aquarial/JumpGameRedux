@@ -64,5 +64,9 @@ public class MainModel {
 	public double getPlayerYPos() {
 		return jumper.getYposition();
 	}
+	
+	public double getPlayerWidth() {
+		return Jumper.JUMPER_WIDTH;
+	}
 
 }
