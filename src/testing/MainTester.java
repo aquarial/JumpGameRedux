@@ -6,8 +6,8 @@ public class MainTester {
 
 	public static void main(String[] args) {
 
-		Quad q1 = new Quad(2, 1, 5, 3);
-		Quad q2 = new Quad(2, 4, 3, 5);
+		Quad q1 = new Quad(4, 4, 9, 9);
+		Quad q2 = new Quad(10, 6, 11, 7);
 
 		q1.removeJumperFromThis(q2, 1, -1);
 		//

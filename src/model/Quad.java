@@ -108,4 +108,18 @@ public class Quad {
 		return new Point(0, 0);
 	}
 
+	Point lowerLeftCornerToRightLine(Quad other, double slope) {
+		double x;
+
+		// this.y2 - other.y1 = m * ( SOLUTION - other.x1)
+		x = (this.y2 - other.y1) / slope + other.x1;
+
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = slope * (x - other.x1) + other.y1;
+			System.out.println("point = " + x + " " + y);
+			return new Point(x - other.x1, y - other.y1);
+		}
+		return new Point(0, 0);
+	}
+
 }
