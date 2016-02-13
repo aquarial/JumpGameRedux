@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import model.MainModel;
-import model.Point;
 import model.Quad;
 
 public class GamePanel extends JPanel {
@@ -44,12 +43,6 @@ public class GamePanel extends JPanel {
 
 		System.out.println("draw quad at " + x1 + " " + y1 + " " + (x2 - x1) + " " + (y2 - y1));
 		g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
-	}
-
-	public void pointRelativeToPlayerPos(double quadX, double quadY) {
-		int newx = modelUnitToPixels(quadX - model.getPlayerXPos());
-		int newy = modelUnitToPixels(model.getPlayerYPos() - quadY);
-
 	}
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
