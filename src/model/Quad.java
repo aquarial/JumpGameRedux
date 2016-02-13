@@ -157,4 +157,30 @@ public class Quad {
 		return new Point(0, 0);
 	}
 
+	Point upperRightCornerToBottomtLine(Quad other, double m) {
+
+		// this.y1 - other.y2 = m * (SOLUTION - other.x2)
+		double x = (this.y1 - other.y2) / m + other.x2;
+
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = this.y1;
+			return new Point(x - other.x2, y - other.y2);
+		}
+
+		return new Point(0, 0);
+	}
+
+	Point upperRightCornerToLeftLine(Quad other, double m) {
+
+		// YY = m * (this.x1 - other.x2) + other.y2
+		double y = m * (this.x1 - other.x2) + other.y2;
+
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x1;
+			return new Point(x - other.x2, y - other.y2);
+		}
+
+		return new Point(0, 0);
+	}
+
 }
