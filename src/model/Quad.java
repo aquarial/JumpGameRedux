@@ -346,4 +346,32 @@ public class Quad {
 		return new Point(0, 0);
 	}
 
+	/**
+	 * @return the x1
+	 */
+	public double getX1() {
+		return x1;
+	}
+
+	/**
+	 * @return the y1
+	 */
+	public double getY1() {
+		return y1;
+	}
+
+	/**
+	 * @return the x2
+	 */
+	public double getX2() {
+		return x2;
+	}
+
+	/**
+	 * @return the y2
+	 */
+	public double getY2() {
+		return y2;
+	}
+
 }
