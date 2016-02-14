@@ -12,8 +12,8 @@ import model.Quad;
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static final int xcenter = 300;
-	private static final int ycenter = 200;
+	private static final int xcenter = 400;
+	private static final int ycenter = 300;
 
 	private MainModel model;
 
@@ -64,6 +64,6 @@ public class GamePanel extends JPanel {
 	}
 
 	private int modelUnitToPixels(double unit) {
-		return (int) (unit * 18);
+		return (int) (unit * 20);
 	}
 }
