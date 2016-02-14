@@ -53,8 +53,8 @@ public class GamePanel extends JPanel {
 		g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
 		// System.out.println("(" + model.getPlayerXPos() + ", " +
 		// model.getPlayerYPos() + ")");
-		System.out.println("y = " + (y1 + ycenter));
-		g2.drawRect(300, 0, 30, 100);
+		// System.out.println("y = " + (y1 + ycenter));
+		// g2.drawRect(300, 0, 30, 100);
 	}
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
@@ -64,6 +64,6 @@ public class GamePanel extends JPanel {
 	}
 
 	private int modelUnitToPixels(double unit) {
-		return (int) (unit * 30);
+		return (int) (unit * 18);
 	}
 }

@@ -7,6 +7,8 @@ class MyThread extends Thread {
 	private GamePanel panel;
 	private MainModel model;
 
+	static final long minimumSleepTime = 20;
+
 	public MyThread(GamePanel gp, MainModel model) {
 		this.panel = gp;
 		this.model = model;
@@ -23,8 +25,8 @@ class MyThread extends Thread {
 			model.updateModel(deltaTime / 1000.0);
 			panel.repaint();
 
-			if (deltaTime < 50) {
-				safesleep(50 - deltaTime);
+			if (deltaTime < minimumSleepTime) {
+				safesleep(minimumSleepTime - deltaTime);
 			}
 
 			oldTime = newTime;
