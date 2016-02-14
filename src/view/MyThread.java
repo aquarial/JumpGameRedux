@@ -7,7 +7,7 @@ class MyThread extends Thread {
 	private GamePanel panel;
 	private MainModel model;
 
-	static final long minimumSleepTime = 20;
+	static final long minimumSleepTime = 33;
 
 	public MyThread(GamePanel gp, MainModel model) {
 		this.panel = gp;
@@ -22,7 +22,7 @@ class MyThread extends Thread {
 		while (!model.jumperReachedEnd()) {
 			newTime = System.currentTimeMillis();
 			deltaTime = newTime - oldTime;
-			model.updateModel(deltaTime / 1000.0);
+			model.updateModel(minimumSleepTime / 1000.0);
 			panel.repaint();
 
 			if (deltaTime < minimumSleepTime) {
