@@ -89,8 +89,8 @@ public class GamePanel extends JPanel {
 		g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
 		// System.out.println("(" + model.getPlayerXPos() + ", " +
 		// model.getPlayerYPos() + ")");
-		System.out.println("y = " + (y1+ycenter));
-		g2.drawRect(0, 215, 200, 10);
+		System.out.println("y = " + (y1 + ycenter));
+		g2.drawRect(0, 200, 200, 15);
 	}
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
