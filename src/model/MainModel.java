@@ -17,6 +17,8 @@ public class MainModel {
 		this.stickyQuads = obsticales;
 	}
 
+	private ArrayList<Point> minMovements = new ArrayList<>();
+
 	/**
 	 * Updates the model based on time passed. Moves the Jumper/Player.
 	 * 
@@ -26,23 +28,27 @@ public class MainModel {
 
 		if (!jumper.isStuck()) {
 			Point newPosition = jumper.calculateUpdate(deltaTime);
-			Quad currentJumperQuad = jumper.positionToQuad();
 			Quad futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
 
-			ArrayList<Point> minMovements = new ArrayList<Point>();
+			boolean encounteredQuad = false;
 			for (Quad blockade : stickyQuads) {
 				if (blockade.containsQuad(futureJumperQuad)) {
-
-					double x = jumper.getXvelocity();
-					double y = jumper.getYvelocity();
-					Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
-					minMovements.add(newMinMovement);
-
+					encounteredQuad = true;
+					break;
 				}
 			}
 
-			// if encountered platform...
-			if (minMovements.size() > 0) {
+			if (encounteredQuad) {
+				minMovements.clear();
+				for (Quad blockade : stickyQuads) {
+					double x = jumper.getXvelocity();
+					double y = jumper.getYvelocity();
+					Quad currentJumperQuad = jumper.positionToQuad();
+					Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
+					minMovements.add(newMinMovement);
+				}
+
+				// if encountered platform...
 				// stick to platfrom
 				Point minimumMove = minMovements.stream().min(new PointComparator()).get();
 				jumper.setVelocityToZero();
