@@ -49,7 +49,9 @@ public class Jumper {
 	public void update(double deltaTime) {
 		xposition += deltaTime * xvelocity;
 		yposition += deltaTime * yvelocity;
-		yvelocity += GRAVITY_CONSTANT;
+		 if (yvelocity > -.51) {
+		 yvelocity += GRAVITY_CONSTANT;
+		 }
 	}
 
 	/**
@@ -220,7 +222,8 @@ public class Jumper {
 	}
 
 	/**
-	 * @param isStuck the isStuck to set
+	 * @param isStuck
+	 *            the isStuck to set
 	 */
 	public void setStuck(boolean isStuck) {
 		this.isStuck = isStuck;
