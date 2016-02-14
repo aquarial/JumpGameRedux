@@ -64,7 +64,7 @@ public class GamePanel extends JPanel {
 	}
 
 	private int modelUnitToPixels(double unit) {
-		return (int) (unit * 20);
+		return (int) (unit * 25);
 	}
 
 	public void setWidth(int width) {

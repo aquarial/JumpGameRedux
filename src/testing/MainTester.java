@@ -19,18 +19,14 @@ public class MainTester {
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setSize(800, 600);
 				f.setResizable(false);
+				f.setVisible(true);
 				GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 				GraphicsDevice device = env.getDefaultScreenDevice();
-
 				device.setFullScreenWindow(f);
 				f.validate();
-				
-				
-				f.setVisible(true);
 				GamePanel gp = JPanelConstructor.makeNewGamePanel("001", f.getWidth(), f.getHeight());
 				f.add(gp);
 				gp.startlevel();
-
 			}
 		});
 	}
