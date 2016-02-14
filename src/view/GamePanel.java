@@ -34,13 +34,16 @@ public class GamePanel extends JPanel {
 		public void run() {
 			long oldTime = System.currentTimeMillis();
 			long newTime;
-			for (int i = 0; i < 50; i++) {
-				safesleep(100);
+			long deltaTime;
+			while (!model.jumperReachedEnd()) {
 				newTime = System.currentTimeMillis();
-				model.updateModel((newTime - oldTime) / 1000.0);
-				System.out.println("pos = " + model.getPlayerYPos());
+				deltaTime = newTime - oldTime;
+				model.updateModel(deltaTime / 1000.0);
 				panel.repaint();
-				panel.revalidate();
+
+				if (deltaTime < 50) {
+					safesleep(50 - deltaTime);
+				}
 
 				oldTime = newTime;
 			}
@@ -64,6 +67,9 @@ public class GamePanel extends JPanel {
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 
+		g2.setColor(Color.WHITE);
+		g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+
 		g2.setColor(Color.BLUE);
 		drawPlayerAtCenter(g2);
 
@@ -81,7 +87,10 @@ public class GamePanel extends JPanel {
 		int y2 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY1());
 
 		g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
-		System.out.println("(" + model.getPlayerXPos() + ", " + model.getPlayerYPos() + ")");
+		// System.out.println("(" + model.getPlayerXPos() + ", " +
+		// model.getPlayerYPos() + ")");
+		System.out.println("y = " + (y1+ycenter));
+		g2.drawRect(0, 215, 200, 10);
 	}
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
