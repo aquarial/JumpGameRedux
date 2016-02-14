@@ -47,6 +47,7 @@ public class MainModel {
 				Point minimumMove = minMovements.stream().min(new PointComparator()).get();
 				jumper.setVelocityToZero();
 				jumper.moveBy(minimumMove.getX(), minimumMove.getY());
+				jumper.setStuck(true);
 			} else {
 				// move to new Position
 				jumper.update(deltaTime);
