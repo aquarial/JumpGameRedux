@@ -40,12 +40,14 @@ public class MainModel {
 
 			if (encounteredQuad) {
 				minMovements.clear();
+				double x = jumper.getXvelocity();
+				double y = jumper.getYvelocity();
+				Quad currentJumperQuad = jumper.positionToQuad();
 				for (Quad blockade : stickyQuads) {
-					double x = jumper.getXvelocity();
-					double y = jumper.getYvelocity();
-					Quad currentJumperQuad = jumper.positionToQuad();
-					Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
-					minMovements.add(newMinMovement);
+					if (blockade.containsQuad(futureJumperQuad)) {
+						Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
+						minMovements.add(newMinMovement);
+					}
 				}
 
 				// if encountered platform...
