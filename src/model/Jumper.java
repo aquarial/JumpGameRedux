@@ -3,7 +3,7 @@ package model;
 public class Jumper {
 
 	// Gravity pulls down, negative is down
-	public static final double GRAVITY_CONSTANT = -0.05f;
+	public static final double GRAVITY_CONSTANT = -5f;
 	public static final double JUMPER_WIDTH = 1;
 
 	/**
@@ -50,7 +50,7 @@ public class Jumper {
 		xposition += deltaTime * xvelocity;
 		yposition += deltaTime * yvelocity;
 		if (yvelocity > -5) {
-			yvelocity += GRAVITY_CONSTANT;
+			yvelocity += deltaTime * GRAVITY_CONSTANT;
 		}
 	}
 
@@ -181,7 +181,7 @@ public class Jumper {
 	 */
 	public void setAngularVelocity(double angle, double power) {
 		xvelocity = (double) (Math.cos(angle) * power);
-		yvelocity = - (double) (Math.sin(angle) * power);
+		yvelocity = -(double) (Math.sin(angle) * power);
 	}
 
 	/**
