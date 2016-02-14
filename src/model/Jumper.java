@@ -3,8 +3,8 @@ package model;
 public class Jumper {
 
 	// Gravity pulls down, negative is down
-	public static final float GRAVITY_CONSTANT = -0.05f;
-	public static final float JUMPER_WIDTH = 1;
+	public static final double GRAVITY_CONSTANT = -0.05f;
+	public static final double JUMPER_WIDTH = 1;
 
 	/**
 	 * Calculates the coordinates of the jumper's corners
@@ -62,7 +62,7 @@ public class Jumper {
 	 * @param ypos
 	 *            Y position
 	 */
-	public Jumper(float xpos, float ypos) {
+	public Jumper(double xpos, double ypos) {
 		this.xposition = xpos;
 		this.yposition = ypos;
 		this.xvelocity = 0;
@@ -103,7 +103,7 @@ public class Jumper {
 	 * @param deltaX
 	 * @param deltaY
 	 * 
-	 * @see update(float deltaTime)
+	 * @see update(double deltaTime)
 	 */
 	public void moveBy(double deltaX, double deltaY) {
 		xposition += deltaX;
@@ -154,7 +154,7 @@ public class Jumper {
 	 * @param xposition
 	 *            the x position to set
 	 */
-	public void setXposition(float xposition) {
+	public void setXposition(double xposition) {
 		this.xposition = xposition;
 	}
 
@@ -176,12 +176,12 @@ public class Jumper {
 	/**
 	 * Sets velocity based on radial coordinates
 	 * 
-	 * @param radianAngle
-	 * @param radius
+	 * @param angle
+	 * @param power
 	 */
-	public void setAngularVelocity(float radianAngle, float radius) {
-		xvelocity = (float) (Math.cos(radianAngle) * radius);
-		yvelocity = (float) (Math.sin(radianAngle) * radius);
+	public void setAngularVelocity(double angle, double power) {
+		xvelocity = (double) (Math.cos(angle) * power);
+		yvelocity = (double) (Math.sin(angle) * power);
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class Jumper {
 	 * @param xvelocity
 	 *            the x velocity to set
 	 */
-	public void setXvelocity(float xvelocity) {
+	public void setXvelocity(double xvelocity) {
 		this.xvelocity = xvelocity;
 	}
 
