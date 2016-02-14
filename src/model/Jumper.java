@@ -3,7 +3,7 @@ package model;
 public class Jumper {
 
 	// Gravity pulls down, negative is down
-	public static final float GRAVITY_CONSTANT = -0.1f;
+	public static final float GRAVITY_CONSTANT = -0.05f;
 	public static final float JUMPER_WIDTH = 1;
 
 	/**
@@ -49,7 +49,7 @@ public class Jumper {
 	public void update(double deltaTime) {
 		xposition += deltaTime * xvelocity;
 		yposition += deltaTime * yvelocity;
-		if (yvelocity > -2) {
+		if (yvelocity > -5) {
 			yvelocity += GRAVITY_CONSTANT;
 		}
 	}
