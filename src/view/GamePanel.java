@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 import model.MainModel;
 import model.Quad;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GamePanel extends JPanel {
 
@@ -19,6 +21,32 @@ public class GamePanel extends JPanel {
 
 	public GamePanel(MainModel m) {
 		super();
+
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				double xdiff = e.getX() - xcenter;
+				double ydiff = e.getY() - ycenter;
+
+				double angle = calculateAngleFromDiffs(xdiff, ydiff);
+				double power = calculatePowerFromDiffs(xdiff, ydiff);
+
+				model.addJumpPowerToJumper(angle, power);
+			}
+
+			private double calculatePowerFromDiffs(double xdiff, double ydiff) {
+				return 5;
+			}
+
+			private double calculateAngleFromDiffs(double xdiff, double ydiff) {
+				if (xdiff == 0) {
+					return Math.signum(ydiff) * Math.PI / 2;
+				} else {
+					return Math.atan2(ydiff, xdiff);
+				}
+			}
+		});
+
 		model = m;
 	}
 

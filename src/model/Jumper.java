@@ -181,7 +181,7 @@ public class Jumper {
 	 */
 	public void setAngularVelocity(double angle, double power) {
 		xvelocity = (double) (Math.cos(angle) * power);
-		yvelocity = (double) (Math.sin(angle) * power);
+		yvelocity = - (double) (Math.sin(angle) * power);
 	}
 
 	/**
