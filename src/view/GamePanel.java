@@ -22,45 +22,9 @@ public class GamePanel extends JPanel {
 		model = m;
 	}
 
-	class MyThread extends Thread {
-
-		private GamePanel panel;
-
-		public MyThread(GamePanel gp) {
-			panel = gp;
-		}
-
-		@Override
-		public void run() {
-			long oldTime = System.currentTimeMillis();
-			long newTime;
-			long deltaTime;
-			while (!model.jumperReachedEnd()) {
-				newTime = System.currentTimeMillis();
-				deltaTime = newTime - oldTime;
-				model.updateModel(deltaTime / 1000.0);
-				panel.repaint();
-
-				if (deltaTime < 50) {
-					safesleep(50 - deltaTime);
-				}
-
-				oldTime = newTime;
-			}
-		}
-	}
-
 	public void startlevel() {
-		Thread th = new MyThread(this);
+		Thread th = new MyThread(this, model);
 		th.start();
-	}
-
-	private void safesleep(long mili) {
-		try {
-			Thread.sleep(mili);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
