@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
 	private static int ycenter = 300;
 
 	private MainModel model;
+	private boolean fullScreenEnabled;
 
 	public GamePanel(MainModel m) {
 		super();
@@ -54,9 +55,17 @@ public class GamePanel extends JPanel {
 		Thread th = new MyThread(this, model);
 		th.start();
 	}
+	
+	public void renderGame() {
+		if (fullScreenEnabled) {
+			drawGraphics(getGraphics());
+		} else {
+			System.out.println("g");
+	repaint();
+		}
+	}
 
-	@Override
-	public void paint(Graphics g) {
+	private void drawGraphics(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 
 		g2.setColor(Color.WHITE);
@@ -69,7 +78,11 @@ public class GamePanel extends JPanel {
 		for (Quad stickyQuad : model.getStickyQuads()) {
 			drawStickyQuad(stickyQuad, g2);
 		}
+	}
 
+	@Override
+	public void paint(Graphics g) {
+		drawGraphics(g);
 	}
 
 	private void drawStickyQuad(Quad stickyQuad, Graphics2D g2) {
@@ -101,5 +114,9 @@ public class GamePanel extends JPanel {
 
 	public void setHeight(int height) {
 		ycenter = height / 2;
+	}
+
+	public void setFullScreen(boolean fullScreen) {
+		this.fullScreenEnabled = fullScreen;
 	}
 }
