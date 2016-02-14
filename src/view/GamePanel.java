@@ -55,13 +55,13 @@ public class GamePanel extends JPanel {
 		Thread th = new MyThread(this, model);
 		th.start();
 	}
-	
+
 	public void renderGame() {
 		if (fullScreenEnabled) {
 			drawGraphics(getGraphics());
 		} else {
 			System.out.println("g");
-	repaint();
+			repaint();
 		}
 	}
 
