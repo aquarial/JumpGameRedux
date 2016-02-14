@@ -84,4 +84,11 @@ public class MainModel {
 		return false;
 	}
 
+	public void addJumpPowerToJumper(double angle, double power) {
+		if (jumper.isStuck()) {
+			jumper.setAngularVelocity(angle, power);
+			jumper.setStuck(false);
+		}
+	}
+
 }
