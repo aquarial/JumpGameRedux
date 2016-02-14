@@ -1,5 +1,8 @@
 package testing;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -15,11 +18,19 @@ public class MainTester {
 				JFrame f = new JFrame("Game Test Frame");
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setSize(800, 600);
-				//f.setResizable(false);
+				f.setResizable(false);
+				GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+				GraphicsDevice device = env.getDefaultScreenDevice();
+
+				device.setFullScreenWindow(f);
+				f.validate();
+				
+				
 				f.setVisible(true);
-				GamePanel gp = JPanelConstructor.makeNewGamePanel("001");
+				GamePanel gp = JPanelConstructor.makeNewGamePanel("001", f.getWidth(), f.getHeight());
 				f.add(gp);
 				gp.startlevel();
+
 			}
 		});
 	}
