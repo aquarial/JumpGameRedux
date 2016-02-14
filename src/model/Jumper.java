@@ -49,9 +49,9 @@ public class Jumper {
 	public void update(double deltaTime) {
 		xposition += deltaTime * xvelocity;
 		yposition += deltaTime * yvelocity;
-		//if (yvelocity > -2) {
+		if (yvelocity > -2) {
 			yvelocity += GRAVITY_CONSTANT;
-		//}
+		}
 	}
 
 	/**
