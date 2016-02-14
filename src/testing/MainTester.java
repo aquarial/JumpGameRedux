@@ -26,7 +26,7 @@ public class MainTester {
 				boolean fullScreen = device.isFullScreenSupported();
 				f.validate();
 				GamePanel gp = JPanelConstructor.makeNewGamePanel("001", f.getWidth(), f.getHeight());
-				gp.setFullScreen(fullScreen);
+				gp.setFullScreenSupported(fullScreen);
 				f.add(gp);
 				gp.startlevel();
 			}

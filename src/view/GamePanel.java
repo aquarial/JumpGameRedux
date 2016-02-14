@@ -116,7 +116,7 @@ public class GamePanel extends JPanel {
 		ycenter = height / 2;
 	}
 
-	public void setFullScreen(boolean fullScreen) {
+	public void setFullScreenSupported(boolean fullScreen) {
 		this.fullScreenEnabled = fullScreen;
 	}
 }
