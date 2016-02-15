@@ -6,7 +6,10 @@ public class LevelCreater {
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
-
+		
+		System.out.print("What scale are you using? 1:");
+		double scale = s.nextDouble();
+		
 		System.out.print("How many quads? ");
 		int numQ = s.nextInt();
 		System.out.println();
@@ -17,7 +20,7 @@ public class LevelCreater {
 			double[] nums = new double[4];
 			for (int j = 0; j < 4; j++) {
 				System.out.print(j + ": ");
-				nums[j] = s.nextDouble();
+				nums[j] = s.nextDouble() * scale;
 			}
 			quads[i] = new FourNums(nums);
 			System.out.println();
