@@ -3,13 +3,14 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
 import model.MainModel;
 import model.Quad;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class GamePanel extends JPanel {
 
@@ -18,7 +19,6 @@ public class GamePanel extends JPanel {
 	private static int ycenter = 300;
 
 	private MainModel model;
-	private boolean fullScreenEnabled;
 
 	public GamePanel(MainModel m) {
 		super();
@@ -57,19 +57,16 @@ public class GamePanel extends JPanel {
 	}
 
 	public void renderGame() {
-		if (fullScreenEnabled) {
-			drawGraphics(getGraphics());
-		} else {
-			System.out.println("g");
-			repaint();
-		}
+		repaint();
 	}
 
 	private void drawGraphics(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
+		BufferedImage bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+
+		Graphics2D g2 = (Graphics2D) bufferedImage.getGraphics();
 
 		g2.setColor(Color.WHITE);
-		g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+		g2.fillRect(0, 0, getWidth(), getHeight());
 
 		g2.setColor(Color.BLUE);
 		drawPlayerAtCenter(g2);
@@ -78,6 +75,8 @@ public class GamePanel extends JPanel {
 		for (Quad stickyQuad : model.getStickyQuads()) {
 			drawStickyQuad(stickyQuad, g2);
 		}
+
+		g.drawImage(bufferedImage, 0, 0, null);
 	}
 
 	@Override
@@ -114,9 +113,5 @@ public class GamePanel extends JPanel {
 
 	public void setHeight(int height) {
 		ycenter = height / 2;
-	}
-
-	public void setFullScreenSupported(boolean fullScreen) {
-		this.fullScreenEnabled = fullScreen;
 	}
 }
