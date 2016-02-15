@@ -37,7 +37,7 @@ public class GamePanel extends JPanel {
 
 			private double calculatePowerFromDiffs(double xdiff, double ydiff) {
 				double normalPower = Math.pow(Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
-				return Math.min(normalPower / 13, 10);
+				return Math.min(normalPower / 18, 7.5);
 			}
 
 		});
