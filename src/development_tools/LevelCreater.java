@@ -26,6 +26,8 @@ public class LevelCreater {
 		for (FourNums a : quads) {
 			System.out.println(a);
 		}
+		
+		s.close();
 	}
 
 }
