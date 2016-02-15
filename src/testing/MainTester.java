@@ -15,7 +15,7 @@ public class MainTester {
 				int width = 800;
 				int height = 600;
 
-				JFrame f = new JFrame("Game Test Frame");
+				JFrame f = new JFrame("Demo");
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				f.setSize(width, height);
 				f.setResizable(false);
