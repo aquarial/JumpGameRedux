@@ -17,7 +17,7 @@ public class LevelCreater {
 			double[] nums = new double[4];
 			for (int j = 0; j < 4; j++) {
 				System.out.print(j + ": ");
-				nums[j] = s.nextDouble() * 2;
+				nums[j] = s.nextDouble();
 			}
 			quads[i] = new FourNums(nums);
 			System.out.println();
