@@ -76,6 +76,10 @@ public class GamePanel extends JPanel {
 			drawStickyQuad(stickyQuad, g2);
 		}
 
+		g2.setColor(Color.GREEN);
+		g2.drawOval(xcenter - 200, ycenter - 200, 400, 400);
+		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
+
 		g.drawImage(bufferedImage, 0, 0, null);
 	}
 
