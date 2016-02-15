@@ -1,7 +1,7 @@
 package io;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,7 +17,7 @@ public class Resources {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(getInputFile(level));
+			Document doc = dBuilder.parse(getInputStream(level));
 			doc.getDocumentElement().normalize();
 			return doc;
 
@@ -31,8 +31,8 @@ public class Resources {
 		return null;
 	}
 
-	public File getInputFile(String level) {
+	public InputStream getInputStream(String level) {
 		Class<? extends Thread> classloader = Thread.currentThread().getClass();
-		return new File(classloader.getResource("/levels/"+level+".xml").getPath());
+		return classloader.getResourceAsStream("/levels/"+level+".xml");
 	}
 }
