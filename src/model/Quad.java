@@ -22,7 +22,8 @@ public class Quad {
 	/**
 	 * Construct a quad from an array instead of passing doubles
 	 * 
-	 * @param corners Array with <b>LENGTH OF 4</b>
+	 * @param corners
+	 *            Array with <b>LENGTH OF 4</b>
 	 */
 	public Quad(double[] corners) {
 		this(corners[0], corners[1], corners[2], corners[3]);
@@ -88,14 +89,8 @@ public class Quad {
 	 * @return
 	 */
 	public Point calculatePushingOtherToThis(Quad jumper, double xvelocity, double yvelocity) {
-		double angle;
-		if (xvelocity == 0) {
-			angle = Math.signum(yvelocity) * Math.PI / 2;
-			xvelocity = 0.0001;
-		} else {
-			angle = Math.atan2(yvelocity, xvelocity);
-		}
-
+		
+		double angle = Math.atan2(yvelocity, xvelocity);
 		double m = yvelocity / xvelocity;
 
 		List<Point> movements = new ArrayList<Point>();
