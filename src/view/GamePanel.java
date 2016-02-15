@@ -29,14 +29,15 @@ public class GamePanel extends JPanel {
 				double xdiff = e.getX() - xcenter;
 				double ydiff = e.getY() - ycenter;
 
-				double angle = Math.atan2(xdiff, ydiff);
+				double angle = Math.atan2(ydiff, xdiff);
 				double power = calculatePowerFromDiffs(xdiff, ydiff);
 
 				model.addJumpPowerToJumper(angle, power);
 			}
 
 			private double calculatePowerFromDiffs(double xdiff, double ydiff) {
-				return 5;
+				double normalPower = Math.pow(Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
+				return Math.min(normalPower / 15, 10);
 			}
 
 		});
