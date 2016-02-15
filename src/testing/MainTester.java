@@ -22,7 +22,7 @@ public class MainTester {
 				f.setVisible(true);
 				GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 				GraphicsDevice device = env.getDefaultScreenDevice();
-				device.setFullScreenWindow(f);
+				// device.setFullScreenWindow(f);
 				boolean fullScreen = device.isFullScreenSupported();
 				f.validate();
 				GamePanel gp = JPanelConstructor.makeNewGamePanel("001", f.getWidth(), f.getHeight());
