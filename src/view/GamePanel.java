@@ -65,14 +65,14 @@ public class GamePanel extends JPanel {
 		g2.setColor(Color.BLUE);
 		drawPlayerAtCenter(g2);
 
+		g2.setColor(new Color(230, 255, 230));
+		g2.drawOval(xcenter - 200, ycenter - 200, 400, 400);
+		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
+
 		g2.setColor(Color.BLACK);
 		for (Quad stickyQuad : model.getStickyQuads()) {
 			drawStickyQuad(stickyQuad, g2);
 		}
-
-		g2.setColor(Color.GREEN);
-		g2.drawOval(xcenter - 200, ycenter - 200, 400, 400);
-		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
 
 		g.drawImage(bufferedImage, 0, 0, null);
 	}
