@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Represents a quadrilateral
@@ -120,7 +121,12 @@ public class Quad {
 		}
 		//@formatter:off
 		Optional<Point> minMovement = movements.stream()
-				.filter( (Point p) -> p.getX() != 0 || p.getY() != 0 )
+				.filter( new Predicate<Point>() {
+					@Override
+					public boolean test(Point p) {
+						return p.getX() != 0 || p.getY() != 0;
+					}
+				} )
 				.min(new PointComparator());
 		//@formatter:on
 
