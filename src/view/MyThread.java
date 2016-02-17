@@ -7,7 +7,7 @@ class MyThread extends Thread {
 	private GamePanel panel;
 	private MainModel model;
 
-	static final long minimumSleepTime = 33;
+	static final long minimumSleepTime = 60;
 
 	public MyThread(GamePanel gp, MainModel model) {
 		this.panel = gp;

@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  * Represents a quadrilateral
@@ -51,7 +49,8 @@ public class Quad {
 	}
 
 	public Point[] toPointArray() {
-		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
+		return new Point[] { new Point(x1, y1), new Point(x1, y2),
+				new Point(x2, y1), new Point(y2, y2) };
 	}
 
 	public boolean containsQuad(Quad other) {
@@ -89,8 +88,9 @@ public class Quad {
 	 *            velocity of other
 	 * @return
 	 */
-	public Point calculatePushingOtherToThis(Quad jumper, double xvelocity, double yvelocity) {
-		
+	public Point calculatePushingOtherToThis(Quad jumper, double xvelocity,
+			double yvelocity) {
+
 		double angle = Math.atan2(yvelocity, xvelocity);
 		double m = yvelocity / xvelocity;
 
@@ -119,17 +119,16 @@ public class Quad {
 			movements.add(lowerLeftCornerToRightLine(jumper, m));
 			// System.out.print("LEFT"); // other.x1 to this.x2
 		}
-		//@formatter:off
-		Optional<Point> minMovement = movements.stream()
-				.filter( new Predicate<Point>() {
-					@Override
-					public boolean test(Point p) {
-						return p.getX() != 0 || p.getY() != 0;
-					}
-				} )
-				.min(new PointComparator());
-		//@formatter:on
 
+		Point lastMin = movements.get(0);
+		for (Point p : movements) {
+			if (lastMin.equals(Point.ZERO)) {
+				lastMin = p;
+			} else if (p.lessThan(lastMin) && !p.equals(Point.ZERO)) {
+				lastMin = p;
+			}
+		}
+		
 		// DEBUG :
 		// System.out.println(minMovement);
 		// System.out.println("angl = " + (angle / Math.PI) + "pi");
@@ -139,11 +138,8 @@ public class Quad {
 		// .forEach(System.out::println);
 
 		// intersect with TOP
-		if (minMovement.isPresent()) {
-			return minMovement.get();
-		} else {
-			return Point.ZERO;
-		}
+		return lastMin;
+
 	}
 
 	/**

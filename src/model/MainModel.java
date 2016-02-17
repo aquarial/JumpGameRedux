@@ -45,16 +45,25 @@ public class MainModel {
 				Quad currentJumperQuad = jumper.positionToQuad();
 				for (Quad blockade : stickyQuads) {
 					if (blockade.containsQuad(futureJumperQuad)) {
-						Point newMinMovement = blockade.calculatePushingOtherToThis(currentJumperQuad, x, y);
+						Point newMinMovement = blockade
+								.calculatePushingOtherToThis(currentJumperQuad,
+										x, y);
 						minMovements.add(newMinMovement);
 					}
 				}
 
 				// if encountered platform...
 				// stick to platfrom
-				Point minimumMove = minMovements.stream().min(new PointComparator()).get();
+				Point lastMin = minMovements.get(0);
+				for (Point p : minMovements) {
+					if (lastMin.equals(Point.ZERO)) {
+						lastMin = p;
+					} else if (p.lessThan(lastMin) && !p.equals(Point.ZERO)) {
+						lastMin = p;
+					}
+				}
 				jumper.setVelocityToZero();
-				jumper.moveBy(minimumMove.getX(), minimumMove.getY());
+				jumper.moveBy(lastMin.getX(), lastMin.getY());
 				jumper.setStuck(true);
 			} else {
 				// move to new Position

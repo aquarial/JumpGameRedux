@@ -6,14 +6,14 @@ package model;
  * Wraps x and y value
  * 
  * @author karl
- *
+ * 
  */
 public class Point {
 
 	private double x;
 	private double y;
 	private String debug = "";
-	
+
 	public static final Point ZERO = new Point(0, 0);
 
 	public Point(double x, double y) {
@@ -47,4 +47,13 @@ public class Point {
 		return "(" + this.x + ", " + this.y + ")     " + debug;
 	}
 
+	public boolean equals(Point other) {
+		return this.getX() == other.getX() && this.getY() == other.getY();
+	}
+
+	public boolean lessThan(Point other) {
+		return Double.compare(
+				Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2),
+				Math.pow(other.getX(), 2) + Math.pow(other.getY(), 2)) < 0;
+	}
 }

@@ -21,7 +21,8 @@ public class MainTester {
 				f.setResizable(false);
 				f.setVisible(true);
 				f.validate();
-				GamePanel gp = JPanelConstructor.makeNewGamePanel("001", width, height);
+				GamePanel gp = JPanelConstructor.makeNewGamePanel("001", width,
+						height);
 				f.add(gp);
 				gp.startlevel();
 			}
