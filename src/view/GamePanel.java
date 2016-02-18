@@ -27,10 +27,11 @@ public class GamePanel extends JPanel {
 	private static int ycenter = 300;
 
 	private BufferedImage bufferedImage;
+	private Graphics2D graphicsForBufferedImage;
 
 	private MainModel model;
 
-	GamePanel(MainModel m) {
+	GamePanel(MainModel m, int width, int height) {
 		super();
 
 		addMouseListener(new MouseAdapter() {
@@ -53,7 +54,8 @@ public class GamePanel extends JPanel {
 		});
 
 		model = m;
-		bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}
 
 	public void startlevel() {
@@ -67,8 +69,8 @@ public class GamePanel extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D) bufferedImage.getGraphics();
-
+		Graphics2D g2 = graphicsForBufferedImage;
+		
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, getWidth(), getHeight());
 
@@ -110,13 +112,4 @@ public class GamePanel extends JPanel {
 		return (int) (unit * 25);
 	}
 
-	public void setWidth(int width) {
-		xcenter = width / 2;
-		bufferedImage = new BufferedImage(width, getHeight(), BufferedImage.TYPE_INT_RGB);
-	}
-
-	public void setHeight(int height) {
-		ycenter = height / 2;
-		bufferedImage = new BufferedImage(getWidth(), height, BufferedImage.TYPE_INT_RGB);
-	}
 }

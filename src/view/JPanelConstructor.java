@@ -9,9 +9,7 @@ public class JPanelConstructor {
 		Level level = new Level(levelname);
 		MainModel m = new MainModel(level);
 
-		GamePanel pan = new GamePanel(m);
-		pan.setWidth(width);
-		pan.setHeight(height);
+		GamePanel pan = new GamePanel(m, width, height);
 		return pan;
 	}
 }
