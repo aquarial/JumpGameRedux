@@ -52,6 +52,13 @@ public class StickyBlock {
 		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
 	}
 
+	/**
+	 * Whether or not the other is partly inside this.
+	 * 
+	 * @param other
+	 *            another StickyBlock
+	 * @return true if part is inside, false otherwise
+	 */
 	public boolean containsStickyBlock(StickyBlock other) {
 		//@formatter:off
 		return 
@@ -59,6 +66,23 @@ public class StickyBlock {
 				this.x2 > other.x1 && 
 				this.y1 < other.y2 && 
 				this.y2 > other.y1;
+		//@formatter:on
+	}
+
+	/**
+	 * Whether or not a rectangle defined by the corners is inside this.
+	 * 
+	 * @param corners
+	 *            the bounds of a rectangle
+	 * @return true if part is inside, false otherwise
+	 */
+	public boolean containsCornerArray(double[] corners) {
+		//@formatter:off
+		return 
+				this.x1 < corners[2] && 
+				this.x2 > corners[0] && 
+				this.y1 < corners[3] && 
+				this.y2 > corners[1];
 		//@formatter:on
 	}
 
@@ -79,7 +103,7 @@ public class StickyBlock {
 	 * hits this Quad).
 	 * 
 	 * 
-	 * @param jumper
+	 * @param corners
 	 *            the Jumper Quad
 	 * @param xvelocity
 	 *            velocity of other
@@ -87,7 +111,7 @@ public class StickyBlock {
 	 *            velocity of other
 	 * @return
 	 */
-	public Point calculatePushingOtherToThis(StickyBlock jumper, double xvelocity, double yvelocity) {
+	public Point calculatePushingRectangleToThis(double[] corners, double xvelocity, double yvelocity) {
 
 		double angle = Math.atan2(yvelocity, xvelocity);
 		double m = yvelocity / xvelocity;
@@ -95,26 +119,26 @@ public class StickyBlock {
 		List<Point> movements = new ArrayList<Point>();
 
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
-			movements.add(upperRightCornerToLeftLine(jumper, m));
-			movements.add(lowerRightCornerToLeftLine(jumper, m));
+			movements.add(upperRightCornerToLeftLine(corners, m));
+			movements.add(lowerRightCornerToLeftLine(corners, m));
 			// System.out.print("RIGHT"); // other.x2 to this.x1
 		}
 
 		if ((angle < Math.PI) && (angle > 0)) {
-			movements.add(upperRightCornerToBottomtLine(jumper, m));
-			movements.add(upperLeftCornerToBottomLine(jumper, m));
+			movements.add(upperRightCornerToBottomtLine(corners, m));
+			movements.add(upperLeftCornerToBottomLine(corners, m));
 			// System.out.print("UP"); // other.y2 to this.y1
 		}
 
 		if ((angle > -1 * Math.PI) && (angle < 0)) {
-			movements.add(lowerLeftCornerToTopLine(jumper, m));
-			movements.add(lowerRightCornerToTopLine(jumper, m));
+			movements.add(lowerLeftCornerToTopLine(corners, m));
+			movements.add(lowerRightCornerToTopLine(corners, m));
 			// System.out.print("DOWN"); // other.y1 to this.y2
 		}
 
 		if ((angle > Math.PI / 2) || (angle < -1 * Math.PI / 2)) {
-			movements.add(upperLeftCornerToRightLine(jumper, m));
-			movements.add(lowerLeftCornerToRightLine(jumper, m));
+			movements.add(upperLeftCornerToRightLine(corners, m));
+			movements.add(lowerLeftCornerToRightLine(corners, m));
 			// System.out.print("LEFT"); // other.x1 to this.x2
 		}
 
@@ -153,14 +177,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerRightCornerToTopLine(StickyBlock other, double slope) {
+	Point lowerRightCornerToTopLine(double[] other, double slope) {
 
-		// this.y2 - other.y1 = m * ( SOLUTION - other.x2)
-		double x = (this.y2 - other.y1) / slope + other.x2;
+		// this.y2 - other[1] = m * ( SOLUTION - other[2])
+		double x = (this.y2 - other[1]) / slope + other[2];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
-			double y = slope * (x - other.x2) + other.y1;
-			return new Point(x - other.x2, y - other.y1, "lrt");
+			double y = slope * (x - other[2]) + other[1];
+			return new Point(x - other[2], y - other[1], "lrt");
 		}
 		return new Point(0, 0);
 	}
@@ -178,14 +202,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerRightCornerToLeftLine(StickyBlock other, double m) {
+	Point lowerRightCornerToLeftLine(double[] other, double m) {
 
-		// SOLUTION - other.y1 = m * (this.x1 - other.x2)
-		double y = m * (this.x1 - other.x2) + other.y1;
+		// SOLUTION - other[1] = m * (this.x1 - other[2])
+		double y = m * (this.x1 - other[2]) + other[1];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x1;
-			return new Point(x - other.x2, y - other.y1, "lrl");
+			return new Point(x - other[2], y - other[1], "lrl");
 		}
 
 		return new Point(0, 0);
@@ -204,14 +228,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerLeftCornerToTopLine(StickyBlock other, double m) {
+	Point lowerLeftCornerToTopLine(double[] other, double m) {
 
-		// this.y2 - other.y1 = m * ( SOLUTION - other.x1)
-		double x = (this.y2 - other.y1) / m + other.x1;
+		// this.y2 - other[1] = m * ( SOLUTION - other[0])
+		double x = (this.y2 - other[1]) / m + other[0];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = this.y2;
-			return new Point(x - other.x1, y - other.y1, "llt");
+			return new Point(x - other[0], y - other[1], "llt");
 		}
 		return new Point(0, 0);
 	}
@@ -229,14 +253,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerLeftCornerToRightLine(StickyBlock other, double m) {
+	Point lowerLeftCornerToRightLine(double[] other, double m) {
 
-		// SOLUTION - other.y1 = m * (other.x2 - this.x1)
-		double y = m * (this.x2 - other.x1) + other.y1;
+		// SOLUTION - other[1] = m * (other[2] - this.x1)
+		double y = m * (this.x2 - other[0]) + other[1];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x2;
-			return new Point(x - other.x1, y - other.y1, "llr");
+			return new Point(x - other[0], y - other[1], "llr");
 		}
 
 		return new Point(0, 0);
@@ -255,14 +279,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperLeftCornerToBottomLine(StickyBlock other, double m) {
+	Point upperLeftCornerToBottomLine(double[] other, double m) {
 
-		// this.y1 = m * (SOLUTION - other.x1) + other.y2
-		double x = (this.y1 - other.y2) / m + other.x1;
+		// this.y1 = m * (SOLUTION - other[0]) + other[3]
+		double x = (this.y1 - other[3]) / m + other[0];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = this.y1;
-			return new Point(x - other.x1, y - other.y2, "ulb");
+			return new Point(x - other[0], y - other[3], "ulb");
 		}
 
 		return new Point(0, 0);
@@ -281,14 +305,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperLeftCornerToRightLine(StickyBlock other, double m) {
+	Point upperLeftCornerToRightLine(double[] other, double m) {
 
-		// SOLUTION = m * (this.x2 - other.x1) + other.y2
-		double y = m * (this.x2 - other.x1) + other.y2;
+		// SOLUTION = m * (this.x2 - other[0]) + other[3]
+		double y = m * (this.x2 - other[0]) + other[3];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x2;
-			return new Point(x - other.x1, y - other.y2, "ulr");
+			return new Point(x - other[0], y - other[3], "ulr");
 		}
 
 		return new Point(0, 0);
@@ -307,14 +331,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperRightCornerToBottomtLine(StickyBlock other, double m) {
+	Point upperRightCornerToBottomtLine(double[] other, double m) {
 
-		// this.y1 - other.y2 = m * (SOLUTION - other.x2)
-		double x = (this.y1 - other.y2) / m + other.x2;
+		// this.y1 - other[3] = m * (SOLUTION - other[2])
+		double x = (this.y1 - other[3]) / m + other[2];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = this.y1;
-			return new Point(x - other.x2, y - other.y2, "urb");
+			return new Point(x - other[2], y - other[3], "urb");
 		}
 
 		return new Point(0, 0);
@@ -333,14 +357,14 @@ public class StickyBlock {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperRightCornerToLeftLine(StickyBlock other, double m) {
+	Point upperRightCornerToLeftLine(double[] other, double m) {
 
-		// YY = m * (this.x1 - other.x2) + other.y2
-		double y = m * (this.x1 - other.x2) + other.y2;
+		// YY = m * (this.x1 - other[2]) + other[3]
+		double y = m * (this.x1 - other[2]) + other[3];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x1;
-			return new Point(x - other.x2, y - other.y2, "url");
+			return new Point(x - other[2], y - other[3], "url");
 		}
 
 		return new Point(0, 0);

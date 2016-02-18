@@ -33,11 +33,11 @@ public class MainModel {
 
 		if (!jumper.isStuck()) {
 			Point newPosition = jumper.calculateUpdate(deltaTime);
-			StickyBlock futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
+			double[] futureJumperCorners = Jumper.calculateCornersAtPosition(newPosition);
 
 			boolean encounteredBlock = false;
 			for (StickyBlock blockade : stickyBlocks) {
-				if (blockade.containsStickyBlock(futureJumperQuad)) {
+				if (blockade.containsCornerArray(futureJumperCorners)) {
 					encounteredBlock = true;
 					break;
 				}
@@ -47,14 +47,14 @@ public class MainModel {
 				minMovements.clear();
 				double x = jumper.getXvelocity();
 				double y = jumper.getYvelocity();
-				StickyBlock currentJumperQuad = jumper.positionToQuad();
+				double[] currentJumperQuad = jumper.getCurrentCorners();
+
 				for (StickyBlock blockade : stickyBlocks) {
-					if (blockade.containsStickyBlock(futureJumperQuad)) {
-						Point newMinMovement = blockade
-								.calculatePushingOtherToThis(currentJumperQuad,
-										x, y);
+					if (blockade.containsCornerArray(futureJumperCorners)) {
+						Point newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x, y);
 						minMovements.add(newMinMovement);
 					}
+
 				}
 
 				// if encountered platform...
