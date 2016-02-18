@@ -25,16 +25,12 @@ public class Level {
 		level.normalize();
 		clean(level);
 
-		NodeList nodes = level.getChildNodes().item(0).getChildNodes();
-
-		// Node name = nodes.item(0);
-
-		Node player = nodes.item(1);
+		Node player = level.getElementsByTagName("player").item(0);
 		double xpos = Double.parseDouble(player.getFirstChild().getTextContent());
 		double ypos = Double.parseDouble(player.getLastChild().getTextContent());
 		playerPosition = new Point(xpos, ypos);
 
-		NodeList listOfQuadNodes = nodes.item(2).getChildNodes();
+		NodeList listOfQuadNodes = level.getElementsByTagName("quad");
 		stickyQuads = new ArrayList<Quad>();
 		for (int index = 0; index < listOfQuadNodes.getLength(); index++) {
 			double[] cornerData = parseQuadCorners(listOfQuadNodes.item(index));
