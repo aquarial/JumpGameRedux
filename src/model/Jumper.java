@@ -13,14 +13,14 @@ public class Jumper {
 	 * 
 	 * @return A quadrilateral representing the corners.
 	 */
-	public static Quad calculateQuadAtPosition(Point pos) {
+	public static StickyBlock calculateQuadAtPosition(Point pos) {
 		double x1, x2, y1, y2, radius;
 		radius = JUMPER_WIDTH / 2;
 		x1 = pos.getX() - radius;
 		x2 = pos.getX() + radius;
 		y1 = pos.getY() - radius;
 		y2 = pos.getY() + radius;
-		return new Quad(x1, y1, x2, y2);
+		return new StickyBlock(x1, y1, x2, y2);
 	}
 
 	private double xposition;
@@ -117,14 +117,14 @@ public class Jumper {
 	 * 
 	 * @return Quad representing corners
 	 */
-	public Quad positionToQuad() {
+	public StickyBlock positionToQuad() {
 		double x1, x2, y1, y2, radius;
 		radius = JUMPER_WIDTH / 2;
 		x1 = this.xposition - radius;
 		x2 = this.xposition + radius;
 		y1 = this.yposition - radius;
 		y2 = this.yposition + radius;
-		return new Quad(x1, y1, x2, y2);
+		return new StickyBlock(x1, y1, x2, y2);
 	}
 
 	/**

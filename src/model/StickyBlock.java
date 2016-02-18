@@ -11,7 +11,7 @@ import java.util.List;
  * @author karl
  * 
  */
-public class Quad {
+public class StickyBlock {
 
 	private double x1;
 	private double y1;
@@ -24,12 +24,12 @@ public class Quad {
 	 * @param corners
 	 *            Array with <b>LENGTH OF 4</b>
 	 */
-	public Quad(double[] corners) {
+	public StickyBlock(double[] corners) {
 		this(corners[0], corners[1], corners[2], corners[3]);
 	}
 
-	public Quad(double x1, double y1, double x2, double y2) {
-		// Keep quads positive, helps calculating if a point is inside
+	public StickyBlock(double x1, double y1, double x2, double y2) {
+		// Keep stickyblocks positive, helps calculating if a point is inside
 		if (y2 < y1) {
 			double tmp = y1;
 			y1 = y2;
@@ -49,11 +49,10 @@ public class Quad {
 	}
 
 	public Point[] toPointArray() {
-		return new Point[] { new Point(x1, y1), new Point(x1, y2),
-				new Point(x2, y1), new Point(y2, y2) };
+		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
 	}
 
-	public boolean containsQuad(Quad other) {
+	public boolean containsStickyBlock(StickyBlock other) {
 		//@formatter:off
 		return 
 				this.x1 < other.x2 && 
@@ -67,8 +66,8 @@ public class Quad {
 	 * 
 	 * This method answers the question:<br>
 	 * <i>"I have a Jumper moving at a velocity, and I know it's going to hit
-	 * this Quad. Calculate distance the Jumper will move before hitting this
-	 * Quad."</i>
+	 * this StickyBlock. Calculate distance the Jumper will move before hitting
+	 * this StickyBlock."</i>
 	 * <p>
 	 * A simple idea with a very complicated implementation.
 	 * <p>
@@ -88,8 +87,7 @@ public class Quad {
 	 *            velocity of other
 	 * @return
 	 */
-	public Point calculatePushingOtherToThis(Quad jumper, double xvelocity,
-			double yvelocity) {
+	public Point calculatePushingOtherToThis(StickyBlock jumper, double xvelocity, double yvelocity) {
 
 		double angle = Math.atan2(yvelocity, xvelocity);
 		double m = yvelocity / xvelocity;
@@ -128,7 +126,7 @@ public class Quad {
 				lastMin = p;
 			}
 		}
-		
+
 		// DEBUG :
 		// System.out.println(minMovement);
 		// System.out.println("angl = " + (angle / Math.PI) + "pi");
@@ -155,7 +153,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerRightCornerToTopLine(Quad other, double slope) {
+	Point lowerRightCornerToTopLine(StickyBlock other, double slope) {
 
 		// this.y2 - other.y1 = m * ( SOLUTION - other.x2)
 		double x = (this.y2 - other.y1) / slope + other.x2;
@@ -180,7 +178,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerRightCornerToLeftLine(Quad other, double m) {
+	Point lowerRightCornerToLeftLine(StickyBlock other, double m) {
 
 		// SOLUTION - other.y1 = m * (this.x1 - other.x2)
 		double y = m * (this.x1 - other.x2) + other.y1;
@@ -206,7 +204,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerLeftCornerToTopLine(Quad other, double m) {
+	Point lowerLeftCornerToTopLine(StickyBlock other, double m) {
 
 		// this.y2 - other.y1 = m * ( SOLUTION - other.x1)
 		double x = (this.y2 - other.y1) / m + other.x1;
@@ -231,7 +229,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point lowerLeftCornerToRightLine(Quad other, double m) {
+	Point lowerLeftCornerToRightLine(StickyBlock other, double m) {
 
 		// SOLUTION - other.y1 = m * (other.x2 - this.x1)
 		double y = m * (this.x2 - other.x1) + other.y1;
@@ -257,7 +255,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperLeftCornerToBottomLine(Quad other, double m) {
+	Point upperLeftCornerToBottomLine(StickyBlock other, double m) {
 
 		// this.y1 = m * (SOLUTION - other.x1) + other.y2
 		double x = (this.y1 - other.y2) / m + other.x1;
@@ -283,7 +281,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperLeftCornerToRightLine(Quad other, double m) {
+	Point upperLeftCornerToRightLine(StickyBlock other, double m) {
 
 		// SOLUTION = m * (this.x2 - other.x1) + other.y2
 		double y = m * (this.x2 - other.x1) + other.y2;
@@ -309,7 +307,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperRightCornerToBottomtLine(Quad other, double m) {
+	Point upperRightCornerToBottomtLine(StickyBlock other, double m) {
 
 		// this.y1 - other.y2 = m * (SOLUTION - other.x2)
 		double x = (this.y1 - other.y2) / m + other.x2;
@@ -335,7 +333,7 @@ public class Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	Point upperRightCornerToLeftLine(Quad other, double m) {
+	Point upperRightCornerToLeftLine(StickyBlock other, double m) {
 
 		// YY = m * (this.x1 - other.x2) + other.y2
 		double y = m * (this.x1 - other.x2) + other.y2;

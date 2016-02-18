@@ -13,7 +13,7 @@ public class Level {
 	private static Resources r = new Resources();
 
 	private Point playerPosition;
-	private ArrayList<Quad> stickyQuads;
+	private ArrayList<StickyBlock> stickyBlocks;
 
 	/**
 	 * Builds a level from the an xml file of the level name.
@@ -32,11 +32,11 @@ public class Level {
 		double ypos = Double.parseDouble(player.getLastChild().getTextContent());
 		playerPosition = new Point(xpos, ypos);
 
-		NodeList listOfQuadNodes = level.getElementsByTagName("quad");
-		stickyQuads = new ArrayList<Quad>();
-		for (int index = 0; index < listOfQuadNodes.getLength(); index++) {
-			double[] cornerData = parseQuadCorners(listOfQuadNodes.item(index));
-			stickyQuads.add(new Quad(cornerData));
+		NodeList listOfStickyBlockNodes = level.getElementsByTagName("block");
+		stickyBlocks = new ArrayList<StickyBlock>();
+		for (int index = 0; index < listOfStickyBlockNodes.getLength(); index++) {
+			double[] cornerData = parseCorners(listOfStickyBlockNodes.item(index));
+			stickyBlocks.add(new StickyBlock(cornerData));
 		}
 
 	}
@@ -48,7 +48,7 @@ public class Level {
 	 * @param childOfLevelData
 	 * @return The coordinates the child held
 	 */
-	double[] parseQuadCorners(Node childOfLevelData) {
+	double[] parseCorners(Node childOfLevelData) {
 		NodeList childern = childOfLevelData.getChildNodes();
 		double[] data = new double[4];
 		for (int index = 0; index < 4; index++) {
@@ -95,8 +95,8 @@ public class Level {
 	/**
 	 * @return the stickyQuads
 	 */
-	public ArrayList<Quad> getStickyQuads() {
-		return stickyQuads;
+	public ArrayList<StickyBlock> getStickyBlocks() {
+		return stickyBlocks;
 	}
 
 }

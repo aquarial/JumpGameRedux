@@ -10,16 +10,16 @@ import java.util.List;
  */
 public class MainModel {
 
-	private List<Quad> stickyQuads;
+	private List<StickyBlock> stickyBlocks;
 	private Jumper jumper;
 
 	public MainModel(Level level) {
-		this(level.getPlayerPosition(), level.getStickyQuads());
+		this(level.getPlayerPosition(), level.getStickyBlocks());
 	}
 
-	public MainModel(Point playerLocation, List<Quad> obsticales) {
+	public MainModel(Point playerLocation, List<StickyBlock> obsticales) {
 		this.jumper = new Jumper(playerLocation);
-		this.stickyQuads = obsticales;
+		this.stickyBlocks = obsticales;
 	}
 
 	private ArrayList<Point> minMovements = new ArrayList<>();
@@ -33,23 +33,23 @@ public class MainModel {
 
 		if (!jumper.isStuck()) {
 			Point newPosition = jumper.calculateUpdate(deltaTime);
-			Quad futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
+			StickyBlock futureJumperQuad = Jumper.calculateQuadAtPosition(newPosition);
 
-			boolean encounteredQuad = false;
-			for (Quad blockade : stickyQuads) {
-				if (blockade.containsQuad(futureJumperQuad)) {
-					encounteredQuad = true;
+			boolean encounteredBlock = false;
+			for (StickyBlock blockade : stickyBlocks) {
+				if (blockade.containsStickyBlock(futureJumperQuad)) {
+					encounteredBlock = true;
 					break;
 				}
 			}
 
-			if (encounteredQuad) {
+			if (encounteredBlock) {
 				minMovements.clear();
 				double x = jumper.getXvelocity();
 				double y = jumper.getYvelocity();
-				Quad currentJumperQuad = jumper.positionToQuad();
-				for (Quad blockade : stickyQuads) {
-					if (blockade.containsQuad(futureJumperQuad)) {
+				StickyBlock currentJumperQuad = jumper.positionToQuad();
+				for (StickyBlock blockade : stickyBlocks) {
+					if (blockade.containsStickyBlock(futureJumperQuad)) {
 						Point newMinMovement = blockade
 								.calculatePushingOtherToThis(currentJumperQuad,
 										x, y);
@@ -92,8 +92,8 @@ public class MainModel {
 		return Jumper.JUMPER_WIDTH;
 	}
 
-	public List<Quad> getStickyQuads() {
-		return this.stickyQuads;
+	public List<StickyBlock> getStickyBlocks() {
+		return this.stickyBlocks;
 	}
 
 	public boolean jumperReachedEnd() {

@@ -7,117 +7,117 @@
 		<ypos>3.75</ypos>
 	</player>
 	<leveldata>
-		<quad>
+		<block>
 			<x1>0.0</x1>
 			<y1>0.0</y1>
 			<x2>52.5</x2>
 			<y2>2.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>0.0</x1>
 			<y1>2.5</y1>
 			<x2>2.5</x2>
 			<y2>27.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>50.0</x1>
 			<y1>2.5</y1>
 			<x2>52.5</x2>
 			<y2>27.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>2.5</x1>
 			<y1>25.0</y1>
 			<x2>50.0</x2>
 			<y2>27.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>25.0</x1>
 			<y1>2.5</y1>
 			<x2>27.5</x2>
 			<y2>10.0</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>15.0</x1>
 			<y1>5.0</y1>
 			<x2>20.0</x2>
 			<y2>7.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>37.5</x1>
 			<y1>5.0</y1>
 			<x2>40.0</x2>
 			<y2>7.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>30.0</x1>
 			<y1>7.5</y1>
 			<x2>35.0</x2>
 			<y2>10.0</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>2.5</x1>
 			<y1>8.75</y1>
 			<x2>12.5</x2>
 			<y2>12.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>15.0</x1>
 			<y1>12.5</y1>
 			<x2>17.5</x2>
 			<y2>20.0</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>22.5</x1>
 			<y1>12.5</y1>
 			<x2>27.5</x2>
 			<y2>15.0</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>31.25</x1>
 			<y1>13.75</y1>
 			<x2>32.5</x2>
 			<y2>17.5</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>7.5</x1>
 			<y1>17.5</y1>
 			<x2>10.0</x2>
 			<y2>20.0</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>22.5</x1>
 			<y1>20.0</y1>
 			<x2>25.0</x2>
 			<y2>25.0</y2>
-		</quad>
+		</block>
 
-		<quad>
+		<block>
 			<x1>30.0</x1>
 			<y1>20.0</y1>
 			<x2>35.0</x2>
 			<y2>22.5</y2>
-		</quad>
+		</block>
 		
-		<quad>
+		<block>
 			<x1>42.5</x1>
 			<y1>20.0</y1>
 			<x2>45.0</x2>
 			<y2>22.5</y2>
-		</quad>
+		</block>
 	</leveldata>
 			
 </root>

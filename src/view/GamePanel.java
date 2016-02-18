@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import model.MainModel;
-import model.Quad;
+import model.StickyBlock;
 
 public class GamePanel extends JPanel {
 
@@ -70,7 +70,7 @@ public class GamePanel extends JPanel {
 		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
 
 		g2.setColor(Color.BLACK);
-		for (Quad stickyQuad : model.getStickyQuads()) {
+		for (StickyBlock stickyQuad : model.getStickyBlocks()) {
 			drawStickyQuad(stickyQuad, g2);
 		}
 
@@ -82,7 +82,7 @@ public class GamePanel extends JPanel {
 		drawGraphics(g);
 	}
 
-	private void drawStickyQuad(Quad stickyQuad, Graphics2D g2) {
+	private void drawStickyQuad(StickyBlock stickyQuad, Graphics2D g2) {
 		int x1 = modelUnitToPixels(stickyQuad.getX1() - model.getPlayerXPos());
 		int y1 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY2());
 		int x2 = modelUnitToPixels(stickyQuad.getX2() - model.getPlayerXPos());
