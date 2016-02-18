@@ -60,11 +60,11 @@ public class MainModel {
 				// if encountered platform...
 				// stick to platfrom
 				Point lastMin = minMovements.get(0);
-				for (Point p : minMovements) {
+				for (Point potentialMin : minMovements) {
 					if (lastMin.equals(Point.ZERO)) {
-						lastMin = p;
-					} else if (p.lessThan(lastMin) && !p.equals(Point.ZERO)) {
-						lastMin = p;
+						lastMin = potentialMin;
+					} else if (potentialMin.lessThan(lastMin) && !potentialMin.equals(Point.ZERO)) {
+						lastMin = potentialMin;
 					}
 				}
 				jumper.setVelocityToZero();
