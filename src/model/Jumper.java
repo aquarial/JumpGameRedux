@@ -6,6 +6,8 @@ public class Jumper {
 	public static final double GRAVITY_CONSTANT = -8f;
 	public static final double JUMPER_WIDTH = 1;
 
+	private static double[] corners = new double[4];
+
 	/**
 	 * Calculates the coordinates of the jumper's corners
 	 * 
@@ -15,13 +17,12 @@ public class Jumper {
 	 * @return A quadrilateral representing the corners.
 	 */
 	public static double[] calculateCornersAtPosition(Point pos) {
-		double x1, x2, y1, y2, radius;
-		radius = JUMPER_WIDTH / 2;
-		x1 = pos.getX() - radius;
-		x2 = pos.getX() + radius;
-		y1 = pos.getY() - radius;
-		y2 = pos.getY() + radius;
-		return new double[] { x1, y1, x2, y2 };
+		double radius = JUMPER_WIDTH / 2;
+		corners[0] = pos.getX() - radius;
+		corners[1] = pos.getY() - radius;
+		corners[2] = pos.getX() + radius;
+		corners[3] = pos.getY() + radius;
+		return corners;
 	}
 
 	private double xposition;
