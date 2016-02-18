@@ -20,7 +20,7 @@ import model.StickyBlock;
  * @author karl
  *
  */
-class GamePanel extends JPanel {
+public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static int xcenter = 400;
@@ -56,7 +56,7 @@ class GamePanel extends JPanel {
 		bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 	}
 
-	void startlevel() {
+	public void startlevel() {
 		Thread th = new GameThread(this, model);
 		th.start();
 	}
