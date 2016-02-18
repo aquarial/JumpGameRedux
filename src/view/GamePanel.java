@@ -12,15 +12,25 @@ import javax.swing.JPanel;
 import model.MainModel;
 import model.StickyBlock;
 
-public class GamePanel extends JPanel {
+/**
+ * A panel that should be added to a parent component to show a game.
+ * <p>
+ * Runs one game through completion.
+ * 
+ * @author karl
+ *
+ */
+class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static int xcenter = 400;
 	private static int ycenter = 300;
 
+	private BufferedImage bufferedImage;
+
 	private MainModel model;
 
-	public GamePanel(MainModel m) {
+	GamePanel(MainModel m) {
 		super();
 
 		addMouseListener(new MouseAdapter() {
@@ -43,20 +53,20 @@ public class GamePanel extends JPanel {
 		});
 
 		model = m;
+		bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 	}
 
-	public void startlevel() {
-		Thread th = new MyThread(this, model);
+	void startlevel() {
+		Thread th = new GameThread(this, model);
 		th.start();
 	}
 
-	public void renderGame() {
+	void renderGame() {
 		repaint();
 	}
 
-	private void drawGraphics(Graphics g) {
-		BufferedImage bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-
+	@Override
+	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) bufferedImage.getGraphics();
 
 		g2.setColor(Color.WHITE);
@@ -65,7 +75,7 @@ public class GamePanel extends JPanel {
 		g2.setColor(Color.BLUE);
 		drawPlayerAtCenter(g2);
 
-		g2.setColor(new Color(230, 255, 230));
+		g2.setColor(new Color(235, 255, 235));
 		g2.drawOval(xcenter - 200, ycenter - 200, 400, 400);
 		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
 
@@ -75,11 +85,6 @@ public class GamePanel extends JPanel {
 		}
 
 		g.drawImage(bufferedImage, 0, 0, null);
-	}
-
-	@Override
-	public void paint(Graphics g) {
-		drawGraphics(g);
 	}
 
 	private void drawStickyQuad(StickyBlock stickyQuad, Graphics2D g2) {
@@ -107,9 +112,11 @@ public class GamePanel extends JPanel {
 
 	public void setWidth(int width) {
 		xcenter = width / 2;
+		bufferedImage = new BufferedImage(width, getHeight(), BufferedImage.TYPE_INT_RGB);
 	}
 
 	public void setHeight(int height) {
 		ycenter = height / 2;
+		bufferedImage = new BufferedImage(getWidth(), height, BufferedImage.TYPE_INT_RGB);
 	}
 }

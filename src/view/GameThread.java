@@ -2,14 +2,20 @@ package view;
 
 import model.MainModel;
 
-class MyThread extends Thread {
+/**
+ * Provides a game loop for updating a GamePanel
+ * 
+ * @author karl
+ *
+ */
+class GameThread extends Thread {
 
 	private GamePanel panel;
 	private MainModel model;
 
 	static final long minimumSleepTime = 35;
 
-	public MyThread(GamePanel gp, MainModel model) {
+	GameThread(GamePanel gp, MainModel model) {
 		this.panel = gp;
 		this.model = model;
 	}
