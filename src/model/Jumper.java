@@ -9,7 +9,9 @@ public class Jumper {
 	/**
 	 * Calculates the coordinates of the jumper's corners
 	 * 
-	 * @return
+	 * @param pos Point representing position
+	 * 
+	 * @return A quadrilateral representing the corners.
 	 */
 	public static Quad calculateQuadAtPosition(Point pos) {
 		double x1, x2, y1, y2, radius;

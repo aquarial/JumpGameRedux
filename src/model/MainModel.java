@@ -3,6 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author karl
+ *
+ */
 public class MainModel {
 
 	private List<Quad> stickyQuads;

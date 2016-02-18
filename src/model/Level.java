@@ -16,7 +16,9 @@ public class Level {
 	private ArrayList<Quad> stickyQuads;
 
 	/**
-	 * Builds a level based off of a the xml file of the same name.
+	 * Builds a level from the an xml file of the level name.
+	 * <p>
+	 * Provides methods to access data about that level.
 	 * 
 	 * @param levelName
 	 */
