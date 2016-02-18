@@ -48,10 +48,6 @@ public class StickyBlock {
 
 	}
 
-	public Point[] toPointArray() {
-		return new Point[] { new Point(x1, y1), new Point(x1, y2), new Point(x2, y1), new Point(y2, y2) };
-	}
-
 	/**
 	 * Whether or not the other is partly inside this.
 	 * 
