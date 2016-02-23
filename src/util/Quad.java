@@ -18,7 +18,7 @@ public class Quad {
 	}
 
 	public Quad(double x1, double y1, double x2, double y2) {
-		// Keep quad positive
+		// Keep quad positive, helps calculating if a point is inside
 		if (y2 < y1) {
 			double tmp = y1;
 			y1 = y2;
