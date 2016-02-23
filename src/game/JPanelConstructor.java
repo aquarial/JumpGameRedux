@@ -7,9 +7,9 @@ public class JPanelConstructor {
 	public static GamePanel makeNewGamePanel(String levelname, int width, int height) {
 
 		Level level = new Level(levelname);
-		MainModel m = new MainModel(level);
+		MainModel model = new MainModel(level);
 
-		GamePanel pan = new GamePanel(m, width, height);
+		GamePanel pan = new GamePanel(model, width, height);
 		return pan;
 	}
 }
