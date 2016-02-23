@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.Point;
+import util.Quad;
 
 /**
  * 
@@ -106,8 +107,8 @@ public class MainModel {
 		return Jumper.JUMPER_WIDTH;
 	}
 
-	public List<StickyBlock> getStickyBlocks() {
-		return this.stickyBlocks;
+	public List<Quad> getBlockData() {
+		return null;
 	}
 
 	public boolean jumperReachedEnd() {

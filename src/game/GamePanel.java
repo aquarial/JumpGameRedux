@@ -1,7 +1,6 @@
 package game;
 
 import game.model.MainModel;
-import game.model.StickyBlock;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,13 +11,15 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import util.Quad;
+
 /**
  * A panel that should be added to a parent component to show a game.
  * <p>
  * Runs one game through completion.
  * 
  * @author karl
- *
+ * 
  */
 public class GamePanel extends JPanel {
 
@@ -47,14 +48,16 @@ public class GamePanel extends JPanel {
 			}
 
 			private double calculatePowerFromDiffs(double xdiff, double ydiff) {
-				double normalPower = Math.pow(Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
+				double normalPower = Math.pow(
+						Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
 				return Math.min(normalPower / 18, 7.5);
 			}
 
 		});
 
 		model = m;
-		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}
 
@@ -70,7 +73,7 @@ public class GamePanel extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2 = graphicsForBufferedImage;
-		
+
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, getWidth(), getHeight());
 
@@ -82,14 +85,14 @@ public class GamePanel extends JPanel {
 		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
 
 		g2.setColor(Color.BLACK);
-		for (StickyBlock stickyQuad : model.getStickyBlocks()) {
+		for (Quad stickyQuad : model.getBlockData()) {
 			drawStickyQuad(stickyQuad, g2);
 		}
 
 		g.drawImage(bufferedImage, 0, 0, null);
 	}
 
-	private void drawStickyQuad(StickyBlock stickyQuad, Graphics2D g2) {
+	private void drawStickyQuad(Quad stickyQuad, Graphics2D g2) {
 		int x1 = modelUnitToPixels(stickyQuad.getX1() - model.getPlayerXPos());
 		int y1 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY2());
 		int x2 = modelUnitToPixels(stickyQuad.getX2() - model.getPlayerXPos());
@@ -104,7 +107,8 @@ public class GamePanel extends JPanel {
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
 		int playerRad = modelUnitToPixels(model.getPlayerWidth() / 2);
-		g2.fillRect(xcenter - playerRad, ycenter - playerRad, playerRad * 2, playerRad * 2);
+		g2.fillRect(xcenter - playerRad, ycenter - playerRad, playerRad * 2,
+				playerRad * 2);
 
 	}
 

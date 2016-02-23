@@ -2,11 +2,11 @@ package game.model;
 
 import util.Point;
 
-public class Jumper {
+class Jumper {
 
 	// Gravity pulls down, negative is down
-	public static final double GRAVITY_CONSTANT = -8f;
-	public static final double JUMPER_WIDTH = 1;
+	static final double GRAVITY_CONSTANT = -8f;
+	static final double JUMPER_WIDTH = 1;
 
 	private static double[] corners = new double[4];
 
@@ -18,7 +18,7 @@ public class Jumper {
 	 * 
 	 * @return A quadrilateral representing the corners.
 	 */
-	public static double[] calculateCornersAtPosition(Point pos) {
+	static double[] calculateCornersAtPosition(Point pos) {
 		double radius = JUMPER_WIDTH / 2;
 		corners[0] = pos.getX() - radius;
 		corners[1] = pos.getY() - radius;
@@ -41,7 +41,7 @@ public class Jumper {
 	 * @param deltaTime
 	 * @return new x and y positions.
 	 */
-	public Point calculateUpdate(double deltaTime) {
+	Point calculateUpdate(double deltaTime) {
 		double tmpxpos = xposition + deltaTime * xvelocity;
 		double tmpypos = yposition + deltaTime * yvelocity;
 		return new Point(tmpxpos, tmpypos);
@@ -52,7 +52,7 @@ public class Jumper {
 	 * 
 	 * @param deltaTime
 	 */
-	public void update(double deltaTime) {
+	void update(double deltaTime) {
 		xposition += deltaTime * xvelocity;
 		yposition += deltaTime * yvelocity;
 		// if (yvelocity > -5) {
@@ -68,7 +68,7 @@ public class Jumper {
 	 * @param ypos
 	 *            Y position
 	 */
-	public Jumper(double xpos, double ypos) {
+	Jumper(double xpos, double ypos) {
 		this.xposition = xpos;
 		this.yposition = ypos;
 		this.xvelocity = 0;
@@ -84,7 +84,7 @@ public class Jumper {
 	 * @param ypos
 	 *            Y position
 	 */
-	public Jumper(Point position) {
+	Jumper(Point position) {
 		this.xposition = position.getX();
 		this.yposition = position.getY();
 		this.xvelocity = 0;
@@ -96,7 +96,7 @@ public class Jumper {
 	 * <p>
 	 * Sets both velocities to zero
 	 */
-	public void setVelocityToZero() {
+	void setVelocityToZero() {
 		xvelocity = 0;
 		yvelocity = 0;
 	}
@@ -111,7 +111,7 @@ public class Jumper {
 	 * 
 	 * @see update(double deltaTime)
 	 */
-	public void moveBy(double deltaX, double deltaY) {
+	void moveBy(double deltaX, double deltaY) {
 		xposition += deltaX;
 		yposition += deltaY;
 	}
@@ -121,7 +121,7 @@ public class Jumper {
 	 * 
 	 * @return Quad representing corners
 	 */
-	public double[] getCurrentCorners() {
+	double[] getCurrentCorners() {
 		double x1, x2, y1, y2, radius;
 		radius = JUMPER_WIDTH / 2;
 		x1 = this.xposition - radius;
@@ -135,7 +135,7 @@ public class Jumper {
 	 * 
 	 * @return p the x and y position
 	 */
-	public Point getPosition() {
+	Point getPosition() {
 		return new Point(xposition, yposition);
 	}
 
@@ -144,7 +144,7 @@ public class Jumper {
 	 * @param p
 	 *            the x and y position to set
 	 */
-	public void setPosition(Point p) {
+	void setPosition(Point p) {
 		xposition = p.getX();
 		yposition = p.getY();
 	}
@@ -152,7 +152,7 @@ public class Jumper {
 	/**
 	 * @return the xposition
 	 */
-	public double getXposition() {
+	double getXposition() {
 		return xposition;
 	}
 
@@ -160,14 +160,14 @@ public class Jumper {
 	 * @param xposition
 	 *            the x position to set
 	 */
-	public void setXposition(double xposition) {
+	void setXposition(double xposition) {
 		this.xposition = xposition;
 	}
 
 	/**
 	 * @return the yposition
 	 */
-	public double getYposition() {
+	double getYposition() {
 		return yposition;
 	}
 
@@ -175,7 +175,7 @@ public class Jumper {
 	 * @param yposition
 	 *            the y position to set
 	 */
-	public void setYposition(double yposition) {
+	void setYposition(double yposition) {
 		this.yposition = yposition;
 	}
 
@@ -185,7 +185,7 @@ public class Jumper {
 	 * @param angle
 	 * @param power
 	 */
-	public void setAngularVelocity(double angle, double power) {
+	void setAngularVelocity(double angle, double power) {
 		xvelocity = (double) (Math.cos(angle) * power);
 		yvelocity = -(double) (Math.sin(angle) * power);
 	}
@@ -193,7 +193,7 @@ public class Jumper {
 	/**
 	 * @return the xvelocity
 	 */
-	public double getXvelocity() {
+	double getXvelocity() {
 		return xvelocity;
 	}
 
@@ -201,14 +201,14 @@ public class Jumper {
 	 * @param xvelocity
 	 *            the x velocity to set
 	 */
-	public void setXvelocity(double xvelocity) {
+	void setXvelocity(double xvelocity) {
 		this.xvelocity = xvelocity;
 	}
 
 	/**
 	 * @return the yvelocity
 	 */
-	public double getYvelocity() {
+	double getYvelocity() {
 		return yvelocity;
 	}
 
@@ -216,14 +216,14 @@ public class Jumper {
 	 * @param yvelocity
 	 *            the y velocity to set
 	 */
-	public void setYvelocity(double yvelocity) {
+	void setYvelocity(double yvelocity) {
 		this.yvelocity = yvelocity;
 	}
 
 	/**
 	 * @return the isStuck
 	 */
-	public boolean isStuck() {
+	boolean isStuck() {
 		return isStuck;
 	}
 
@@ -231,7 +231,7 @@ public class Jumper {
 	 * @param isStuck
 	 *            the isStuck to set
 	 */
-	public void setStuck(boolean isStuck) {
+	void setStuck(boolean isStuck) {
 		this.isStuck = isStuck;
 	}
 
