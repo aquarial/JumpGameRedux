@@ -2,11 +2,18 @@ package util;
 
 public class Quad {
 
-	private double x1;
-	private double y1;
-	private double x2;
-	private double y2;
+	protected double x1;
+	protected double y1;
+	protected double x2;
+	protected double y2;
 
+	
+	/**
+	 * Default constructor
+	 */
+	public Quad() {
+	}
+	
 	/**
 	 * Construct a quad from an array instead of passing doubles
 	 * 
@@ -17,6 +24,13 @@ public class Quad {
 		this(corners[0], corners[1], corners[2], corners[3]);
 	}
 
+	/**
+	 * Construct a quad from each value separately
+	 * @param x1
+	 * @param y1
+	 * @param x2
+	 * @param y2
+	 */
 	public Quad(double x1, double y1, double x2, double y2) {
 		// Keep quad positive, helps calculating if a point is inside
 		if (y2 < y1) {

@@ -14,9 +14,7 @@ import util.Quad;
  * @author karl
  * 
  */
-class StickyBlock {
-
-	private Quad quad;
+class StickyBlock extends Quad {
 
 	/**
 	 * Construct a quad from an array instead of passing doubles
@@ -41,7 +39,10 @@ class StickyBlock {
 			x2 = tmp;
 		}
 
-		this.quad = new Quad(x1, y1, x2, y2);
+		this.x1 = x1;
+		this.y1 = y1;
+		this.x2 = x2;
+		this.y2 = y2;
 	}
 
 	/**
@@ -54,10 +55,10 @@ class StickyBlock {
 	boolean containsStickyBlock(StickyBlock other) {
 		//@formatter:off
 		return 
-				this.quad.getX1() < other.quad.getX2() && 
-				this.quad.getX2() > other.quad.getX1() && 
-				this.quad.getY1() < other.quad.getY2() && 
-				this.quad.getY2() > other.quad.getY1();
+				this.x1 < other.x2 && 
+				this.x2 > other.x1 && 
+				this.y1 < other.y2 && 
+				this.y2 > other.y1;
 		//@formatter:on
 	}
 
@@ -71,10 +72,10 @@ class StickyBlock {
 	boolean containsCornerArray(double[] corners) {
 		//@formatter:off
 		return 
-				this.quad.getX1() < corners[2] && 
-				this.quad.getX2() > corners[0] && 
-				this.quad.getY1() < corners[3] && 
-				this.quad.getY2() > corners[1];
+				this.x1 < corners[2] && 
+				this.x2 > corners[0] && 
+				this.y1 < corners[3] && 
+				this.y2 > corners[1];
 		//@formatter:on
 	}
 
@@ -114,25 +115,25 @@ class StickyBlock {
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
 			movements.add(upperRightCornerToLeftLine(corners, m));
 			movements.add(lowerRightCornerToLeftLine(corners, m));
-			// System.out.print("RIGHT"); // other.x2 to this.quad.getX1()
+			// System.out.print("RIGHT"); // other.x2 to this.x1
 		}
 
 		if ((angle < Math.PI) && (angle > 0)) {
 			movements.add(upperRightCornerToBottomtLine(corners, m));
 			movements.add(upperLeftCornerToBottomLine(corners, m));
-			// System.out.print("UP"); // other.y2 to this.quad.getY1()
+			// System.out.print("UP"); // other.y2 to this.y1
 		}
 
 		if ((angle > -1 * Math.PI) && (angle < 0)) {
 			movements.add(lowerLeftCornerToTopLine(corners, m));
 			movements.add(lowerRightCornerToTopLine(corners, m));
-			// System.out.print("DOWN"); // other.y1 to this.quad.getY2()
+			// System.out.print("DOWN"); // other.y1 to this.y2
 		}
 
 		if ((angle > Math.PI / 2) || (angle < -1 * Math.PI / 2)) {
 			movements.add(upperLeftCornerToRightLine(corners, m));
 			movements.add(lowerLeftCornerToRightLine(corners, m));
-			// System.out.print("LEFT"); // other.x1 to this.quad.getX2()
+			// System.out.print("LEFT"); // other.x1 to this.x2
 		}
 
 		Point lastMin = movements.get(0);
@@ -172,10 +173,10 @@ class StickyBlock {
 	 */
 	private Point lowerRightCornerToTopLine(double[] other, double slope) {
 
-		// this.quad.getY2() - other[1] = m * ( SOLUTION - other[2])
-		double x = (this.quad.getY2() - other[1]) / slope + other[2];
+		// this.y2 - other[1] = m * ( SOLUTION - other[2])
+		double x = (this.y2 - other[1]) / slope + other[2];
 
-		if ((this.quad.getX1() <= x) && (x <= this.quad.getX2())) {
+		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = slope * (x - other[2]) + other[1];
 			return new Point(x - other[2], y - other[1], "lrt");
 		}
@@ -197,11 +198,11 @@ class StickyBlock {
 	 */
 	private Point lowerRightCornerToLeftLine(double[] other, double m) {
 
-		// SOLUTION - other[1] = m * (this.quad.getX1() - other[2])
-		double y = m * (this.quad.getX1() - other[2]) + other[1];
+		// SOLUTION - other[1] = m * (this.x1 - other[2])
+		double y = m * (this.x1 - other[2]) + other[1];
 
-		if ((this.quad.getY1() <= y) && (y <= this.quad.getY2())) {
-			double x = this.quad.getX1();
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x1;
 			return new Point(x - other[2], y - other[1], "lrl");
 		}
 
@@ -223,11 +224,11 @@ class StickyBlock {
 	 */
 	private Point lowerLeftCornerToTopLine(double[] other, double m) {
 
-		// this.quad.getY2() - other[1] = m * ( SOLUTION - other[0])
-		double x = (this.quad.getY2() - other[1]) / m + other[0];
+		// this.y2 - other[1] = m * ( SOLUTION - other[0])
+		double x = (this.y2 - other[1]) / m + other[0];
 
-		if ((this.quad.getX1() <= x) && (x <= this.quad.getX2())) {
-			double y = this.quad.getY2();
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = this.y2;
 			return new Point(x - other[0], y - other[1], "llt");
 		}
 		return new Point(0, 0);
@@ -248,11 +249,11 @@ class StickyBlock {
 	 */
 	private Point lowerLeftCornerToRightLine(double[] other, double m) {
 
-		// SOLUTION - other[1] = m * (other[2] - this.quad.getX1())
-		double y = m * (this.quad.getX2() - other[0]) + other[1];
+		// SOLUTION - other[1] = m * (other[2] - this.x1)
+		double y = m * (this.x2 - other[0]) + other[1];
 
-		if ((this.quad.getY1() <= y) && (y <= this.quad.getY2())) {
-			double x = this.quad.getX2();
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x2;
 			return new Point(x - other[0], y - other[1], "llr");
 		}
 
@@ -274,11 +275,11 @@ class StickyBlock {
 	 */
 	private Point upperLeftCornerToBottomLine(double[] other, double m) {
 
-		// this.quad.getY1() = m * (SOLUTION - other[0]) + other[3]
-		double x = (this.quad.getY1() - other[3]) / m + other[0];
+		// this.y1 = m * (SOLUTION - other[0]) + other[3]
+		double x = (this.y1 - other[3]) / m + other[0];
 
-		if ((this.quad.getX1() <= x) && (x <= this.quad.getX2())) {
-			double y = this.quad.getY1();
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = this.y1;
 			return new Point(x - other[0], y - other[3], "ulb");
 		}
 
@@ -300,11 +301,11 @@ class StickyBlock {
 	 */
 	private Point upperLeftCornerToRightLine(double[] other, double m) {
 
-		// SOLUTION = m * (this.quad.getX2() - other[0]) + other[3]
-		double y = m * (this.quad.getX2() - other[0]) + other[3];
+		// SOLUTION = m * (this.x2 - other[0]) + other[3]
+		double y = m * (this.x2 - other[0]) + other[3];
 
-		if ((this.quad.getY1() <= y) && (y <= this.quad.getY2())) {
-			double x = this.quad.getX2();
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x2;
 			return new Point(x - other[0], y - other[3], "ulr");
 		}
 
@@ -326,11 +327,11 @@ class StickyBlock {
 	 */
 	private Point upperRightCornerToBottomtLine(double[] other, double m) {
 
-		// this.quad.getY1() - other[3] = m * (SOLUTION - other[2])
-		double x = (this.quad.getY1() - other[3]) / m + other[2];
+		// this.y1 - other[3] = m * (SOLUTION - other[2])
+		double x = (this.y1 - other[3]) / m + other[2];
 
-		if ((this.quad.getX1() <= x) && (x <= this.quad.getX2())) {
-			double y = this.quad.getY1();
+		if ((this.x1 <= x) && (x <= this.x2)) {
+			double y = this.y1;
 			return new Point(x - other[2], y - other[3], "urb");
 		}
 
@@ -352,11 +353,11 @@ class StickyBlock {
 	 */
 	private Point upperRightCornerToLeftLine(double[] other, double m) {
 
-		// YY = m * (this.quad.getX1() - other[2]) + other[3]
-		double y = m * (this.quad.getX1() - other[2]) + other[3];
+		// YY = m * (this.x1 - other[2]) + other[3]
+		double y = m * (this.x1 - other[2]) + other[3];
 
-		if ((this.quad.getY1() <= y) && (y <= this.quad.getY2())) {
-			double x = this.quad.getX1();
+		if ((this.y1 <= y) && (y <= this.y2)) {
+			double x = this.x1;
 			return new Point(x - other[2], y - other[3], "url");
 		}
 

@@ -107,8 +107,8 @@ public class MainModel {
 		return Jumper.JUMPER_WIDTH;
 	}
 
-	public List<Quad> getBlockData() {
-		return null;
+	public List<? extends Quad> getBlockData() {
+		return stickyBlocks;
 	}
 
 	public boolean jumperReachedEnd() {
