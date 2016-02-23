@@ -1,7 +1,11 @@
-package model;
+package game.model;
+
+import io.Level;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import util.Point;
 
 /**
  * 

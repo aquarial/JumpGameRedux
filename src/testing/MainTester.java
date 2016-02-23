@@ -1,10 +1,10 @@
 package testing;
 
+import game.GamePanel;
+import game.JPanelConstructor;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
-import view.GamePanel;
-import view.JPanelConstructor;
 
 public class MainTester {
 

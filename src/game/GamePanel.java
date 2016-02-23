@@ -1,4 +1,7 @@
-package view;
+package game;
+
+import game.model.MainModel;
+import game.model.StickyBlock;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,9 +11,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
-
-import model.MainModel;
-import model.StickyBlock;
 
 /**
  * A panel that should be added to a parent component to show a game.

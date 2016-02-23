@@ -1,6 +1,8 @@
-package model;
+package game.model;
 
 import java.util.Comparator;
+
+import util.Point;
 
 public class PointComparator implements Comparator<Point> {
 

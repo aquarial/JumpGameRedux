@@ -1,7 +1,7 @@
-package view;
+package game;
 
-import model.Level;
-import model.MainModel;
+import io.Level;
+import game.model.MainModel;
 
 public class JPanelConstructor {
 	public static GamePanel makeNewGamePanel(String levelname, int width, int height) {

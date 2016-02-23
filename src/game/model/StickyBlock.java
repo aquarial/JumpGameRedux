@@ -1,7 +1,9 @@
-package model;
+package game.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import util.Point;
 
 /**
  * Represents a quadrilateral

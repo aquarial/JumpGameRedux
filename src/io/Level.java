@@ -1,4 +1,6 @@
-package model;
+package io;
+
+import game.model.StickyBlock;
 
 import java.util.ArrayList;
 
@@ -6,7 +8,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import io.Resources;
+import util.Point;
 
 public class Level {
 
@@ -28,14 +30,17 @@ public class Level {
 		clean(level);
 
 		Node player = level.getElementsByTagName("player").item(0);
-		double xpos = Double.parseDouble(player.getFirstChild().getTextContent());
-		double ypos = Double.parseDouble(player.getLastChild().getTextContent());
+		double xpos = Double.parseDouble(player.getFirstChild()
+				.getTextContent());
+		double ypos = Double
+				.parseDouble(player.getLastChild().getTextContent());
 		playerPosition = new Point(xpos, ypos);
 
 		NodeList listOfStickyBlockNodes = level.getElementsByTagName("block");
 		stickyBlocks = new ArrayList<StickyBlock>();
 		for (int index = 0; index < listOfStickyBlockNodes.getLength(); index++) {
-			double[] cornerData = parseCorners(listOfStickyBlockNodes.item(index));
+			double[] cornerData = parseCorners(listOfStickyBlockNodes
+					.item(index));
 			stickyBlocks.add(new StickyBlock(cornerData));
 		}
 
@@ -52,7 +57,8 @@ public class Level {
 		NodeList childern = childOfLevelData.getChildNodes();
 		double[] data = new double[4];
 		for (int index = 0; index < 4; index++) {
-			data[index] = Double.parseDouble(childern.item(index).getTextContent());
+			data[index] = Double.parseDouble(childern.item(index)
+					.getTextContent());
 		}
 		return data;
 	}

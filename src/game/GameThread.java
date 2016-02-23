@@ -1,6 +1,6 @@
-package view;
+package game;
 
-import model.MainModel;
+import game.model.MainModel;
 
 /**
  * Provides a game loop for updating a GamePanel
