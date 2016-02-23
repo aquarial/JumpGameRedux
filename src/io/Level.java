@@ -1,18 +1,20 @@
 package io;
 
+import java.util.ArrayList;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
 import util.Point;
+import util.Quad;
 
 public class Level {
 
 	private static Resources r = new Resources();
 
 	private Point playerPosition;
-	private ArrayList<double[]> quadCornerData;
+	private ArrayList<Quad> allQuads;
 
 	/**
 	 * Builds a level from the an xml file of the level name.
@@ -30,10 +32,10 @@ public class Level {
 		playerPosition = parsePlayerPosition(player);
 
 		NodeList listOfQuads = level.getElementsByTagName("block");
-		quadCornerData = new ArrayList<double[]>();
+		allQuads = new ArrayList<Quad>();
 		for (int index = 0; index < listOfQuads.getLength(); index++) {
-			double[] cornerData = parseCorners(listOfQuads.item(index));
-			quadCornerData.add(cornerData);
+			Quad oneQuad = parseQuads(listOfQuads.item(index));
+			allQuads.add(oneQuad);
 		}
 
 	}
@@ -61,14 +63,14 @@ public class Level {
 	 * @param childOfLevelData
 	 * @return The coordinates the child held
 	 */
-	double[] parseCorners(Node childOfLevelData) {
+	Quad parseQuads(Node childOfLevelData) {
 		NodeList childern = childOfLevelData.getChildNodes();
 		double[] data = new double[4];
 		for (int index = 0; index < 4; index++) {
 			data[index] = Double.parseDouble(childern.item(index)
 					.getTextContent());
 		}
-		return data;
+		return new Quad(data);
 	}
 
 	/**
@@ -109,8 +111,8 @@ public class Level {
 	/**
 	 * @return the corners of the quads
 	 */
-	public ArrayList<double[]> getQuadCornerData() {
-		return quadCornerData;
+	public ArrayList<Quad> getQuadData() {
+		return allQuads;
 	}
 
 }

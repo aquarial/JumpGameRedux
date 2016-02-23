@@ -22,8 +22,8 @@ public class MainModel {
 		this.jumper = new Jumper(level.getPlayerPosition());
 
 		stickyBlocks = new ArrayList<StickyBlock>();
-		for (double[] corners : level.getQuadCornerData()) {
-			stickyBlocks.add(new StickyBlock(corners));
+		for (Quad quad : level.getQuadData()) {
+			stickyBlocks.add(StickyBlock.fromQuad(quad));
 		}
 
 	}

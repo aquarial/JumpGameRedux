@@ -16,6 +16,10 @@ import util.Quad;
  */
 class StickyBlock extends Quad {
 
+	static StickyBlock fromQuad(Quad q) {
+		return new StickyBlock(q.getX1(), q.getY1(), q.getX2(), q.getY2());
+	}
+
 	/**
 	 * Construct a quad from an array instead of passing doubles
 	 * 
@@ -26,6 +30,14 @@ class StickyBlock extends Quad {
 		this(corners[0], corners[1], corners[2], corners[3]);
 	}
 
+	/**
+	 * Construct a quad by passing values
+	 * 
+	 * @param x1
+	 * @param y1
+	 * @param x2
+	 * @param y2
+	 */
 	StickyBlock(double x1, double y1, double x2, double y2) {
 		// Keep stickyblocks positive, helps calculating if a point is inside
 		if (y2 < y1) {
