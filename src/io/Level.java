@@ -1,13 +1,10 @@
 package io;
 
-import game.model.StickyBlock;
-
-import java.util.ArrayList;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
 import util.Point;
 
 public class Level {
@@ -15,7 +12,7 @@ public class Level {
 	private static Resources r = new Resources();
 
 	private Point playerPosition;
-	private ArrayList<StickyBlock> stickyBlocks;
+	private ArrayList<double[]> quadCornerData;
 
 	/**
 	 * Builds a level from the an xml file of the level name.
@@ -30,25 +27,36 @@ public class Level {
 		clean(level);
 
 		Node player = level.getElementsByTagName("player").item(0);
-		double xpos = Double.parseDouble(player.getFirstChild()
-				.getTextContent());
-		double ypos = Double
-				.parseDouble(player.getLastChild().getTextContent());
-		playerPosition = new Point(xpos, ypos);
+		playerPosition = parsePlayerPosition(player);
 
-		NodeList listOfStickyBlockNodes = level.getElementsByTagName("block");
-		stickyBlocks = new ArrayList<StickyBlock>();
-		for (int index = 0; index < listOfStickyBlockNodes.getLength(); index++) {
-			double[] cornerData = parseCorners(listOfStickyBlockNodes
-					.item(index));
-			stickyBlocks.add(new StickyBlock(cornerData));
+		NodeList listOfQuads = level.getElementsByTagName("block");
+		quadCornerData = new ArrayList<double[]>();
+		for (int index = 0; index < listOfQuads.getLength(); index++) {
+			double[] cornerData = parseCorners(listOfQuads.item(index));
+			quadCornerData.add(cornerData);
 		}
 
 	}
 
 	/**
 	 * 
-	 * Parses the corner coordinates from the xml
+	 * Parses player coordinate from xml node
+	 * 
+	 * @param playerNode
+	 * @return Point representing coordinate
+	 */
+	Point parsePlayerPosition(Node playerNode) {
+		double xpos = Double.parseDouble(playerNode.getFirstChild()
+				.getTextContent());
+		double ypos = Double.parseDouble(playerNode.getLastChild()
+				.getTextContent());
+		return new Point(xpos, ypos);
+
+	}
+
+	/**
+	 * 
+	 * Parses the corner coordinates from xml node
 	 * 
 	 * @param childOfLevelData
 	 * @return The coordinates the child held
@@ -99,10 +107,10 @@ public class Level {
 	}
 
 	/**
-	 * @return the stickyQuads
+	 * @return the corners of the quads
 	 */
-	public ArrayList<StickyBlock> getStickyBlocks() {
-		return stickyBlocks;
+	public ArrayList<double[]> getQuadCornerData() {
+		return quadCornerData;
 	}
 
 }
