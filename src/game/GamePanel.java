@@ -78,7 +78,7 @@ public class GamePanel extends JPanel {
 		g2.fillRect(0, 0, getWidth(), getHeight());
 
 		g2.setColor(Color.BLUE);
-		drawPlayerAtCenter(g2);
+		this.drawPlayerAtCenter(g2);
 
 		g2.setColor(new Color(235, 255, 235));
 		g2.drawOval(xcenter - 200, ycenter - 200, 400, 400);
@@ -86,7 +86,7 @@ public class GamePanel extends JPanel {
 
 		g2.setColor(Color.BLACK);
 		for (Quad stickyQuad : model.getBlockData()) {
-			drawStickyQuad(stickyQuad, g2);
+			this.drawStickyQuad(stickyQuad, g2);
 		}
 
 		g.drawImage(bufferedImage, 0, 0, null);
