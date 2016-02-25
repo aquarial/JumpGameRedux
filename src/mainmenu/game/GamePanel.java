@@ -1,6 +1,4 @@
-package game;
-
-import game.model.MainModel;
+package mainmenu.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import mainmenu.game.model.MainModel;
 import util.Quad;
 
 /**

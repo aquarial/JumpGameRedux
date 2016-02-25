@@ -1,4 +1,4 @@
-package game.io;
+package mainmenu.game.io;
 
 import java.io.IOException;
 import java.io.InputStream;

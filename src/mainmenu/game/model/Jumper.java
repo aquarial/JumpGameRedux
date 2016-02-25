@@ -1,4 +1,4 @@
-package game.model;
+package mainmenu.game.model;
 
 import util.Point;
 
