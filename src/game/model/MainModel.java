@@ -1,10 +1,9 @@
 package game.model;
 
-import io.Level;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import game.io.Level;
 import util.Point;
 import util.Quad;
 

@@ -1,8 +1,8 @@
 package mainmenu;
 
 import game.GamePanel;
+import game.io.Level;
 import game.model.MainModel;
-import io.Level;
 
 /**
  * Provides functions to create JPanels for the mainmenu
