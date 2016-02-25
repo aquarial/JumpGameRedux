@@ -6,10 +6,10 @@ public class LevelCreater {
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
-		
+
 		System.out.print("What scale are you using? 1:");
 		double scale = s.nextDouble();
-		
+
 		System.out.print("How many quads? ");
 		int numQ = s.nextInt();
 		System.out.println();
@@ -29,7 +29,7 @@ public class LevelCreater {
 		for (FourNums a : quads) {
 			System.out.println(a);
 		}
-		
+
 		s.close();
 	}
 
