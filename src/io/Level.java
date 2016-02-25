@@ -9,6 +9,10 @@ import org.w3c.dom.NodeList;
 import util.Point;
 import util.Quad;
 
+/**
+ * POJO for xml levels
+ * 
+ */
 public class Level {
 
 	private static Resources r = new Resources();
@@ -47,11 +51,11 @@ public class Level {
 	 * @param playerNode
 	 * @return Point representing coordinate
 	 */
-	Point parsePlayerPosition(Node playerNode) {
-		double xpos = Double.parseDouble(playerNode.getFirstChild()
-				.getTextContent());
-		double ypos = Double.parseDouble(playerNode.getLastChild()
-				.getTextContent());
+	private Point parsePlayerPosition(Node playerNode) {
+		double xpos = Double
+				.parseDouble(playerNode.getFirstChild().getTextContent());
+		double ypos = Double
+				.parseDouble(playerNode.getLastChild().getTextContent());
 		return new Point(xpos, ypos);
 
 	}
@@ -63,12 +67,12 @@ public class Level {
 	 * @param childOfLevelData
 	 * @return The coordinates the child held
 	 */
-	Quad parseQuads(Node childOfLevelData) {
+	private Quad parseQuads(Node childOfLevelData) {
 		NodeList childern = childOfLevelData.getChildNodes();
 		double[] data = new double[4];
 		for (int index = 0; index < 4; index++) {
-			data[index] = Double.parseDouble(childern.item(index)
-					.getTextContent());
+			data[index] = Double
+					.parseDouble(childern.item(index).getTextContent());
 		}
 		return new Quad(data);
 	}
