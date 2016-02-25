@@ -32,9 +32,10 @@ public class GamePanel extends JPanel {
 
 	private MainModel model;
 
-	GamePanel(MainModel m, int width, int height) {
+	public GamePanel(MainModel m) {
 		super();
 
+		// Jump Listener
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -48,15 +49,15 @@ public class GamePanel extends JPanel {
 			}
 
 			private double calculatePowerFromDiffs(double xdiff, double ydiff) {
-				double normalPower = Math.pow(
-						Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
+				double normalPower = Math
+						.pow(Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
 				return Math.min(normalPower / 18, 7.5);
 			}
 
 		});
 
 		model = m;
-		bufferedImage = new BufferedImage(width, height,
+		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2,
 				BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}
@@ -66,6 +67,9 @@ public class GamePanel extends JPanel {
 		th.start();
 	}
 
+	/**
+	 * Just calls repaint(). Clarity method.
+	 */
 	void renderGame() {
 		repaint();
 	}
