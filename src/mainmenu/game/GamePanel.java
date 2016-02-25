@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import mainmenu.game.io.Level;
 import mainmenu.game.model.MainModel;
 import util.Quad;
 
@@ -31,11 +32,12 @@ public class GamePanel extends JPanel {
 
 	private MainModel model;
 
-	public GamePanel(MainModel m) {
+	public GamePanel(Level level_POJO) {
 		super();
 
+		model = new MainModel(level_POJO);
+
 		addClickToJumpListener();
-		model = m;
 		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2,
 				BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();

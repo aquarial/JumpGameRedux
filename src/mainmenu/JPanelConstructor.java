@@ -2,7 +2,6 @@ package mainmenu;
 
 import mainmenu.game.GamePanel;
 import mainmenu.game.io.Level;
-import mainmenu.game.model.MainModel;
 
 /**
  * Provides functions to create JPanels for the mainmenu
@@ -23,9 +22,7 @@ public class JPanelConstructor {
 	 */
 	public static GamePanel makeNewGamePanel(String levelname) {
 		Level level = new Level(levelname);
-		MainModel model = new MainModel(level);
-
-		GamePanel pan = new GamePanel(model);
+		GamePanel pan = new GamePanel(level);
 		return pan;
 	}
 
