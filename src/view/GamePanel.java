@@ -70,16 +70,16 @@ public class GamePanel extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2 = graphicsForBufferedImage;
-		
+
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, getWidth(), getHeight());
 
 		g2.setColor(Color.BLUE);
 		drawPlayerAtCenter(g2);
 
-		g2.setColor(new Color(235, 255, 235));
-		g2.drawOval(xcenter - 200, ycenter - 200, 400, 400);
-		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
+		g2.setColor(new Color(220, 255, 220));
+		g2.drawOval(xcenter - 135, ycenter - 135, 135 * 2, 135 * 2);
+		g2.drawOval(xcenter - (135 / 2), ycenter - (135 / 2), 135, 135);
 
 		g2.setColor(Color.BLACK);
 		for (StickyBlock stickyQuad : model.getStickyBlocks()) {
