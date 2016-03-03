@@ -1,12 +1,17 @@
-package model;
+package game.model;
+
+import io.Level;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import util.Point;
+import util.Quad;
+
 /**
  * 
  * @author karl
- *
+ * 
  */
 public class MainModel {
 
@@ -14,7 +19,13 @@ public class MainModel {
 	private Jumper jumper;
 
 	public MainModel(Level level) {
-		this(level.getPlayerPosition(), level.getStickyBlocks());
+		this.jumper = new Jumper(level.getPlayerPosition());
+
+		stickyBlocks = new ArrayList<StickyBlock>();
+		for (Quad quad : level.getQuadData()) {
+			stickyBlocks.add(StickyBlock.fromQuad(quad));
+		}
+
 	}
 
 	public MainModel(Point playerLocation, List<StickyBlock> obsticales) {
@@ -33,7 +44,8 @@ public class MainModel {
 
 		if (!jumper.isStuck()) {
 			Point newPosition = jumper.calculateUpdate(deltaTime);
-			double[] futureJumperCorners = Jumper.calculateCornersAtPosition(newPosition);
+			double[] futureJumperCorners = Jumper
+					.calculateCornersAtPosition(newPosition);
 
 			boolean encounteredBlock = false;
 			for (StickyBlock blockade : stickyBlocks) {
@@ -51,7 +63,9 @@ public class MainModel {
 
 				for (StickyBlock blockade : stickyBlocks) {
 					if (blockade.containsCornerArray(futureJumperCorners)) {
-						Point newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x, y);
+						Point newMinMovement = blockade
+								.calculatePushingRectangleToThis(
+										currentJumperQuad, x, y);
 						minMovements.add(newMinMovement);
 					}
 
@@ -63,7 +77,8 @@ public class MainModel {
 				for (Point potentialMin : minMovements) {
 					if (lastMin.equals(Point.ZERO)) {
 						lastMin = potentialMin;
-					} else if (potentialMin.lessThan(lastMin) && !potentialMin.equals(Point.ZERO)) {
+					} else if (potentialMin.lessThan(lastMin)
+							&& !potentialMin.equals(Point.ZERO)) {
 						lastMin = potentialMin;
 					}
 				}
@@ -92,8 +107,8 @@ public class MainModel {
 		return Jumper.JUMPER_WIDTH;
 	}
 
-	public List<StickyBlock> getStickyBlocks() {
-		return this.stickyBlocks;
+	public List<? extends Quad> getBlockData() {
+		return stickyBlocks;
 	}
 
 	public boolean jumperReachedEnd() {
