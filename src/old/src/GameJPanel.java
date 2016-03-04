@@ -1,11 +1,12 @@
-package gameTimeJump;
+package old.src;
 
-import gameTimeJump.Level.Line;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
+
+import old.src.Level.Line;
 
 public class GameJPanel extends JPanel {
 	private static final long serialVersionUID = 2323L;
