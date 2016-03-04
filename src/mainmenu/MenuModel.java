@@ -1,5 +1,0 @@
-package mainmenu;
-
-class MenuModel {
-
-}
