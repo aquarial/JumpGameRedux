@@ -1,5 +1,0 @@
-package mainmenu;
-
-enum State {
-	
-}
