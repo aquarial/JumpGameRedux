@@ -1,2 +1,7 @@
 # JumpGameRedux
-Remaking a rather classic game
+
+In Jump Game, the player controls a square centered on the screen. The square usually just follows the laws of gravity (besides sticking to walls), but after the user clicks somewhere the square is launched toward the point of mouse, with a velocity proportional to the distance of contact.
+
+This is a remake of a game I made in 2014.
+
+This code is cleaner, and more organized. Structure influenced by the Model-View pattern.
