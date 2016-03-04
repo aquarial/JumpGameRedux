@@ -1,5 +1,5 @@
 package mainmenu;
 
 class MenuModel {
-	
+
 }

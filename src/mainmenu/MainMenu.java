@@ -20,7 +20,8 @@ public class MainMenu {
 				f.setSize(width, height);
 				f.setResizable(false);
 
-				JPanel backgroundPanel = JPanelConstructor.makeNewGamePanel("001");
+				JPanel backgroundPanel = JPanelConstructor
+						.makeNewGamePanel("001");
 				f.getContentPane().add(backgroundPanel, BorderLayout.CENTER);
 				backgroundPanel.setBackground(Color.BLUE);
 				backgroundPanel.setLayout(new BorderLayout(0, 0));
