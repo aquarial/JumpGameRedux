@@ -1,4 +1,4 @@
-package io;
+package mainmenu.game;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import io.Resources;
 import util.Point;
 import util.Quad;
 
@@ -14,8 +15,6 @@ import util.Quad;
  * 
  */
 public class Level {
-
-	private static Resources r = new Resources();
 
 	private Point playerPosition;
 	private ArrayList<Quad> allQuads;
@@ -28,7 +27,7 @@ public class Level {
 	 * @param levelName
 	 */
 	public Level(String levelName) {
-		Document level = r.getDocumentForLevel(levelName);
+		Document level = Resources.getDocumentForLevel(levelName);
 		level.normalize();
 		clean(level);
 
@@ -52,10 +51,8 @@ public class Level {
 	 * @return Point representing coordinate
 	 */
 	private Point parsePlayerPosition(Node playerNode) {
-		double xpos = Double
-				.parseDouble(playerNode.getFirstChild().getTextContent());
-		double ypos = Double
-				.parseDouble(playerNode.getLastChild().getTextContent());
+		double xpos = Double.parseDouble(playerNode.getFirstChild().getTextContent());
+		double ypos = Double.parseDouble(playerNode.getLastChild().getTextContent());
 		return new Point(xpos, ypos);
 
 	}
@@ -71,8 +68,7 @@ public class Level {
 		NodeList childern = childOfLevelData.getChildNodes();
 		double[] data = new double[4];
 		for (int index = 0; index < 4; index++) {
-			data[index] = Double
-					.parseDouble(childern.item(index).getTextContent());
+			data[index] = Double.parseDouble(childern.item(index).getTextContent());
 		}
 		return new Quad(data);
 	}
