@@ -1,7 +1,7 @@
 package mainmenu;
 
-import io.Level;
 import mainmenu.game.GamePanel;
+import mainmenu.game.Level;
 
 /**
  * Provides functions to create JPanels for the mainmenu

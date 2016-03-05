@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import io.Level;
 import mainmenu.game.model.MainModel;
 import util.Quad;
 

@@ -3,7 +3,7 @@ package mainmenu.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.Level;
+import mainmenu.game.Level;
 import util.Point;
 import util.Quad;
 
