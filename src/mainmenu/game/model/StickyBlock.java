@@ -3,8 +3,8 @@ package mainmenu.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.Point;
-import util.Quad;
+import mainmenu.game.Point;
+import mainmenu.game.Quad;
 
 /**
  * Represents a quadrilateral

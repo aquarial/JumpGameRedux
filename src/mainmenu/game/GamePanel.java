@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import mainmenu.game.model.MainModel;
-import util.Quad;
 
 /**
  * A panel that should be added to a parent component to show a game.

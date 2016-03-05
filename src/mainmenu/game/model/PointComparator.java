@@ -2,7 +2,7 @@ package mainmenu.game.model;
 
 import java.util.Comparator;
 
-import util.Point;
+import mainmenu.game.Point;
 
 class PointComparator implements Comparator<Point> {
 

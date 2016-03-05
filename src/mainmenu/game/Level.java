@@ -7,8 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import io.Resources;
-import util.Point;
-import util.Quad;
 
 /**
  * POJO for xml levels

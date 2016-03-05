@@ -1,4 +1,4 @@
-package util;
+package mainmenu.game;
 
 /**
  * Represents a point

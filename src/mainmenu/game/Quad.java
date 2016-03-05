@@ -1,4 +1,4 @@
-package util;
+package mainmenu.game;
 
 public class Quad {
 

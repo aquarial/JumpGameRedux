@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mainmenu.game.Level;
-import util.Point;
-import util.Quad;
+import mainmenu.game.Point;
+import mainmenu.game.Quad;
 
 /**
  * 
