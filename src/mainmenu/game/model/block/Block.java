@@ -9,14 +9,24 @@ import mainmenu.game.model.level.Quad;
 public class Block extends Quad {
 
 	/**
-	 * Construct a Block from an array instead of passing doubles
+	 * Construct a FinishBlock from a Quad
 	 * 
-	 * @param corners
-	 *            Array with <b>LENGTH OF 4</b>
+	 * @param q
+	 * @return
 	 */
-	Block(double[] corners) {
-		super(corners[0], corners[1], corners[2], corners[3]);
+	public static Block fromQuad(Quad q, BlockType type) {
+		return new Block(q.getX1(), q.getY1(), q.getX2(), q.getY2(), type);
 	}
+
+	// /**
+	// * Construct a Block from an array instead of passing doubles
+	// *
+	// * @param corners
+	// * Array with <b>LENGTH OF 4</b>
+	// */
+	// Block(double[] corners) {
+	// super(corners[0], corners[1], corners[2], corners[3]);
+	// }
 
 	/**
 	 * Construct a Block by passing values
@@ -26,9 +36,12 @@ public class Block extends Quad {
 	 * @param x2
 	 * @param y2
 	 */
-	Block(double x1, double y1, double x2, double y2) {
+	Block(double x1, double y1, double x2, double y2, BlockType type) {
 		super(x1, y2, x2, y2);
+		blockType = type;
 	}
+
+	private BlockType blockType;
 
 	/**
 	 * Whether or not the other is partly inside this.
@@ -337,6 +350,28 @@ public class Block extends Quad {
 		}
 
 		return new Point(0, 0);
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param newtype
+	 */
+	public void setBlockType(BlockType newtype) {
+		this.blockType = newtype;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return
+	 */
+	public BlockType getBLockType() {
+		return this.blockType;
+	}
+
+	public boolean moves() {
+		return false;
 	}
 
 }

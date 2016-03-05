@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mainmenu.game.model.block.Block;
-import mainmenu.game.model.block.FinishBlock;
-import mainmenu.game.model.block.StickyBlock;
+import mainmenu.game.model.block.BlockType;
 import mainmenu.game.model.level.Level;
 import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
@@ -18,26 +17,25 @@ import mainmenu.game.model.level.Quad;
 public class MainModel {
 
 	private Jumper jumper;
-	private List<StickyBlock> stickyBlocks;
-	private FinishBlock finishBlock;
+	private List<Block> blocks;
 
 	public MainModel(String levelname) {
 		Level level = new Level(levelname);
 
 		this.jumper = new Jumper(level.getPlayerPosition());
 
-		stickyBlocks = new ArrayList<StickyBlock>();
+		blocks = new ArrayList<Block>();
 		for (Quad quad : level.getQuadData()) {
-			stickyBlocks.add(StickyBlock.fromQuad(quad));
+			blocks.add(Block.fromQuad(quad, BlockType.STICKY));
 		}
 
-		this.finishBlock = FinishBlock.fromQuad(level.getFinishQuad());
+		blocks.add(Block.fromQuad(level.getFinishQuad(), BlockType.FINISH));
 
 	}
 
-	public MainModel(Point playerLocation, List<StickyBlock> obsticales) {
+	public MainModel(Point playerLocation, List<Block> obsticales) {
 		this.jumper = new Jumper(playerLocation);
-		this.stickyBlocks = obsticales;
+		this.blocks = obsticales;
 	}
 
 	private ArrayList<Point> minMovements = new ArrayList<>();
@@ -54,7 +52,7 @@ public class MainModel {
 			double[] futureJumperCorners = Jumper.calculateCornersAtPosition(newPosition);
 
 			boolean encounteredBlock = false;
-			for (Block blockade : stickyBlocks) {
+			for (Block blockade : blocks) {
 				if (blockade.containsCornerArray(futureJumperCorners)) {
 					encounteredBlock = true;
 					break;
@@ -67,7 +65,7 @@ public class MainModel {
 				double y = jumper.getYvelocity();
 				double[] currentJumperQuad = jumper.getCurrentCorners();
 
-				for (Block blockade : stickyBlocks) {
+				for (Block blockade : blocks) {
 					if (blockade.containsCornerArray(futureJumperCorners)) {
 						Point newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x, y);
 						minMovements.add(newMinMovement);
@@ -112,7 +110,7 @@ public class MainModel {
 	}
 
 	public List<? extends Quad> getBlockData() {
-		return stickyBlocks;
+		return blocks;
 	}
 
 	public boolean jumperReachedEnd() {
