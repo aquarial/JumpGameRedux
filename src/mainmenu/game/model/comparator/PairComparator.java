@@ -1,7 +1,8 @@
-package mainmenu.game.model;
+package mainmenu.game.model.comparator;
 
 import java.util.Comparator;
 
+import mainmenu.game.model.Pair;
 import mainmenu.game.model.block.Block;
 import mainmenu.game.model.level.Point;
 

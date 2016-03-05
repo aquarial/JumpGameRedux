@@ -1,4 +1,4 @@
-package mainmenu.game.model;
+package mainmenu.game.model.comparator;
 
 import java.util.Comparator;
 

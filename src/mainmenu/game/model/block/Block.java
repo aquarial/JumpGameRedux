@@ -5,9 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import mainmenu.game.model.comparator.PointComparator;
 import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
-import mainmenu.game.model.PointComparator;
 
 public class Block extends Quad {
 

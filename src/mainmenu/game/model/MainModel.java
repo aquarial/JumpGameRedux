@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import mainmenu.game.model.block.Block;
 import mainmenu.game.model.block.BlockType;
+import mainmenu.game.model.comparator.PairComparator;
 import mainmenu.game.model.level.Level;
 import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
