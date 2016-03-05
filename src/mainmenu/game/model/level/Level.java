@@ -16,6 +16,7 @@ public class Level {
 
 	private Point playerPosition;
 	private ArrayList<Quad> allQuads;
+	private Quad finishQuad;
 
 	/**
 	 * Builds a level from the an xml file of the level name.
@@ -29,9 +30,11 @@ public class Level {
 		level.normalize();
 		clean(level);
 
+		// Player
 		Node player = level.getElementsByTagName("player").item(0);
 		playerPosition = parsePlayerPosition(player);
 
+		// Blocks
 		NodeList listOfQuads = level.getElementsByTagName("block");
 		allQuads = new ArrayList<Quad>();
 		for (int index = 0; index < listOfQuads.getLength(); index++) {
@@ -39,6 +42,8 @@ public class Level {
 			allQuads.add(oneQuad);
 		}
 
+		// Finish block
+		finishQuad = parseQuads(level.getElementsByTagName("finishblock").item(0));
 	}
 
 	/**
@@ -111,6 +116,14 @@ public class Level {
 	 */
 	public ArrayList<Quad> getQuadData() {
 		return allQuads;
+	}
+
+	/**
+	 * 
+	 * @return Quad representing finish area
+	 */
+	public Quad getFinishQuad() {
+		return finishQuad;
 	}
 
 }
