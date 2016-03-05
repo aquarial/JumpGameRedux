@@ -43,8 +43,7 @@ public class MainModel {
 
 		if (!jumper.isStuck()) {
 			Point newPosition = jumper.calculateUpdate(deltaTime);
-			double[] futureJumperCorners = Jumper
-					.calculateCornersAtPosition(newPosition);
+			double[] futureJumperCorners = Jumper.calculateCornersAtPosition(newPosition);
 
 			boolean encounteredBlock = false;
 			for (StickyBlock blockade : stickyBlocks) {
@@ -62,27 +61,25 @@ public class MainModel {
 
 				for (StickyBlock blockade : stickyBlocks) {
 					if (blockade.containsCornerArray(futureJumperCorners)) {
-						Point newMinMovement = blockade
-								.calculatePushingRectangleToThis(
-										currentJumperQuad, x, y);
+						Point newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x, y);
 						minMovements.add(newMinMovement);
 					}
 
 				}
 
 				// if encountered platform...
-				// stick to platfrom
-				Point lastMin = minMovements.get(0);
+				// find the most we can move before hitting something
+				// (the min distance) that's not zero
+				Point minimum = minMovements.get(0);
 				for (Point potentialMin : minMovements) {
-					if (lastMin.equals(Point.ZERO)) {
-						lastMin = potentialMin;
-					} else if (potentialMin.lessThan(lastMin)
-							&& !potentialMin.equals(Point.ZERO)) {
-						lastMin = potentialMin;
+					if (minimum.equals(Point.ZERO)) {
+						minimum = potentialMin;
+					} else if (potentialMin.lessThan(minimum) && !potentialMin.equals(Point.ZERO)) {
+						minimum = potentialMin;
 					}
 				}
 				jumper.setVelocityToZero();
-				jumper.moveBy(lastMin.getX(), lastMin.getY());
+				jumper.moveBy(minimum.getX(), minimum.getY());
 				jumper.setStuck(true);
 			} else {
 				// move to new Position
