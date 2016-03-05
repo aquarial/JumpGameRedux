@@ -3,6 +3,8 @@ package mainmenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,6 +28,7 @@ class MenuView {
 		f.setSize(width, height);
 		f.setResizable(false);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(150, 50, 0));
 		f.getContentPane().add(contentPane, BorderLayout.CENTER);
 
 		// GamePanel backgroundPanel =
@@ -47,6 +50,13 @@ class MenuView {
 		switch (newstate) {
 		case SPLASH_SCREEN:
 			System.out.println("splash screen state");
+			initSplashScreen();
+			break;
+		case LEVEL_SELECT:
+			System.out.println("level selecect state");
+			initLevelSelect();
+		case PLAY_GAME:
+			System.out.println("play game state");
 			break;
 		default:
 			System.out.println("default state");
@@ -71,7 +81,7 @@ class MenuView {
 		JButton startLevelButton = new JButton("Start Level");
 		startLevelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Selected: " + levelSelecter.getSelectedItem());
+				initState(MenuState.PLAY_GAME);
 			}
 		});
 		LevelSelectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -90,5 +100,22 @@ class MenuView {
 		contentPane.add(levelInfoPanel);
 		levelInfoPanel.setLayout(null);
 
+	}
+
+	void initSplashScreen() {
+		JPanel blue = new JPanel() {
+			@Override
+			public void paint(Graphics g) {
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setColor(new Color(0, 255, 255));
+				g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+				g2.setColor(Color.BLACK);
+				char[] text = "Welcome to game".toCharArray();
+				g2.drawChars(text, 0, text.length, 200, 150);
+			}
+		};
+		contentPane.add(blue,BorderLayout.CENTER);
+		contentPane.revalidate();
+		
 	}
 }

@@ -15,6 +15,8 @@ public class MainMenu {
 				state = MenuState.SPLASH_SCREEN;
 				view = new MenuView();
 
+				view.initState(state);
+
 			}
 		});
 	}
