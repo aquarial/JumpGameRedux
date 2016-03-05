@@ -1,4 +1,4 @@
-package mainmenu.game.level;
+package mainmenu.game.model.level;
 
 import java.util.ArrayList;
 

@@ -3,9 +3,9 @@ package mainmenu.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import mainmenu.game.level.Level;
-import mainmenu.game.level.Point;
-import mainmenu.game.level.Quad;
+import mainmenu.game.model.level.Level;
+import mainmenu.game.model.level.Point;
+import mainmenu.game.model.level.Quad;
 
 /**
  * 
@@ -19,6 +19,7 @@ public class MainModel {
 
 	public MainModel(String levelname) {
 		Level level = new Level(levelname);
+		
 		this.jumper = new Jumper(level.getPlayerPosition());
 
 		stickyBlocks = new ArrayList<StickyBlock>();
