@@ -3,6 +3,9 @@ package mainmenu.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import mainmenu.game.model.block.Block;
+import mainmenu.game.model.block.StickyBlock;
+
 import mainmenu.game.model.level.Level;
 import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
@@ -14,18 +17,19 @@ import mainmenu.game.model.level.Quad;
  */
 public class MainModel {
 
-	private List<StickyBlock> stickyBlocks;
 	private Jumper jumper;
-
+	private List<StickyBlock> stickyBlocks;
+	
 	public MainModel(String levelname) {
 		Level level = new Level(levelname);
-		
+
 		this.jumper = new Jumper(level.getPlayerPosition());
 
 		stickyBlocks = new ArrayList<StickyBlock>();
 		for (Quad quad : level.getQuadData()) {
 			stickyBlocks.add(StickyBlock.fromQuad(quad));
 		}
+		
 
 	}
 
@@ -48,7 +52,7 @@ public class MainModel {
 			double[] futureJumperCorners = Jumper.calculateCornersAtPosition(newPosition);
 
 			boolean encounteredBlock = false;
-			for (StickyBlock blockade : stickyBlocks) {
+			for (Block blockade : stickyBlocks) {
 				if (blockade.containsCornerArray(futureJumperCorners)) {
 					encounteredBlock = true;
 					break;
@@ -61,7 +65,7 @@ public class MainModel {
 				double y = jumper.getYvelocity();
 				double[] currentJumperQuad = jumper.getCurrentCorners();
 
-				for (StickyBlock blockade : stickyBlocks) {
+				for (Block blockade : stickyBlocks) {
 					if (blockade.containsCornerArray(futureJumperCorners)) {
 						Point newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x, y);
 						minMovements.add(newMinMovement);
