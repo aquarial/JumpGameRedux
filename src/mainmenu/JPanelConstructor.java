@@ -1,7 +1,6 @@
 package mainmenu;
 
 import mainmenu.game.GamePanel;
-import mainmenu.game.level.Level;
 
 /**
  * Provides functions to create JPanels for the mainmenu
@@ -21,9 +20,7 @@ public class JPanelConstructor {
 	 * @return
 	 */
 	public static GamePanel makeNewGamePanel(String levelname) {
-		Level level = new Level(levelname);
-		GamePanel pan = new GamePanel(level);
-		return pan;
+		return new GamePanel(levelname);
 	}
 
 }

@@ -17,7 +17,8 @@ public class MainModel {
 	private List<StickyBlock> stickyBlocks;
 	private Jumper jumper;
 
-	public MainModel(Level level) {
+	public MainModel(String levelname) {
+		Level level = new Level(levelname);
 		this.jumper = new Jumper(level.getPlayerPosition());
 
 		stickyBlocks = new ArrayList<StickyBlock>();

@@ -33,10 +33,10 @@ public class GamePanel extends JPanel {
 
 	private MainModel model;
 
-	public GamePanel(Level level_POJO) {
+	public GamePanel(String levelname) {
 		super();
 
-		model = new MainModel(level_POJO);
+		model = new MainModel(levelname);
 
 		addClickToJumpListener();
 		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2, BufferedImage.TYPE_INT_RGB);
