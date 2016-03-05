@@ -2,6 +2,7 @@ package mainmenu.game.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import mainmenu.game.model.block.Block;
 import mainmenu.game.model.block.BlockType;
@@ -38,7 +39,7 @@ public class MainModel {
 		this.blocks = obsticales;
 	}
 
-	private ArrayList<Point> minMovements = new ArrayList<>();
+	private ArrayList<Optional<Point>> minMovements = new ArrayList<>();
 
 	/**
 	 * Updates the model based on time passed. Moves the Jumper/Player.
@@ -67,7 +68,8 @@ public class MainModel {
 
 				for (Block blockade : blocks) {
 					if (blockade.containsCornerArray(futureJumperCorners)) {
-						Point newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x, y);
+						Optional<Point> newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x,
+								y);
 						minMovements.add(newMinMovement);
 					}
 
@@ -76,17 +78,14 @@ public class MainModel {
 				// if encountered platform...
 				// find the most we can move before hitting something
 				// (the min distance) that's not zero
-				Point minimum = minMovements.get(0);
-				for (Point potentialMin : minMovements) {
-					if (minimum.equals(Point.ZERO)) {
-						minimum = potentialMin;
-					} else if (potentialMin.lessThan(minimum) && !potentialMin.equals(Point.ZERO)) {
-						minimum = potentialMin;
-					}
+				Optional<Point> minimum = minMovements.stream().min(new OptionalPointComparator()).get();
+
+				if (minimum.isPresent()) {
+					Point min = minimum.get();
+					jumper.setVelocityToZero();
+					jumper.moveBy(min.getX(), min.getY());
+					jumper.setStuck(true);
 				}
-				jumper.setVelocityToZero();
-				jumper.moveBy(minimum.getX(), minimum.getY());
-				jumper.setStuck(true);
 			} else {
 				// move to new Position
 				jumper.update(deltaTime);
