@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mainmenu.game.model.block.Block;
+import mainmenu.game.model.block.FinishBlock;
 import mainmenu.game.model.block.StickyBlock;
-
 import mainmenu.game.model.level.Level;
 import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
@@ -19,7 +19,8 @@ public class MainModel {
 
 	private Jumper jumper;
 	private List<StickyBlock> stickyBlocks;
-	
+	private FinishBlock finishBlock;
+
 	public MainModel(String levelname) {
 		Level level = new Level(levelname);
 
@@ -29,7 +30,8 @@ public class MainModel {
 		for (Quad quad : level.getQuadData()) {
 			stickyBlocks.add(StickyBlock.fromQuad(quad));
 		}
-		
+
+		this.finishBlock = FinishBlock.fromQuad(level.getFinishQuad());
 
 	}
 

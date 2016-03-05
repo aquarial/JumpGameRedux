@@ -1,5 +1,7 @@
 package mainmenu.game.model.block;
 
+import mainmenu.game.model.level.Quad;
+
 /**
  * Represents a quadrilateral
  * <p>
@@ -9,6 +11,16 @@ package mainmenu.game.model.block;
  * 
  */
 public class StickyBlock extends Block {
+	
+	/**
+	 * Construct a Block from a Quad
+	 * 
+	 * @param q
+	 * @return
+	 */
+	public static StickyBlock fromQuad(Quad q) {
+		return new StickyBlock(q.getX1(), q.getY1(), q.getX2(), q.getY2());
+	}
 
 	StickyBlock(double[] corners) {
 		super(corners[0], corners[1], corners[2], corners[3]);
