@@ -37,6 +37,23 @@ class MenuView {
 		f.validate();
 	}
 
+	/**
+	 * Resets the menu. Sets up parts ready for the state provided
+	 * 
+	 * @param newstate
+	 */
+	void initState(MenuState newstate) {
+		contentPane.removeAll();
+		switch (newstate) {
+		case SPLASH_SCREEN:
+			System.out.println("splash screen state");
+			break;
+		default:
+			System.out.println("default state");
+			break;
+		}
+	}
+
 	void initLevelSelect() {
 		//
 		// *******LEFT HAND SIDE
