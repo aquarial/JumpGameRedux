@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
-import mainmenu.game.model.OptionalPointComparator;
+import mainmenu.game.model.PointComparator;
 
 public class Block extends Quad {
 
@@ -105,13 +105,12 @@ public class Block extends Quad {
 	 *            velocity of other
 	 * @return
 	 */
-	public Optional<Point> calculatePushingRectangleToThis(double[] corners, double xvelocity,
-			double yvelocity) {
+	public Optional<Point> calculatePushingQuadToThis(double[] corners, double xvelocity, double yvelocity) {
 
 		double angle = Math.atan2(yvelocity, xvelocity);
 		double m = yvelocity / xvelocity;
 
-		List<Optional<Point>> movements = new ArrayList<>();
+		List<Point> movements = new ArrayList<>();
 
 		if ((angle < Math.PI / 2) && (angle > -1 * Math.PI / 2)) {
 			movements.add(upperRightCornerToLeftLine(corners, m));
@@ -139,8 +138,8 @@ public class Block extends Quad {
 
 		//@formatter:off
 		return movements.stream()
-			.filter((Optional<Point> p) -> !p.isPresent())
-			.min(new OptionalPointComparator()).get();
+			.filter((Point p) -> p != null)
+			.min(new PointComparator());
 		//@formatter:off
 	}
 
@@ -157,17 +156,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> lowerRightCornerToTopLine(double[] other, double slope) {
+	private Point lowerRightCornerToTopLine(double[] other, double slope) {
 
 		// this.y2 - other[1] = m * ( SOLUTION - other[2])
 		double x = (this.y2 - other[1]) / slope + other[2];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = slope * (x - other[2]) + other[1];
-			return Optional.of(new Point(x - other[2], y - other[1], "lrt"));
+			return new Point(x - other[2], y - other[1], "lrt");
 		}
 
-		return Optional.empty();
+		return Point.ZERO;
 	}
 
 	/**
@@ -183,17 +182,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> lowerRightCornerToLeftLine(double[] other, double m) {
+	private Point lowerRightCornerToLeftLine(double[] other, double m) {
 
 		// SOLUTION - other[1] = m * (this.x1 - other[2])
 		double y = m * (this.x1 - other[2]) + other[1];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x1;
-			return Optional.of(new Point(x - other[2], y - other[1], "lrl"));
+			return new Point(x - other[2], y - other[1], "lrl");
 		}
 
-		return Optional.empty();
+		return Point.ZERO;
 	}
 
 	/**
@@ -209,17 +208,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> lowerLeftCornerToTopLine(double[] other, double m) {
+	private Point lowerLeftCornerToTopLine(double[] other, double m) {
 
 		// this.y2 - other[1] = m * ( SOLUTION - other[0])
 		double x = (this.y2 - other[1]) / m + other[0];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = this.y2;
-			return Optional.of(new Point(x - other[0], y - other[1], "llt"));
+			return new Point(x - other[0], y - other[1], "llt");
 		}
 
-		return Optional.empty();
+		return Point.ZERO;
 	}
 
 	/**
@@ -235,17 +234,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> lowerLeftCornerToRightLine(double[] other, double m) {
+	private Point lowerLeftCornerToRightLine(double[] other, double m) {
 
 		// SOLUTION - other[1] = m * (other[2] - this.x1)
 		double y = m * (this.x2 - other[0]) + other[1];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x2;
-			return Optional.of(new Point(x - other[0], y - other[1], "llr"));
+			return  new Point(x - other[0], y - other[1], "llr");
 		}
 
-		return Optional.empty();
+		return Point.ZERO;
 	}
 
 	/**
@@ -261,17 +260,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> upperLeftCornerToBottomLine(double[] other, double m) {
+	private Point upperLeftCornerToBottomLine(double[] other, double m) {
 
 		// this.y1 = m * (SOLUTION - other[0]) + other[3]
 		double x = (this.y1 - other[3]) / m + other[0];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = this.y1;
-			return Optional.of(new Point(x - other[0], y - other[3], "ulb"));
+			return  new Point(x - other[0], y - other[3], "ulb" );
 		}
 
-		return Optional.empty();
+		return Point.ZERO;
 	}
 
 	/**
@@ -287,17 +286,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> upperLeftCornerToRightLine(double[] other, double m) {
+	private Point upperLeftCornerToRightLine(double[] other, double m) {
 
 		// SOLUTION = m * (this.x2 - other[0]) + other[3]
 		double y = m * (this.x2 - other[0]) + other[3];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x2;
-			return Optional.of(new Point(x - other[0], y - other[3], "ulr"));
+			return  new Point(x - other[0], y - other[3], "ulr" );
 		}
 
-		return Optional.empty();
+		return Point.ZERO;
 	}
 
 	/**
@@ -313,17 +312,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> upperRightCornerToBottomtLine(double[] other, double m) {
+	private Point  upperRightCornerToBottomtLine(double[] other, double m) {
 
 		// this.y1 - other[3] = m * (SOLUTION - other[2])
 		double x = (this.y1 - other[3]) / m + other[2];
 
 		if ((this.x1 <= x) && (x <= this.x2)) {
 			double y = this.y1;
-			return Optional.of(new Point(x - other[2], y - other[3], "urb"));
+			return  new Point(x - other[2], y - other[3], "urb") ;
 		}
 
-		return Optional.empty();
+		return Point.ZERO;
 	}
 
 	/**
@@ -339,17 +338,17 @@ public class Block extends Quad {
 	 * @return Point representing movement
 	 * @return (0, 0) if can't be pushed against this
 	 */
-	private Optional<Point> upperRightCornerToLeftLine(double[] other, double m) {
+	private Point  upperRightCornerToLeftLine(double[] other, double m) {
 
 		// YY = m * (this.x1 - other[2]) + other[3]
 		double y = m * (this.x1 - other[2]) + other[3];
 
 		if ((this.y1 <= y) && (y <= this.y2)) {
 			double x = this.x1;
-			return Optional.of(new Point(x - other[2], y - other[3], "url"));
+			return new Point(x - other[2], y - other[3], "url") ;
 		}
-
-		return Optional.empty();
+		
+		return Point.ZERO;
 	}
 
 	/**

@@ -39,7 +39,7 @@ public class MainModel {
 		this.blocks = obsticales;
 	}
 
-	private ArrayList<Optional<Point>> minMovements = new ArrayList<>();
+	private ArrayList<Point> minMovements = new ArrayList<>();
 
 	/**
 	 * Updates the model based on time passed. Moves the Jumper/Player.
@@ -68,9 +68,12 @@ public class MainModel {
 
 				for (Block blockade : blocks) {
 					if (blockade.containsCornerArray(futureJumperCorners)) {
-						Optional<Point> newMinMovement = blockade.calculatePushingRectangleToThis(currentJumperQuad, x,
-								y);
-						minMovements.add(newMinMovement);
+						
+						Optional<Point> newMinMovement = blockade.calculatePushingQuadToThis(currentJumperQuad, x, y);
+						if (newMinMovement.isPresent()) {
+							minMovements.add(newMinMovement.get());
+						}
+						
 					}
 
 				}
@@ -78,7 +81,7 @@ public class MainModel {
 				// if encountered platform...
 				// find the most we can move before hitting something
 				// (the min distance) that's not zero
-				Optional<Point> minimum = minMovements.stream().min(new OptionalPointComparator()).get();
+				Optional<Point> minimum = minMovements.stream().min(new PointComparator());
 
 				if (minimum.isPresent()) {
 					Point min = minimum.get();
@@ -86,6 +89,7 @@ public class MainModel {
 					jumper.moveBy(min.getX(), min.getY());
 					jumper.setStuck(true);
 				}
+				
 			} else {
 				// move to new Position
 				jumper.update(deltaTime);
