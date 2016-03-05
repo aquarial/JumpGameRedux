@@ -8,6 +8,11 @@ import mainmenu.game.model.level.Quad;
 
 public class Block extends Quad {
 
+	/**
+	 * Construct a Block from a Quad
+	 * @param q
+	 * @return
+	 */
 	public static StickyBlock fromQuad(Quad q) {
 		return new StickyBlock(q.getX1(), q.getY1(), q.getX2(), q.getY2());
 	}
