@@ -47,7 +47,7 @@ public class MainMenu {
 				}
 
 				// 1st element - "Play Level" Button
-				JButton startLevelButton = new JButton("Play Level");
+				JButton startLevelButton = new JButton("Start Level");
 				startLevelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("Selected: " + levelSelecter.getSelectedItem());
@@ -58,6 +58,7 @@ public class MainMenu {
 
 				// 2nd element - "Select level" combo box
 				levelSelecter = new JComboBox<>();
+				levelSelecter.addItem("001");
 				LevelSelectPanel.add(levelSelecter);
 
 				//
