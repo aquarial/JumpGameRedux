@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import mainmenu.game.level.Level;
+import mainmenu.game.level.Quad;
+
 import mainmenu.game.model.MainModel;
 
 /**
@@ -36,8 +39,7 @@ public class GamePanel extends JPanel {
 		model = new MainModel(level_POJO);
 
 		addClickToJumpListener();
-		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2,
-				BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2, BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}
 
@@ -90,8 +92,7 @@ public class GamePanel extends JPanel {
 
 	private void drawPlayerAtCenter(Graphics2D g2) {
 		int playerRad = modelUnitToPixels(model.getPlayerWidth() / 2);
-		g2.fillRect(xcenter - playerRad, ycenter - playerRad, playerRad * 2,
-				playerRad * 2);
+		g2.fillRect(xcenter - playerRad, ycenter - playerRad, playerRad * 2, playerRad * 2);
 
 	}
 
@@ -114,8 +115,7 @@ public class GamePanel extends JPanel {
 			}
 
 			private double calculatePowerFromDiffs(double xdiff, double ydiff) {
-				double normalPower = Math
-						.pow(Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
+				double normalPower = Math.pow(Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
 				return Math.min(normalPower / 18, 7.5);
 			}
 

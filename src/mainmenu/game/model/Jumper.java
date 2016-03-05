@@ -1,6 +1,6 @@
 package mainmenu.game.model;
 
-import mainmenu.game.Point;
+import mainmenu.game.level.Point;
 
 class Jumper {
 
