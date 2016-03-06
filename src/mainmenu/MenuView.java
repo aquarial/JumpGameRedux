@@ -1,21 +1,20 @@
 package mainmenu;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import mainmenu.game.GamePanel;
 import mainmenu.levelselect.SelectPanel;
+import mainmenu.splashscreen.SplashPanel;
 
 class MenuView {
 
 	private JPanel contentPane;
-	private GamePanel gamepanel = new GamePanel();
+	private SplashPanel splashpanel = new SplashPanel();
 	private SelectPanel selectpanel = new SelectPanel();
+	private GamePanel gamepanel = new GamePanel();
 
 	public MenuView() {
 		int width = 800;
@@ -42,19 +41,15 @@ class MenuView {
 		contentPane.removeAll();
 		switch (newstate) {
 		case SPLASH_SCREEN:
-			System.out.println("splash screen state");
 			initSplashScreen();
 			break;
 		case LEVEL_SELECT:
-			System.out.println("level selecect state");
 			initLevelSelect();
 			break;
 		case PLAY_GAME:
-			System.out.println("play game state");
 			initPlayGame();
 			break;
 		default:
-			System.out.println("default state");
 			break;
 		}
 		contentPane.revalidate();
@@ -62,31 +57,7 @@ class MenuView {
 	}
 
 	void initSplashScreen() {
-		JPanel blue = new JPanel() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void paint(Graphics g) {
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(new Color(0, 255, 255));
-				g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-				g2.setColor(Color.BLACK);
-				char[] text = "Welcome to game".toCharArray();
-				g2.drawChars(text, 0, text.length, 200, 150);
-			}
-		};
-		contentPane.add(blue, BorderLayout.CENTER);
-
-		new Thread() {
-			public void run() {
-				try {
-					Thread.sleep(1200);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				initState(MenuState.LEVEL_SELECT);
-			}
-		}.start();
+		contentPane.add(splashpanel, BorderLayout.CENTER);
 	}
 
 	void initLevelSelect() {

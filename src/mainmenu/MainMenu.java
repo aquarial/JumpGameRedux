@@ -12,7 +12,7 @@ public class MainMenu {
 
 			@Override
 			public void run() {
-				state = MenuState.SPLASH_SCREEN;
+				state = MenuState.LEVEL_SELECT;
 				view = new MenuView();
 
 				view.initState(state);
