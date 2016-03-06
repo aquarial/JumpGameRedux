@@ -120,10 +120,10 @@
 		</block>
 		
 		<finishblock>
-			<x1>45</x1>
-			<y1>40</y1>
-			<x2>42</x2>
-			<y2>42</y2>
+			<x1>12</x1>
+			<y1>10</y1>
+			<x2>14</x2>
+			<y2>11</y2>
 		</finishblock>
 	</leveldata>
 </root>
