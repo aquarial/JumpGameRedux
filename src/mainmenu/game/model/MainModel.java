@@ -35,11 +35,6 @@ public class MainModel {
 
 	}
 
-	public MainModel(Point playerLocation, List<Block> obsticales) {
-		this.jumper = new Jumper(playerLocation);
-		this.blocks = obsticales;
-	}
-
 	private ArrayList<Pair<Block, Point>> minMovements = new ArrayList<>();
 
 	/**
