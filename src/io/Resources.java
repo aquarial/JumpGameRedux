@@ -1,5 +1,6 @@
 package io;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -40,5 +41,14 @@ public class Resources {
 	static InputStream getInputStream(String level) {
 		Class<? extends Thread> classloader = Thread.currentThread().getClass();
 		return classloader.getResourceAsStream("/levels/" + level + ".xml");
+	}
+
+	/**
+	 * All the level data files in the resources directory
+	 * @return
+	 */
+	public static String[] getLevelNames() {
+		File levelsDir = new File("res/levels");
+		return levelsDir.list();
 	}
 }

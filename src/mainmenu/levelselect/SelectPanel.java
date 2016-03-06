@@ -10,6 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+import io.Resources;
+
 public class SelectPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +19,8 @@ public class SelectPanel extends JPanel {
 	private JComboBox<String> levelSelecter;
 
 	public SelectPanel() {
-		//
+
+		this.setLayout(new BorderLayout());
 		// *******LEFT HAND SIDE
 		JPanel LevelSelectPanel = new JPanel();
 		LevelSelectPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
@@ -35,7 +38,10 @@ public class SelectPanel extends JPanel {
 
 		// 2nd element - "Select level" combo box
 		levelSelecter = new JComboBox<>();
-		levelSelecter.addItem("001");
+		for (String filename : Resources.getLevelNames()) {
+			String withoutxml = filename.substring(0, filename.length() - 4);
+			levelSelecter.addItem(withoutxml);
+		}
 		LevelSelectPanel.add(levelSelecter);
 
 		//

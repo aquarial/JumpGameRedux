@@ -24,9 +24,8 @@ class MenuView {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(width, height);
 		f.setResizable(false);
-		contentPane = new JPanel();
+		contentPane = (JPanel) f.getContentPane();
 		contentPane.setLayout(new BorderLayout());
-		f.getContentPane().add(contentPane, BorderLayout.CENTER);
 
 		f.setVisible(true);
 		f.validate();
