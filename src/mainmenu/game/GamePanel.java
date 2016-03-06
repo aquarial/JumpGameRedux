@@ -32,17 +32,14 @@ public class GamePanel extends JPanel {
 
 	private MainModel model;
 
-	public GamePanel(String levelname) {
-		super();
-
-		model = new MainModel(levelname);
-
+	public GamePanel() {
 		addClickToJumpListener();
 		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2, BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}
 
-	public void startlevel() {
+	public void startlevel(String levelname) {
+		model = new MainModel(levelname);
 		Thread th = new GameThread(this, model);
 		th.start();
 	}

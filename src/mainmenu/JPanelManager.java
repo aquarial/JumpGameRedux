@@ -6,8 +6,9 @@ import mainmenu.game.GamePanel;
  * Provides functions to create JPanels for the mainmenu
  *
  */
-public class JPanelConstructor {
-
+class JPanelManager {
+	
+	private static GamePanel gamepanel = new GamePanel();
 	/**
 	 * Produces a JPanel (GamePanel) that will render one game through
 	 * completion.
@@ -20,7 +21,8 @@ public class JPanelConstructor {
 	 * @return
 	 */
 	public static GamePanel makeNewGamePanel(String levelname) {
-		return new GamePanel(levelname);
+		gamepanel.startlevel(levelname);
+		return gamepanel;
 	}
 
 }
