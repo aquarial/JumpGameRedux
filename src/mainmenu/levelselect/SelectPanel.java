@@ -54,4 +54,8 @@ public class SelectPanel extends JPanel {
 
 	}
 
+	public String getSelectedLevel() {
+		return levelSelecter.getSelectedItem().toString();
+	}
+
 }

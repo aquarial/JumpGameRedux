@@ -6,20 +6,29 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import mainmenu.MainMenu;
+
 public class SplashPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public SplashPanel() {
-		// new Thread() {
-		// public void run() {
-		// try {
-		// Thread.sleep(1200);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		// initState(MenuState.LEVEL_SELECT);
-		// }
-		// }.start();
+	private Thread runOnStart;
+
+	public SplashPanel(MainMenu mm) {
+		runOnStart = new Thread() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				mm.goToSelectPanel();
+			}
+		};
+	}
+
+	public void start() {
+		runOnStart.start();
 	}
 
 	@Override
@@ -31,4 +40,5 @@ public class SplashPanel extends JPanel {
 		char[] text = "Welcome to game".toCharArray();
 		g2.drawChars(text, 0, text.length, 200, 150);
 	}
+
 }

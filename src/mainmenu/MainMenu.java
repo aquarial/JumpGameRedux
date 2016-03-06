@@ -1,6 +1,8 @@
 package mainmenu;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,9 +14,9 @@ import mainmenu.splashscreen.SplashPanel;
 public class MainMenu {
 
 	private JPanel contentPane;
-	private SplashPanel splashpanel = new SplashPanel();
-	private SelectPanel selectpanel = new SelectPanel();
-	private GamePanel gamepanel = new GamePanel();
+	private SplashPanel splashpanel;
+	private SelectPanel selectpanel;
+	private GamePanel gamepanel;
 
 	public MainMenu() {
 		int width = 800;
@@ -29,9 +31,12 @@ public class MainMenu {
 
 		f.setVisible(true);
 		f.validate();
-		
-		
-		initState(MenuState.LEVEL_SELECT);
+
+		splashpanel = new SplashPanel(this);
+		selectpanel = new SelectPanel();
+		gamepanel = new GamePanel();
+
+		initState(MenuState.SPLASH_SCREEN);
 	}
 
 	/**
@@ -43,13 +48,14 @@ public class MainMenu {
 		contentPane.removeAll();
 		switch (newstate) {
 		case SPLASH_SCREEN:
+			splashpanel.start();
 			contentPane.add(splashpanel, BorderLayout.CENTER);
 			break;
 		case LEVEL_SELECT:
 			contentPane.add(selectpanel, BorderLayout.CENTER);
 			break;
 		case PLAY_GAME:
-			gamepanel.startlevel("001");
+			gamepanel.startlevel(selectpanel.getSelectedLevel());
 			contentPane.add(gamepanel, BorderLayout.CENTER);
 			break;
 		default:
@@ -58,9 +64,19 @@ public class MainMenu {
 		contentPane.revalidate();
 		contentPane.repaint();
 	}
-	
-	
-	
-	
+
+	public void goToSelectPanel() {
+		initState(MenuState.LEVEL_SELECT);
+	}
+
+	ActionListener goToGameStartLevel(String levelname) {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				initState(MenuState.PLAY_GAME);
+			}
+		};
+	}
 
 }
