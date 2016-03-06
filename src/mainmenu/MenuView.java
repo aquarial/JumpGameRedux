@@ -14,6 +14,8 @@ import mainmenu.levelselect.SelectPanel;
 class MenuView {
 
 	private JPanel contentPane;
+	private GamePanel gamepanel = new GamePanel();
+	private SelectPanel selectpanel = new SelectPanel();
 
 	public MenuView() {
 		int width = 800;
@@ -88,12 +90,11 @@ class MenuView {
 	}
 
 	void initLevelSelect() {
-		SelectPanel selectpanel = JPanelManager.getASelectPanel();
 		contentPane.add(selectpanel, BorderLayout.CENTER);
 	}
 
 	void initPlayGame() {
-		GamePanel backgroundPanel = JPanelManager.getAGamePanel("001");
-		contentPane.add(backgroundPanel, BorderLayout.CENTER);
+		gamepanel.startlevel("001");
+		contentPane.add(gamepanel, BorderLayout.CENTER);
 	}
 }
