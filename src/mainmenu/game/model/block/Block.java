@@ -39,7 +39,7 @@ public class Block extends Quad {
 	 * @param y2
 	 */
 	Block(double x1, double y1, double x2, double y2, BlockType type) {
-		super(x1, y2, x2, y2);
+		super(x1, y1, x2, y2);
 		blockType = type;
 	}
 
