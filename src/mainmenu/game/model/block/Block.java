@@ -137,7 +137,7 @@ public class Block extends Quad {
 
 		//@formatter:off
 		return movements.stream()
-			.filter((Point p) -> !p.equalsPoint(Point.ZERO))
+			.filter((Point p) -> p != null)
 			.min(new PointComparator());
 		//@formatter:off
 	}
@@ -165,7 +165,7 @@ public class Block extends Quad {
 			return new Point(x - other[2], y - other[1], "lrt");
 		}
 
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class Block extends Quad {
 			return new Point(x - other[2], y - other[1], "lrl");
 		}
 
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class Block extends Quad {
 			return new Point(x - other[0], y - other[1], "llt");
 		}
 
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
@@ -243,7 +243,7 @@ public class Block extends Quad {
 			return  new Point(x - other[0], y - other[1], "llr");
 		}
 
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class Block extends Quad {
 			return  new Point(x - other[0], y - other[3], "ulb" );
 		}
 
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class Block extends Quad {
 			return  new Point(x - other[0], y - other[3], "ulr" );
 		}
 
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
@@ -321,7 +321,7 @@ public class Block extends Quad {
 			return  new Point(x - other[2], y - other[3], "urb") ;
 		}
 
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
@@ -347,7 +347,7 @@ public class Block extends Quad {
 			return new Point(x - other[2], y - other[3], "url") ;
 		}
 		
-		return Point.ZERO;
+		return null;
 	}
 
 	/**
