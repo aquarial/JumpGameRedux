@@ -3,6 +3,7 @@ package mainmenu.levelselect;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ public class SelectPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	private JButton startLevelButton;
 	private JComboBox<String> levelSelecter;
 
 	public SelectPanel() {
@@ -27,12 +29,7 @@ public class SelectPanel extends JPanel {
 		LevelSelectPanel.setBackground(Color.BLUE);
 
 		// 1st element - "Play Level" Button
-		JButton startLevelButton = new JButton("Start Level");
-		// startLevelButton.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent e) {
-		// initState(MenuState.PLAY_GAME);
-		// }
-		// });
+		startLevelButton = new JButton("Start Level");
 		LevelSelectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		LevelSelectPanel.add(startLevelButton);
 
@@ -52,6 +49,10 @@ public class SelectPanel extends JPanel {
 		add(LevelSelectPanel, BorderLayout.WEST);
 		add(levelInfoPanel, BorderLayout.CENTER);
 
+	}
+
+	public void addActionListenerToButton(ActionListener al) {
+		startLevelButton.addActionListener(al);
 	}
 
 	public String getSelectedLevel() {

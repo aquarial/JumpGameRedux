@@ -34,6 +34,7 @@ public class MainMenu {
 
 		splashpanel = new SplashPanel(this);
 		selectpanel = new SelectPanel();
+		selectpanel.addActionListenerToButton(goToGameStartLevel());
 		gamepanel = new GamePanel();
 
 		initState(MenuState.SPLASH_SCREEN);
@@ -69,7 +70,7 @@ public class MainMenu {
 		initState(MenuState.LEVEL_SELECT);
 	}
 
-	ActionListener goToGameStartLevel(String levelname) {
+	ActionListener goToGameStartLevel() {
 		return new ActionListener() {
 
 			@Override
