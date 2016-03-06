@@ -43,6 +43,9 @@ public class Quad {
 		this.x2 = x2;
 		this.y2 = y2;
 
+		if (y2 - y1 == 0) {
+			throw new NullPointerException();
+		}
 	}
 
 	/**
