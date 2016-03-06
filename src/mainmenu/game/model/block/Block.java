@@ -137,7 +137,7 @@ public class Block extends Quad {
 
 		//@formatter:off
 		return movements.stream()
-			.filter((Point p) -> p != null)
+			.filter((Point p) -> !p.equalsPoint(Point.ZERO))
 			.min(new PointComparator());
 		//@formatter:off
 	}
