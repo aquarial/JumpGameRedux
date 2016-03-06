@@ -127,7 +127,7 @@ class MenuView {
 	}
 
 	void initPlayGame() {
-		GamePanel backgroundPanel = JPanelConstructor.makeNewGamePanel("001");
+		GamePanel backgroundPanel = JPanelConstructor.makeNewGamePanel(levelSelecter.getSelectedItem().toString());
 		backgroundPanel.startlevel();
 		contentPane.add(backgroundPanel, BorderLayout.CENTER);
 	}
