@@ -8,11 +8,14 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultListModel;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+
+import mainmenu.game.GamePanel;
 
 class MenuView {
 
@@ -28,13 +31,8 @@ class MenuView {
 		f.setSize(width, height);
 		f.setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(150, 50, 0));
+		contentPane.setLayout(new BorderLayout());
 		f.getContentPane().add(contentPane, BorderLayout.CENTER);
-
-		// GamePanel backgroundPanel =
-		// JPanelConstructor.makeNewGamePanel("001");
-		// backgroundPanel.startlevel();
-		// f.getContentPane().add(backgroundPanel, BorderLayout.CENTER);
 
 		f.setVisible(true);
 		f.validate();
@@ -55,27 +53,53 @@ class MenuView {
 		case LEVEL_SELECT:
 			System.out.println("level selecect state");
 			initLevelSelect();
+			break;
 		case PLAY_GAME:
 			System.out.println("play game state");
+			initPlayGame();
 			break;
 		default:
 			System.out.println("default state");
 			break;
 		}
+		contentPane.revalidate();
+		contentPane.repaint();
+	}
+
+	void initSplashScreen() {
+		JPanel blue = new JPanel() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void paint(Graphics g) {
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setColor(new Color(0, 255, 255));
+				g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+				g2.setColor(Color.BLACK);
+				char[] text = "Welcome to game".toCharArray();
+				g2.drawChars(text, 0, text.length, 200, 150);
+			}
+		};
+		contentPane.add(blue, BorderLayout.CENTER);
+
+		new Thread() {
+			public void run() {
+				try {
+					Thread.sleep(1200);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				initState(MenuState.LEVEL_SELECT);
+			}
+		}.start();
 	}
 
 	void initLevelSelect() {
 		//
 		// *******LEFT HAND SIDE
 		JPanel LevelSelectPanel = new JPanel();
-		LevelSelectPanel.setBounds(5, 5, 145, 565);
+		LevelSelectPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 		LevelSelectPanel.setBackground(Color.BLUE);
-		contentPane.add(LevelSelectPanel);
-		DefaultListModel<String> dlm = new DefaultListModel<>();
-		dlm.addElement("001");
-		for (int i = 0; i < 100; i++) {
-			dlm.addElement("" + i);
-		}
 
 		// 1st element - "Play Level" Button
 		JButton startLevelButton = new JButton("Start Level");
@@ -95,27 +119,16 @@ class MenuView {
 		//
 		// ********MIDDLE BOX
 		JPanel levelInfoPanel = new JPanel();
-		levelInfoPanel.setBounds(155, 5, 635, 565);
 		levelInfoPanel.setBackground(Color.GREEN);
-		contentPane.add(levelInfoPanel);
-		levelInfoPanel.setLayout(null);
+
+		contentPane.add(LevelSelectPanel, BorderLayout.WEST);
+		contentPane.add(levelInfoPanel, BorderLayout.CENTER);
 
 	}
 
-	void initSplashScreen() {
-		JPanel blue = new JPanel() {
-			@Override
-			public void paint(Graphics g) {
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(new Color(0, 255, 255));
-				g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-				g2.setColor(Color.BLACK);
-				char[] text = "Welcome to game".toCharArray();
-				g2.drawChars(text, 0, text.length, 200, 150);
-			}
-		};
-		contentPane.add(blue,BorderLayout.CENTER);
-		contentPane.revalidate();
-		
+	void initPlayGame() {
+		GamePanel backgroundPanel = JPanelConstructor.makeNewGamePanel("001");
+		backgroundPanel.startlevel();
+		contentPane.add(backgroundPanel, BorderLayout.CENTER);
 	}
 }
