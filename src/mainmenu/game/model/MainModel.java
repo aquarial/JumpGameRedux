@@ -20,8 +20,11 @@ public class MainModel {
 
 	private Jumper jumper;
 	private List<Block> blocks;
-
+	
+	private boolean jumperReachedEnd;
+	
 	public MainModel(String levelname) {
+		jumperReachedEnd = false;
 		Level level = new Level(levelname);
 
 		this.jumper = new Jumper(level.getPlayerPosition());
@@ -83,10 +86,16 @@ public class MainModel {
 					// Now I can use the type of block here to react to each
 					// type uniquely
 					Pair<Block, Point> impact = minimum.get();
-					Point min = impact.getItem2();
-					jumper.setVelocityToZero();
-					jumper.moveBy(min.getX(), min.getY());
-					jumper.setStuck(true);
+
+					if (impact.getItem1().getBLockType() == BlockType.STICKY) {
+						Point min = impact.getItem2();
+						jumper.setVelocityToZero();
+						jumper.moveBy(min.getX(), min.getY());
+						jumper.setStuck(true);
+					}
+					if (impact.getItem1().getBLockType() == BlockType.FINISH) {
+						jumperReachedEnd = true;
+					}
 				}
 
 			} else {
@@ -116,7 +125,7 @@ public class MainModel {
 	}
 
 	public boolean jumperReachedEnd() {
-		return false;
+		return jumperReachedEnd;
 	}
 
 	public void addJumpPowerToJumper(double angle, double power) {
