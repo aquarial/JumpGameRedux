@@ -7,13 +7,6 @@ public class Quad {
 	protected double x2;
 	protected double y2;
 
-	
-	/**
-	 * Default constructor
-	 */
-	public Quad() {
-	}
-	
 	/**
 	 * Construct a quad from an array instead of passing doubles
 	 * 
@@ -26,6 +19,7 @@ public class Quad {
 
 	/**
 	 * Construct a quad from each value separately
+	 * 
 	 * @param x1
 	 * @param y1
 	 * @param x2
