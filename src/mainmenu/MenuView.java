@@ -2,24 +2,17 @@ package mainmenu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 
 import mainmenu.game.GamePanel;
+import mainmenu.levelselect.SelectPanel;
 
 class MenuView {
 
-	private JComboBox<String> levelSelecter;
 	private JPanel contentPane;
 
 	public MenuView() {
@@ -95,39 +88,12 @@ class MenuView {
 	}
 
 	void initLevelSelect() {
-		//
-		// *******LEFT HAND SIDE
-		JPanel LevelSelectPanel = new JPanel();
-		LevelSelectPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		LevelSelectPanel.setBackground(Color.BLUE);
-
-		// 1st element - "Play Level" Button
-		JButton startLevelButton = new JButton("Start Level");
-		startLevelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				initState(MenuState.PLAY_GAME);
-			}
-		});
-		LevelSelectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		LevelSelectPanel.add(startLevelButton);
-
-		// 2nd element - "Select level" combo box
-		levelSelecter = new JComboBox<>();
-		levelSelecter.addItem("001");
-		LevelSelectPanel.add(levelSelecter);
-
-		//
-		// ********MIDDLE BOX
-		JPanel levelInfoPanel = new JPanel();
-		levelInfoPanel.setBackground(Color.GREEN);
-
-		contentPane.add(LevelSelectPanel, BorderLayout.WEST);
-		contentPane.add(levelInfoPanel, BorderLayout.CENTER);
-
+		SelectPanel selectpanel = JPanelManager.getASelectPanel();
+		contentPane.add(selectpanel, BorderLayout.CENTER);
 	}
 
 	void initPlayGame() {
-		GamePanel backgroundPanel = JPanelManager.makeNewGamePanel(levelSelecter.getSelectedItem().toString());
+		GamePanel backgroundPanel = JPanelManager.getAGamePanel("001");
 		contentPane.add(backgroundPanel, BorderLayout.CENTER);
 	}
 }
