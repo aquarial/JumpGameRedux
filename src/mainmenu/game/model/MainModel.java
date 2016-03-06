@@ -120,7 +120,7 @@ public class MainModel {
 		return Jumper.JUMPER_WIDTH;
 	}
 
-	public List<? extends Quad> getBlockData() {
+	public List<Block> getBlockData() {
 		return blocks;
 	}
 

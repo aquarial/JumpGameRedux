@@ -10,7 +10,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import mainmenu.game.model.MainModel;
-import mainmenu.game.model.level.Quad;
+import mainmenu.game.model.block.Block;
+import mainmenu.game.model.block.BlockType;
 
 /**
  * A panel that should be added to a parent component to show a game.
@@ -67,15 +68,20 @@ public class GamePanel extends JPanel {
 		g2.drawOval(xcenter - 200, ycenter - 200, 400, 400);
 		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
 
-		g2.setColor(Color.BLACK);
-		for (Quad stickyQuad : model.getBlockData()) {
+		for (Block stickyQuad : model.getBlockData()) {
+			if (stickyQuad.getBLockType() == BlockType.STICKY) {
+				g2.setColor(Color.BLACK);
+			}
+			if (stickyQuad.getBLockType() == BlockType.FINISH) {
+				g2.setColor(new Color(0, 255, 255));
+			}
 			this.drawStickyQuad(stickyQuad, g2);
 		}
 
 		g.drawImage(bufferedImage, 0, 0, null);
 	}
 
-	private void drawStickyQuad(Quad stickyQuad, Graphics2D g2) {
+	private void drawStickyQuad(Block stickyQuad, Graphics2D g2) {
 		int x1 = modelUnitToPixels(stickyQuad.getX1() - model.getPlayerXPos());
 		int y1 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY2());
 		int x2 = modelUnitToPixels(stickyQuad.getX2() - model.getPlayerXPos());
