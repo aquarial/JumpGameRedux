@@ -32,7 +32,8 @@ public class MainMenu {
 		f.setVisible(true);
 		f.validate();
 
-		splashpanel = new SplashPanel(this);
+		splashpanel = new SplashPanel();
+		splashpanel.setThread(goToSelectPanel());
 		selectpanel = new SelectPanel();
 		selectpanel.addActionListenerToButton(goToGameStartLevel());
 		gamepanel = new GamePanel();
@@ -66,8 +67,18 @@ public class MainMenu {
 		contentPane.repaint();
 	}
 
-	public void goToSelectPanel() {
-		initState(MenuState.LEVEL_SELECT);
+	public Thread goToSelectPanel() {
+		return new Thread() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				initState(MenuState.LEVEL_SELECT);
+			}
+		};
 	}
 
 	ActionListener goToGameStartLevel() {
