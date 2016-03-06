@@ -33,10 +33,11 @@ public class MainMenu {
 		f.validate();
 
 		splashpanel = new SplashPanel();
-		splashpanel.setThread(goToSelectPanel());
+		splashpanel.setOnRunFunction(waitSecondsThenGoToSelectPanel());
 		selectpanel = new SelectPanel();
 		selectpanel.addActionListenerToButton(goToGameStartLevel());
 		gamepanel = new GamePanel();
+		gamepanel.setOnFinish(goToSelectPanel());
 
 		initState(MenuState.SPLASH_SCREEN);
 	}
@@ -50,7 +51,7 @@ public class MainMenu {
 		contentPane.removeAll();
 		switch (newstate) {
 		case SPLASH_SCREEN:
-			splashpanel.start();
+			splashpanel.run();
 			contentPane.add(splashpanel, BorderLayout.CENTER);
 			break;
 		case LEVEL_SELECT:
@@ -67,15 +68,22 @@ public class MainMenu {
 		contentPane.repaint();
 	}
 
-	public Thread goToSelectPanel() {
+	public Thread waitSecondsThenGoToSelectPanel() {
 		return new Thread() {
-			@Override
 			public void run() {
 				try {
 					Thread.sleep(1500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				initState(MenuState.LEVEL_SELECT);
+			}
+		};
+	}
+
+	public RunCode goToSelectPanel() {
+		return new RunCode() {
+			public void run() {
 				initState(MenuState.LEVEL_SELECT);
 			}
 		};

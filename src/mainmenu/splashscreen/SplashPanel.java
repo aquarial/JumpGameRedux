@@ -11,7 +11,7 @@ public class SplashPanel extends JPanel {
 
 	private Thread runOnStart;
 
-	public void start() {
+	public void run() {
 		runOnStart.start();
 	}
 
@@ -24,8 +24,8 @@ public class SplashPanel extends JPanel {
 		char[] text = "Welcome to game".toCharArray();
 		g2.drawChars(text, 0, text.length, 200, 150);
 	}
-	
-	public void setThread(Thread t) {
-		runOnStart = t;
+
+	public void setOnRunFunction(Thread runCode) {
+		runOnStart = runCode;
 	}
 }

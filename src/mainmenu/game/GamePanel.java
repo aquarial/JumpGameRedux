@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import mainmenu.RunCode;
 import mainmenu.game.model.MainModel;
 import mainmenu.game.model.block.Block;
 import mainmenu.game.model.block.BlockType;
@@ -31,6 +32,12 @@ public class GamePanel extends JPanel {
 	private Graphics2D graphicsForBufferedImage;
 
 	private MainModel model;
+
+	RunCode endGame;
+
+	public void setOnFinish(RunCode goToSelectPanel) {
+		endGame = goToSelectPanel;
+	}
 
 	public GamePanel() {
 		addClickToJumpListener();
