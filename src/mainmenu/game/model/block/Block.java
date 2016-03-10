@@ -104,7 +104,8 @@ public class Block extends Quad {
 	 *            velocity of other
 	 * @return
 	 */
-	public Optional<Point> calculatePushingQuadToThis(double[] corners, double xvelocity, double yvelocity) {
+	public Optional<Point> calculatePushingQuadToThis(double[] corners,
+			double xvelocity, double yvelocity) {
 
 		double angle = Math.atan2(yvelocity, xvelocity);
 		double m = yvelocity / xvelocity;
