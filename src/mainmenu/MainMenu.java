@@ -55,8 +55,9 @@ public class MainMenu {
 		contentPanel.removeAll();
 		switch (newstate) {
 		case SPLASH_SCREEN:
+			contentPanel.add(selectpanel, BorderLayout.EAST);
 			contentPanel.add(splashpanel, BorderLayout.CENTER);
-			splashpanel.run();
+			splashpanel.waitThenFade();
 			break;
 		case LEVEL_SELECT:
 			contentPanel.add(selectpanel, BorderLayout.CENTER);
@@ -76,10 +77,10 @@ public class MainMenu {
 		return new Thread() {
 			public void run() {
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 					int reps = 200;
 					for (int i = 0; i < reps; i++) {
-						Thread.sleep(1500 / reps);
+						Thread.sleep(2500 / reps);
 						splashpanel.increaseAlphaBy(-1.0f / reps);
 						splashpanel.repaint();
 					}
