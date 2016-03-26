@@ -11,7 +11,7 @@ public class SplashPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private Thread runOnStart;
-	private float alphavalue = 0;
+	private float alphavalue;
 	private BufferedImage splashimage;
 	private Graphics2D g2splashimage;
 	private int width;
@@ -21,10 +21,12 @@ public class SplashPanel extends JPanel {
 		this.width = width;
 		this.height = height;
 
+		alphavalue = 1;
+
 		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2splashimage = (Graphics2D) splashimage.getGraphics();
 		setOpaque(false);
-		this.setBackground(new Color(255, 0, 255, (int) 255));
+		this.setBackground(new Color(255, 255, 0, (int) 255)); // color can use floats or ints
 	}
 
 	public void run() {
@@ -34,10 +36,10 @@ public class SplashPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// g2splashimage.setColor(Color.CYAN);
-		// g2splashimage.fillRect(0, 0, width, height);
-		//
-		g2splashimage.setColor(new Color(1, 1, 1, alphavalue));
+
+		g2splashimage.setPaint(getBackground());
+		g2splashimage.fillRect(0, 0, getWidth(), getHeight());
+		g2splashimage.setColor(new Color(0, 0, 0, alphavalue));
 		g2splashimage.fillRect(0, 0, width, height);
 
 		g.drawImage(splashimage, 0, 0, null);
