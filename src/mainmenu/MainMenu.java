@@ -72,7 +72,13 @@ public class MainMenu {
 		return new Thread() {
 			public void run() {
 				try {
-					Thread.sleep(1500);
+					Thread.sleep(1000);
+					int reps = 350;
+					for (int i = 0; i < reps; i++) {
+						Thread.sleep(60);
+						splashpanel.increaseAlphaBy(1.0f / reps);
+						splashpanel.repaint();
+					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
