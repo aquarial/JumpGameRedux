@@ -44,8 +44,6 @@ public class MainMenu {
 		gamepanel.setOnFinish(goToSelectPanel());
 
 		initState(MenuState.SPLASH_SCREEN);
-		
-		
 	}
 
 	/**
@@ -57,8 +55,8 @@ public class MainMenu {
 		contentPanel.removeAll();
 		switch (newstate) {
 		case SPLASH_SCREEN:
-			splashpanel.run();
 			contentPanel.add(splashpanel, BorderLayout.CENTER);
+			splashpanel.run();
 			break;
 		case LEVEL_SELECT:
 			contentPanel.add(selectpanel, BorderLayout.CENTER);
