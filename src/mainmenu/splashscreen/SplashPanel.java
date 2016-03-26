@@ -24,6 +24,7 @@ public class SplashPanel extends JPanel {
 		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2splashimage = (Graphics2D) splashimage.getGraphics();
 		setOpaque(false);
+		this.setBackground(new Color(255, 0, 255, (int) 255));
 	}
 
 	public void run() {
@@ -31,11 +32,11 @@ public class SplashPanel extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-
-		g2splashimage.setColor(Color.CYAN);
-		g2splashimage.fillRect(0, 0, width, height);
-
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		// g2splashimage.setColor(Color.CYAN);
+		// g2splashimage.fillRect(0, 0, width, height);
+		//
 		g2splashimage.setColor(new Color(1, 1, 1, alphavalue));
 		g2splashimage.fillRect(0, 0, width, height);
 
