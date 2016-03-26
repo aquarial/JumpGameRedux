@@ -74,10 +74,10 @@ public class MainMenu {
 		return new Thread() {
 			public void run() {
 				try {
-					Thread.sleep(1000);
-					int reps = 350;
+					Thread.sleep(2000);
+					int reps = 200;
 					for (int i = 0; i < reps; i++) {
-						Thread.sleep(2000 / reps);
+						Thread.sleep(1000 / reps);
 						splashpanel.increaseAlphaBy(1.0f / reps);
 						splashpanel.repaint();
 					}
