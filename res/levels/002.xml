@@ -3,8 +3,8 @@
 	<name>Basic level</name>
 	
 	<player>
-		<xpos>3.75</xpos>
-		<ypos>3.75</ypos>
+		<xpos>13</xpos>
+		<ypos>03</ypos>
 	</player>
 	<leveldata>
 
@@ -93,13 +93,6 @@
 		</block>
 
 		<block>
-			<x1>10.0</x1>
-			<y1>14.0</y1>
-			<x2>14.0</x2>
-			<y2>15.0</y2>
-		</block>
-
-		<block>
 			<x1>22.0</x1>
 			<y1>14.0</y1>
 			<x2>24.0</x2>
@@ -142,10 +135,10 @@
 		</block>
 		
 		<finishblock>
-			<x1>12</x1>
-			<y1>10</y1>
-			<x2>14</x2>
-			<y2>11</y2>
+			<x1>10</x1>
+			<y1>16</y1>
+			<x2>12</x2>
+			<y2>18</y2>
 		</finishblock>
 	</leveldata>
 </root>
