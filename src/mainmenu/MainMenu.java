@@ -38,7 +38,7 @@ public class MainMenu {
 		splashpanel.setOnRunFunction(waitSecondsThenGoToSelectPanel());
 
 		selectpanel = new SelectPanel();
-		selectpanel.addActionListenerToButton(goToGameStartLevel());
+		selectpanel.addActionListenerToStartLevel(goToGameStartLevel());
 
 		gamepanel = new GamePanel(width, height);
 		gamepanel.setOnFinish(goToSelectPanel());
