@@ -32,11 +32,13 @@ public class MainMenu {
 		f.setVisible(true);
 		f.validate();
 
-		splashpanel = new SplashPanel();
+		splashpanel = new SplashPanel(width, height);
 		splashpanel.setOnRunFunction(waitSecondsThenGoToSelectPanel());
+		
 		selectpanel = new SelectPanel();
 		selectpanel.addActionListenerToButton(goToGameStartLevel());
-		gamepanel = new GamePanel();
+		
+		gamepanel = new GamePanel(width, height);
 		gamepanel.setOnFinish(goToSelectPanel());
 
 		initState(MenuState.SPLASH_SCREEN);

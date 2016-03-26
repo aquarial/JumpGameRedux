@@ -14,10 +14,18 @@ public class SplashPanel extends JPanel {
 	private float alphavalue = 0;
 	private BufferedImage splashimage;
 	private Graphics2D g2splashimage;
+	private int width;
+	private int height;
+
+	public SplashPanel(int width, int height) {
+		this.width = width;
+		this.height = height;
+
+		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		g2splashimage = (Graphics2D) splashimage.getGraphics();
+	}
 
 	public void run() {
-		splashimage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-		g2splashimage = (Graphics2D) splashimage.getGraphics();
 		runOnStart.start();
 	}
 
@@ -25,10 +33,10 @@ public class SplashPanel extends JPanel {
 	public void paint(Graphics g) {
 
 		g2splashimage.setColor(Color.CYAN);
-		g2splashimage.fillRect(0, 0, this.getWidth(), this.getHeight());
+		g2splashimage.fillRect(0, 0, width, height);
 
 		g2splashimage.setColor(new Color(0, 0, 0, alphavalue));
-		g2splashimage.fillRect(0, 0, this.getWidth(), this.getHeight());
+		g2splashimage.fillRect(0, 0, width, height);
 
 		g.drawImage(splashimage, 0, 0, null);
 	}
