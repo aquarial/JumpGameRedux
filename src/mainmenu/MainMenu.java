@@ -13,7 +13,7 @@ import mainmenu.splashscreen.SplashPanel;
 
 public class MainMenu {
 
-	private JPanel contentPane;
+	private JPanel contentPanel;
 	private SplashPanel splashpanel;
 	private SelectPanel selectpanel;
 	private GamePanel gamepanel;
@@ -26,8 +26,8 @@ public class MainMenu {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(width, height);
 		f.setResizable(false);
-		contentPane = (JPanel) f.getContentPane();
-		contentPane.setLayout(new BorderLayout());
+		contentPanel = (JPanel) f.getContentPane();
+		contentPanel.setLayout(new BorderLayout());
 
 		f.setVisible(true);
 		f.validate();
@@ -50,24 +50,24 @@ public class MainMenu {
 	 * @param newstate
 	 */
 	void initState(MenuState newstate) {
-		contentPane.removeAll();
+		contentPanel.removeAll();
 		switch (newstate) {
 		case SPLASH_SCREEN:
 			splashpanel.run();
-			contentPane.add(splashpanel, BorderLayout.CENTER);
+			contentPanel.add(splashpanel, BorderLayout.CENTER);
 			break;
 		case LEVEL_SELECT:
-			contentPane.add(selectpanel, BorderLayout.CENTER);
+			contentPanel.add(selectpanel, BorderLayout.CENTER);
 			break;
 		case PLAY_GAME:
 			gamepanel.startlevel(selectpanel.getSelectedLevel());
-			contentPane.add(gamepanel, BorderLayout.CENTER);
+			contentPanel.add(gamepanel, BorderLayout.CENTER);
 			break;
 		default:
 			break;
 		}
-		contentPane.revalidate();
-		contentPane.repaint();
+		contentPanel.revalidate();
+		contentPanel.repaint();
 	}
 
 	public Thread waitSecondsThenGoToSelectPanel() {
