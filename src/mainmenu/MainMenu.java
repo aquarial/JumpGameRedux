@@ -34,10 +34,10 @@ public class MainMenu {
 
 		splashpanel = new SplashPanel(width, height);
 		splashpanel.setOnRunFunction(waitSecondsThenGoToSelectPanel());
-		
+
 		selectpanel = new SelectPanel();
 		selectpanel.addActionListenerToButton(goToGameStartLevel());
-		
+
 		gamepanel = new GamePanel(width, height);
 		gamepanel.setOnFinish(goToSelectPanel());
 
@@ -77,7 +77,7 @@ public class MainMenu {
 					Thread.sleep(1000);
 					int reps = 350;
 					for (int i = 0; i < reps; i++) {
-						Thread.sleep(60);
+						Thread.sleep(2000 / reps);
 						splashpanel.increaseAlphaBy(1.0f / reps);
 						splashpanel.repaint();
 					}
