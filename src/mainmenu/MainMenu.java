@@ -86,6 +86,11 @@ public class MainMenu {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				initState(MenuState.LEVEL_SELECT);
 			}
 		};

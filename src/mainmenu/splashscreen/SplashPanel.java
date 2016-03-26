@@ -36,7 +36,7 @@ public class SplashPanel extends JPanel {
 		g2splashimage.setColor(Color.CYAN);
 		g2splashimage.fillRect(0, 0, width, height);
 
-		g2splashimage.setColor(new Color(0, 0, 0, alphavalue));
+		g2splashimage.setColor(new Color(1, 1, 1, alphavalue));
 		g2splashimage.fillRect(0, 0, width, height);
 
 		g.drawImage(splashimage, 0, 0, null);
