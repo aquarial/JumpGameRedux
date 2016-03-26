@@ -126,4 +126,43 @@ public class Level {
 		return finishQuad;
 	}
 
+	public String toString() {
+		double factor = 1;
+		//@formatter:off
+		StringBuilder sb = new StringBuilder();
+		sb.append("<root>\n\n"
+				+ "<name>Basic level</name>\n\n"
+				+ "<player>\n"
+				+ "<xpos>" + playerPosition.getX()*factor + "</xpos>\n"
+				+ "<ypos>"	+ playerPosition.getY()*factor + "</ypos>\n"
+				+ "</player>\n"
+				+ "<leveldata>"
+				);
+		
+		for (Quad quad : allQuads) {
+			sb.append(quadToString("block",factor, quad));
+		}
+		
+		sb.append(quadToString("finishblock",factor, finishQuad));
+		
+		sb.append("</leveldata>\n"
+				+ "</root>");
+		
+		//@formatter:on
+		return sb.toString();
+	}
+
+	private String quadToString(String name, double factor, Quad quad) {
+		//@formatter:off
+		return "\n" + 
+				"		<"+name+">\n" + 
+				"			<x1>"+quad.getX1()*factor+"</x1>\n" + 
+				"			<y1>"+quad.getY1()*factor+"</y1>\n" + 
+				"			<x2>"+quad.getX2()*factor+"</x2>\n" + 
+				"			<y2>"+quad.getY2()*factor+"</y2>\n" + 
+				"		</"+name+">"
+				+ "\n\n";
+		//@formatter:on
+	}
+
 }

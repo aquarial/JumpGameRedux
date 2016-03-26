@@ -27,6 +27,7 @@ public class MainModel {
 		jumperReachedEnd = false;
 		Level level = new Level(levelname);
 
+		//System.out.println(level);
 		this.jumper = new Jumper(level.getPlayerPosition());
 
 		blocks = new ArrayList<Block>();
