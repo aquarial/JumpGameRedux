@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 import mainmenu.game.GamePanel;
 import mainmenu.levelselect.SelectPanel;
@@ -13,7 +13,7 @@ import mainmenu.splashscreen.SplashPanel;
 
 public class MainMenu {
 
-	private JLayeredPane contentPanel;
+	private JPanel contentPanel;
 	private SplashPanel splashpanel;
 	private SelectPanel selectpanel;
 	private GamePanel gamepanel;
@@ -27,7 +27,7 @@ public class MainMenu {
 		f.setSize(width, height);
 		f.setResizable(false);
 
-		contentPanel = new JLayeredPane();
+		contentPanel = new JPanel();
 		contentPanel.setLayout(new BorderLayout());
 		f.getContentPane().add(contentPanel, BorderLayout.CENTER);
 
