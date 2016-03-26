@@ -23,6 +23,7 @@ public class SplashPanel extends JPanel {
 
 		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2splashimage = (Graphics2D) splashimage.getGraphics();
+		setOpaque(false);
 	}
 
 	public void run() {
