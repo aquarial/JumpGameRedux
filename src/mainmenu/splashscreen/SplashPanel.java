@@ -25,9 +25,8 @@ public class SplashPanel extends JPanel {
 
 		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		g2splashimage = (Graphics2D) splashimage.getGraphics();
+		g2splashimage.setBackground(new Color(0, 0, 0, 0));
 		setOpaque(false);
-		this.setBackground(new Color(0, 0, 0, 0)); // color can use floats or
-													// ints
 	}
 
 	public void waitThenFade() {
@@ -38,7 +37,16 @@ public class SplashPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		g2splashimage.setColor(new Color(.5f, 0, 0, alphavalue));
+		// I wanted to fade the splash image to become transparent. g.drawImage
+		// doesn't allow me to specify an alpha to draw the image at, so I need
+		// to clear the splashimage, redraw it with a different alpha, and draw
+		// that on this.
+
+		// clearRect resets the image to its background, and here the background
+		// is transparent.
+		g2splashimage.clearRect(0, 0, width, height);
+
+		g2splashimage.setColor(new Color(0, .5f, .5f, alphavalue));
 		g2splashimage.fillRect(0, 0, width, height);
 
 		g.drawImage(splashimage, 0, 0, null);
