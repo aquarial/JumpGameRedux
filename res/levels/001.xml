@@ -6,6 +6,7 @@
         <xpos>3.75</xpos>
         <ypos>3.75</ypos>
     </player>
+
     <leveldata>
         <block>
             <x1>0.0</x1>
@@ -100,7 +101,7 @@
 
         <block>
             <x1>22.5</x1>
-            <y1>20.0</y1>
+            <y1>18.0</y1>
             <x2>25.0</x2>
             <y2>25.0</y2>
         </block>
@@ -120,10 +121,11 @@
         </block>
 
         <finishblock>
-            <x1>12</x1>
-            <y1>10</y1>
-            <x2>14</x2>
-            <y2>11</y2>
+            <x1>44</x1>
+            <y1>15</y1>
+            <x2>45.5</x2>
+            <y2>16.5</y2>
         </finishblock>
+
     </leveldata>
 </root>
