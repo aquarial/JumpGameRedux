@@ -81,22 +81,24 @@ public class MainMenu {
 		contentPanel.repaint();
 	}
 
+	/**
+	 * Closure to wait, then change MenuState to LEVEL_SELECT
+	 * 
+	 * @return
+	 */
 	public Thread waitSecondsThenGoToSelectPanel() {
 		return new Thread() {
 			public void run() {
 				try {
-					Thread.sleep(1000);
+					
+					Thread.sleep(4000);
 					int reps = 200;
 					for (int i = 0; i < reps; i++) {
-						Thread.sleep(2500 / reps);
+						Thread.sleep(1000 / reps);
 						splashpanel.changeSplashAlphaBy(-1.0f / reps);
 						splashpanel.repaint();
 					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				try {
-					Thread.sleep(500);
+					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -108,6 +110,11 @@ public class MainMenu {
 		};
 	}
 
+	/**
+	 * Closure to change MenuState to LEVEL_SELECT
+	 * 
+	 * @return
+	 */
 	public RunCode goToSelectPanel() {
 		return new RunCode() {
 			public void run() {
@@ -116,9 +123,13 @@ public class MainMenu {
 		};
 	}
 
+	/**
+	 * Closure to change MenuState to PLAY_GAME
+	 * 
+	 * @return
+	 */
 	ActionListener goToGameStartLevel() {
 		return new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				initState(MenuState.PLAY_GAME);
