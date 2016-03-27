@@ -3,6 +3,8 @@ package mainmenu.splashscreen;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
@@ -36,12 +38,15 @@ public class SplashPanel extends JPanel {
 
 		createSplashImage();
 
+		// image_alpha_values is a reference to the alpha data of splashimage.
+		// see paintComponent
 		image_alpha_values = new float[width * height];
 		imageraster = splashimage.getAlphaRaster();
 		imageraster.getPixels(0, 0, width, height, image_alpha_values);
 
-		// image_alpha_values is a reference to the alpha data of splashimage.
-		// see paintComponent
+		// When SplashPanel is on top, we don't want anything 'under' it to
+		// recieve clicks. So, consume them
+		this.addMouseListener(new MouseEventConsumer());
 	}
 
 	/**
@@ -96,4 +101,33 @@ public class SplashPanel extends JPanel {
 		g2splashimage.clearRect(0, 0, width, height);
 	}
 
+}
+
+/**
+ * Consumes MouseEvents
+ * <p>
+ * Does nothing else
+ * 
+ */
+class MouseEventConsumer implements MouseListener {
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
 }

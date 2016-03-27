@@ -90,7 +90,7 @@ public class MainMenu {
 		return new Thread() {
 			public void run() {
 				try {
-					
+
 					Thread.sleep(4000);
 					int reps = 200;
 					for (int i = 0; i < reps; i++) {
@@ -98,14 +98,12 @@ public class MainMenu {
 						splashpanel.changeSplashAlphaBy(-1.0f / reps);
 						splashpanel.repaint();
 					}
-					
+
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 
-				if (menustate == MenuState.SPLASH_SCREEN) {
-					initState(MenuState.LEVEL_SELECT);
-				}
+				initState(MenuState.LEVEL_SELECT);
 			}
 		};
 	}
