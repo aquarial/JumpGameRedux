@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 
 import javax.swing.JPanel;
 
@@ -14,19 +15,27 @@ public class SplashPanel extends JPanel {
 	private float alphavalue;
 	private BufferedImage splashimage;
 	private Graphics2D g2splashimage;
+	private WritableRaster imageraster;
+	private float[] image_alpha_values;
+
 	private int width;
 	private int height;
 
 	public SplashPanel(int width, int height) {
 		this.width = width;
 		this.height = height;
+		setOpaque(false);
 
 		alphavalue = 1;
 
-		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		g2splashimage = (Graphics2D) splashimage.getGraphics();
-		g2splashimage.setBackground(new Color(0, 0, 0, 0));
-		setOpaque(false);
+		createSplashImage();
+
+		image_alpha_values = new float[width * height];
+		imageraster = splashimage.getAlphaRaster();
+		imageraster.getPixels(0, 0, width, height, image_alpha_values);
+
+		// image_alpha_values is a reference to the alpha data of splashimage.
+		// see paintComponent
 	}
 
 	public void waitThenFade() {
@@ -37,17 +46,11 @@ public class SplashPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		// I wanted to fade the splash image to become transparent. g.drawImage
-		// doesn't allow me to specify an alpha to draw the image at, so I need
-		// to clear the splashimage, redraw it with a different alpha, and draw
-		// that on this.
-
-		// clearRect resets the image to its background, and here the background
-		// is transparent.
-		g2splashimage.clearRect(0, 0, width, height);
-
-		g2splashimage.setColor(new Color(0, .5f, .5f, alphavalue));
-		g2splashimage.fillRect(0, 0, width, height);
+		// Updates each pixel's alpha value
+		for (int index = 0; index < image_alpha_values.length; index++) {
+			image_alpha_values[index] = alphavalue * 255f;
+		}
+		imageraster.setPixels(0, 0, width, height, image_alpha_values);
 
 		g.drawImage(splashimage, 0, 0, null);
 	}
@@ -58,5 +61,12 @@ public class SplashPanel extends JPanel {
 
 	public void increaseAlphaBy(float delta_alpha) {
 		alphavalue += delta_alpha;
+	}
+
+	private void createSplashImage() {
+		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		g2splashimage = (Graphics2D) splashimage.getGraphics();
+		g2splashimage.setBackground(new Color(0f, 1f, 1f, 1f));
+		g2splashimage.clearRect(0, 0, width, height);
 	}
 }
