@@ -21,6 +21,12 @@ public class SplashPanel extends JPanel {
 	private int width;
 	private int height;
 
+	/**
+	 * Initialize SplashPanel
+	 * 
+	 * @param width
+	 * @param height
+	 */
 	public SplashPanel(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -38,10 +44,16 @@ public class SplashPanel extends JPanel {
 		// see paintComponent
 	}
 
+	/**
+	 * Starts the thread that fades this
+	 */
 	public void waitThenFade() {
 		runOnStart.start();
 	}
 
+	/**
+	 * Do not call directly
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -55,18 +67,33 @@ public class SplashPanel extends JPanel {
 		g.drawImage(splashimage, 0, 0, null);
 	}
 
+	/**
+	 * Pass the closure for how to waitThenFade()
+	 * 
+	 * @param runCode
+	 * @see #waitThenFade()
+	 */
 	public void setOnRunFunction(Thread runCode) {
 		runOnStart = runCode;
 	}
 
-	public void increaseAlphaBy(float delta_alpha) {
+	/**
+	 * Call repaint after this method
+	 * 
+	 * @param delta_alpha
+	 */
+	public void changeSplashAlphaBy(float delta_alpha) {
 		alphavalue += delta_alpha;
 	}
 
+	/**
+	 * Eventually this will read a splash image from res
+	 */
 	private void createSplashImage() {
 		splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		g2splashimage = (Graphics2D) splashimage.getGraphics();
 		g2splashimage.setBackground(new Color(0f, 1f, 1f, 1f));
 		g2splashimage.clearRect(0, 0, width, height);
 	}
+
 }

@@ -89,7 +89,7 @@ public class MainMenu {
 					int reps = 200;
 					for (int i = 0; i < reps; i++) {
 						Thread.sleep(2500 / reps);
-						splashpanel.increaseAlphaBy(-1.0f / reps);
+						splashpanel.changeSplashAlphaBy(-1.0f / reps);
 						splashpanel.repaint();
 					}
 				} catch (InterruptedException e) {
