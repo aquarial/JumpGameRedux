@@ -39,8 +39,11 @@ public class GamePanel extends JPanel {
 		endGame = goToSelectPanel;
 	}
 
-	public GamePanel() {
+	public GamePanel(int width, int height) {
 		addClickToJumpListener();
+
+		xcenter = width / 2;
+		ycenter = height / 2;
 		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2, BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}

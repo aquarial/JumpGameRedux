@@ -81,27 +81,19 @@ public class GTJMainMenu extends JFrame {
 
 		listOfButtons = new ArrayList<JButton>();
 
-		listOfButtons.add(new levelSelectingJButton(1, new Rectangle(20, 11,
-				89, 38)));
+		listOfButtons.add(new levelSelectingJButton(1, new Rectangle(20, 11, 89, 38)));
 
-		listOfButtons.add(new levelSelectingJButton(2, new Rectangle(129, 11,
-				89, 38)));
-		listOfButtons.add(new levelSelectingJButton(3, new Rectangle(238, 11,
-				89, 38)));
-		listOfButtons.add(new levelSelectingJButton(4, new Rectangle(347, 11,
-				89, 38)));
-		listOfButtons.add(new levelSelectingJButton(5, new Rectangle(456, 11,
-				89, 38)));
-		listOfButtons.add(new levelSelectingJButton(6, new Rectangle(565, 11,
-				89, 38)));
-		listOfButtons.add(new levelSelectingJButton(7, new Rectangle(674, 11,
-				89, 38)));
+		listOfButtons.add(new levelSelectingJButton(2, new Rectangle(129, 11, 89, 38)));
+		listOfButtons.add(new levelSelectingJButton(3, new Rectangle(238, 11, 89, 38)));
+		listOfButtons.add(new levelSelectingJButton(4, new Rectangle(347, 11, 89, 38)));
+		listOfButtons.add(new levelSelectingJButton(5, new Rectangle(456, 11, 89, 38)));
+		listOfButtons.add(new levelSelectingJButton(6, new Rectangle(565, 11, 89, 38)));
+		listOfButtons.add(new levelSelectingJButton(7, new Rectangle(674, 11, 89, 38)));
 
 		GamePanel = new GameJPanel();
 		GamePanel.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				GamePanel.player.tryToJumpAtMouse(e, new Point(frame.getX(),
-						frame.getY()));
+				GamePanel.player.tryToJumpAtMouse(e, new Point(frame.getX(), frame.getY()));
 			}
 
 		});
@@ -142,8 +134,7 @@ public class GTJMainMenu extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					saveFileName = optionsName.getText();
-					FileInputStream fs = new FileInputStream(saveFileName
-							+ ".ser");
+					FileInputStream fs = new FileInputStream(saveFileName + ".ser");
 					ObjectInputStream os = new ObjectInputStream(fs);
 					Level.levelTimes = (ArrayList<Double>) os.readObject();
 					Level.levelClicks = (ArrayList<Integer>) os.readObject();
@@ -248,8 +239,8 @@ public class GTJMainMenu extends JFrame {
 		MainMenuBackgroundImage = new JLabel();
 		MainMenuBackgroundImage.setBounds(0, 0, 784, 563);
 		mainMenuPanel.add(MainMenuBackgroundImage);
-		MainMenuBackgroundImage.setIcon(new ImageIcon(GTJMainMenu.class
-				.getResource("/gameTimeJump/MainMenuBackgroundImage.jpg")));
+		MainMenuBackgroundImage
+				.setIcon(new ImageIcon(GTJMainMenu.class.getResource("/old/src/MainMenuBackgroundImage.jpg")));
 
 		MainMenuBackgroundImage.requestFocus();
 		GamePanel.setBackground(Color.MAGENTA);
@@ -288,8 +279,7 @@ public class GTJMainMenu extends JFrame {
 			try {
 				while (true) {
 					double time = ((System.currentTimeMillis() - timeOfStart) / 1000F);
-					frame.setTitle(Level.jumpCount + " clicks in "
-							+ ((int) (time * 1000)) / 1000F + "sc");
+					frame.setTitle(Level.jumpCount + " clicks in " + ((int) (time * 1000)) / 1000F + "sc");
 					GamePanel.player.passOneTurn();
 					GamePanel.player.trySticking();
 					GamePanel.checkIfWin();
@@ -314,18 +304,13 @@ public class GTJMainMenu extends JFrame {
 						if (levelNumber > Level.levelTimes.size()) {
 							Level.levelTimes.add(timeTaken);
 							Level.levelClicks.add(Level.jumpCount);
-						} else if (timeTaken < Level.levelTimes
-								.get(levelNumber - 1)) {
+						} else if (timeTaken < Level.levelTimes.get(levelNumber - 1)) {
 							Level.levelTimes.set(levelNumber - 1, timeTaken);
 						}
-						showTime.setText("After jumping " + Level.jumpCount
-								+ " times, you completed the level in "
-								+ ((int) (timeTaken * 1000)) / 1000F
-								+ " seconds.");
+						showTime.setText("After jumping " + Level.jumpCount + " times, you completed the level in "
+								+ ((int) (timeTaken * 1000)) / 1000F + " seconds.");
 					} else {
-						showTime.setText("Level "
-								+ levelNumber
-								+ " doesn't exist yet. Sorry for the inconvenience.\n"
+						showTime.setText("Level " + levelNumber + " doesn't exist yet. Sorry for the inconvenience.\n"
 								+ "In the meantime you can see if you can beat your earlier times.\n"
 								+ "Hover the mouse over a level button to see your best time.");
 					}
@@ -347,10 +332,9 @@ public class GTJMainMenu extends JFrame {
 				GamePanel.setVisible(false);
 				mainMenuPanel.setVisible(true);
 				showTime.setVisible(true);
-				showTime.setText("You played " + ((int) (timeTaken * 1000))
-						/ 1000F + " seconds of the level before giving up."
-						+ "\nIn that time, you jumped " + Level.jumpCount
-						+ " times.");
+				showTime.setText(
+						"You played " + ((int) (timeTaken * 1000)) / 1000F + " seconds of the level before giving up."
+								+ "\nIn that time, you jumped " + Level.jumpCount + " times.");
 				MainMenuBackgroundImage.setVisible(true);
 				Level.jumpCount = 0;
 				PLAY.setVisible(true);
@@ -367,12 +351,8 @@ public class GTJMainMenu extends JFrame {
 		for (int i = 0; i < listOfButtons.size(); i++) {
 			JButton levelSelector = listOfButtons.get(i);
 			if (sizeOfArray >= i + 1) {
-				levelSelector
-						.setToolTipText((double) Math.round((Level.levelTimes
-								.get(i)) * 100)
-								/ 100
-								+ " seconds, "
-								+ (Level.levelClicks.get(i)) + " clicks");
+				levelSelector.setToolTipText((double) Math.round((Level.levelTimes.get(i)) * 100) / 100 + " seconds, "
+						+ (Level.levelClicks.get(i)) + " clicks");
 			}
 			levelSelector.setVisible(Level.levelTimes.size() >= i);
 		}

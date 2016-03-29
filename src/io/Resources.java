@@ -3,6 +3,9 @@ package io;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -47,8 +50,10 @@ public class Resources {
 	 * All the level data files in the resources directory
 	 * @return
 	 */
-	public static String[] getLevelNames() {
+	public static List<String> getLevelNames() {
 		File levelsDir = new File("res/levels");
-		return levelsDir.list();
+		List<String> levels = Arrays.asList(levelsDir.list());
+		Collections.sort(levels);
+		return levels;
 	}
 }

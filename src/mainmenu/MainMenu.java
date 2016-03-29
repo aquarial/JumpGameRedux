@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 import mainmenu.game.GamePanel;
 import mainmenu.levelselect.SelectPanel;
@@ -13,30 +13,37 @@ import mainmenu.splashscreen.SplashPanel;
 
 public class MainMenu {
 
-	private JPanel contentPane;
+	private JLayeredPane contentPanel;
 	private SplashPanel splashpanel;
 	private SelectPanel selectpanel;
 	private GamePanel gamepanel;
 
+	private MenuState menustate;
+
+	private int width = 800;
+	private int height = 600;
+
 	public MainMenu() {
-		int width = 800;
-		int height = 600;
 
 		JFrame f = new JFrame("Demo");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(width, height);
 		f.setResizable(false);
-		contentPane = (JPanel) f.getContentPane();
-		contentPane.setLayout(new BorderLayout());
+
+		contentPanel = new JLayeredPane();
+		// contentPanel.setLayout(new BorderLayout());
+		f.getContentPane().add(contentPanel, BorderLayout.CENTER);
 
 		f.setVisible(true);
 		f.validate();
 
-		splashpanel = new SplashPanel();
+		splashpanel = new SplashPanel(width, height);
 		splashpanel.setOnRunFunction(waitSecondsThenGoToSelectPanel());
+
 		selectpanel = new SelectPanel();
-		selectpanel.addActionListenerToButton(goToGameStartLevel());
-		gamepanel = new GamePanel();
+		selectpanel.addActionListenerToStartLevel(goToGameStartLevel());
+
+		gamepanel = new GamePanel(width, height);
 		gamepanel.setOnFinish(goToSelectPanel());
 
 		initState(MenuState.SPLASH_SCREEN);
@@ -48,39 +55,64 @@ public class MainMenu {
 	 * @param newstate
 	 */
 	void initState(MenuState newstate) {
-		contentPane.removeAll();
+		contentPanel.removeAll();
+		menustate = newstate;
 		switch (newstate) {
 		case SPLASH_SCREEN:
-			splashpanel.run();
-			contentPane.add(splashpanel, BorderLayout.CENTER);
+			selectpanel.setBounds(0, 0, width, height);
+			splashpanel.setBounds(0, 0, width, height);
+			contentPanel.add(selectpanel, new Integer(0));
+			contentPanel.add(splashpanel, new Integer(1));
+			splashpanel.waitThenFade();
 			break;
 		case LEVEL_SELECT:
-			contentPane.add(selectpanel, BorderLayout.CENTER);
+			selectpanel.setBounds(0, 0, width, height);
+			contentPanel.add(selectpanel);
 			break;
 		case PLAY_GAME:
+			gamepanel.setBounds(0, 0, width, height);
 			gamepanel.startlevel(selectpanel.getSelectedLevel());
-			contentPane.add(gamepanel, BorderLayout.CENTER);
+			contentPanel.add(gamepanel);
 			break;
 		default:
 			break;
 		}
-		contentPane.revalidate();
-		contentPane.repaint();
+		contentPanel.revalidate();
+		contentPanel.repaint();
 	}
 
+	/**
+	 * Closure to wait, then change MenuState to LEVEL_SELECT
+	 * 
+	 * @return
+	 */
 	public Thread waitSecondsThenGoToSelectPanel() {
 		return new Thread() {
 			public void run() {
 				try {
-					Thread.sleep(1500);
+
+					Thread.sleep(4000);
+					int reps = 200;
+					for (int i = 0; i < reps; i++) {
+						Thread.sleep(1000 / reps);
+						splashpanel.changeSplashAlphaBy(-1.0f / reps);
+						splashpanel.repaint();
+					}
+
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+
 				initState(MenuState.LEVEL_SELECT);
 			}
 		};
 	}
 
+	/**
+	 * Closure to change MenuState to LEVEL_SELECT
+	 * 
+	 * @return
+	 */
 	public RunCode goToSelectPanel() {
 		return new RunCode() {
 			public void run() {
@@ -89,9 +121,13 @@ public class MainMenu {
 		};
 	}
 
+	/**
+	 * Closure to change MenuState to PLAY_GAME
+	 * 
+	 * @return
+	 */
 	ActionListener goToGameStartLevel() {
 		return new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				initState(MenuState.PLAY_GAME);

@@ -20,6 +20,9 @@ public class SelectPanel extends JPanel {
 	private JButton startLevelButton;
 	private JComboBox<String> levelSelecter;
 
+	/**
+	 * Constructs all of the components that make up the level select panel
+	 */
 	public SelectPanel() {
 
 		this.setLayout(new BorderLayout());
@@ -51,7 +54,7 @@ public class SelectPanel extends JPanel {
 
 	}
 
-	public void addActionListenerToButton(ActionListener al) {
+	public void addActionListenerToStartLevel(ActionListener al) {
 		startLevelButton.addActionListener(al);
 	}
 

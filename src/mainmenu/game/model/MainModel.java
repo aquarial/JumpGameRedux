@@ -20,13 +20,14 @@ public class MainModel {
 
 	private Jumper jumper;
 	private List<Block> blocks;
-	
+
 	private boolean jumperReachedEnd;
-	
+
 	public MainModel(String levelname) {
 		jumperReachedEnd = false;
 		Level level = new Level(levelname);
 
+		// System.out.println(level);
 		this.jumper = new Jumper(level.getPlayerPosition());
 
 		blocks = new ArrayList<Block>();
@@ -87,15 +88,16 @@ public class MainModel {
 					// type uniquely
 					Pair<Block, Point> impact = minimum.get();
 
-					if (impact.getItem1().getBLockType() == BlockType.STICKY) {
-						Point min = impact.getItem2();
-						jumper.setVelocityToZero();
-						jumper.moveBy(min.getX(), min.getY());
-						jumper.setStuck(true);
-					}
 					if (impact.getItem1().getBLockType() == BlockType.FINISH) {
 						jumperReachedEnd = true;
 					}
+
+					// general block stuff:
+					Point min = impact.getItem2();
+					jumper.setVelocityToZero();
+					jumper.moveBy(min.getX(), min.getY());
+					jumper.setStuck(true);
+
 				}
 
 			} else {

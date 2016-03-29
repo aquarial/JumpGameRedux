@@ -52,12 +52,12 @@ class FourNums {
 	public String toString() {
 		//@formatter:off
 		return "\n" + 
-				"		<quad>\n" + 
+				"		<block>\n" + 
 				"			<x1>"+x1+"</x1>\n" + 
 				"			<y1>"+y1+"</y1>\n" + 
 				"			<x2>"+x2+"</x2>\n" + 
 				"			<y2>"+y2+"</y2>\n" + 
-				"		</quad>";
+				"		</block>";
 		//@formatter:on
 	}
 
