@@ -25,12 +25,11 @@ import mainmenu.game.model.block.BlockType;
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static int xcenter = 400;
-	private static int ycenter = 300;
+	private static int xcenter;
+	private static int ycenter;
 
 	private BufferedImage bufferedImage;
 	private Graphics2D graphicsForBufferedImage;
-
 	private MainModel model;
 
 	RunCode endGame;
@@ -40,11 +39,13 @@ public class GamePanel extends JPanel {
 	}
 
 	public GamePanel(int width, int height) {
-		addClickToJumpListener();
+		addClickListener();
+		setBackground(Color.WHITE);
 
 		xcenter = width / 2;
 		ycenter = height / 2;
-		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2, BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}
 
@@ -76,18 +77,26 @@ public class GamePanel extends JPanel {
 		g2.drawOval(xcenter - 100, ycenter - 100, 200, 200);
 
 		for (Block stickyQuad : model.getBlockData()) {
+
 			if (stickyQuad.getBLockType() == BlockType.STICKY) {
 				g2.setColor(Color.BLACK);
 			}
 			if (stickyQuad.getBLockType() == BlockType.FINISH) {
-				g2.setColor(new Color(0, 255, 255));
+				g2.setColor(Color.CYAN);
 			}
-			this.drawStickyQuad(stickyQuad, g2);
+			drawStickyQuad(stickyQuad, g2);
 		}
 
 		g.drawImage(bufferedImage, 0, 0, null);
 	}
 
+	/**
+	 * Translates the model coordinates to screen coordinates, and fills in the
+	 * pixel rectangle at that location
+	 * 
+	 * @param stickyQuad
+	 * @param g2
+	 */
 	private void drawStickyQuad(Block stickyQuad, Graphics2D g2) {
 		int x1 = modelUnitToPixels(stickyQuad.getX1() - model.getPlayerXPos());
 		int y1 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY2());
@@ -95,23 +104,37 @@ public class GamePanel extends JPanel {
 		int y2 = modelUnitToPixels(model.getPlayerYPos() - stickyQuad.getY1());
 
 		g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
-		// System.out.println("(" + model.getPlayerXPos() + ", " +
-		// model.getPlayerYPos() + ")");
-		// System.out.println("y = " + (y1 + ycenter));
-		// g2.drawRect(300, 0, 30, 100);
 	}
 
+	/**
+	 * 
+	 * @param g2
+	 */
 	private void drawPlayerAtCenter(Graphics2D g2) {
 		int playerRad = modelUnitToPixels(model.getPlayerWidth() / 2);
-		g2.fillRect(xcenter - playerRad, ycenter - playerRad, playerRad * 2, playerRad * 2);
+		g2.fillRect(xcenter - playerRad, ycenter - playerRad, playerRad * 2,
+				playerRad * 2);
 
 	}
 
+	/**
+	 * Scale from model to pixels
+	 * 
+	 * @param unit
+	 * @return
+	 */
 	private int modelUnitToPixels(double unit) {
 		return (int) (unit * 25);
 	}
 
-	private void addClickToJumpListener() {
+	/**
+	 * 
+	 * Adds mouseListener to <code>this</code>
+	 * <p>
+	 * Clears up constructor
+	 * 
+	 */
+	private void addClickListener() {
 		// Jump Listener
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -126,7 +149,8 @@ public class GamePanel extends JPanel {
 			}
 
 			private double calculatePowerFromDiffs(double xdiff, double ydiff) {
-				double normalPower = Math.pow(Math.pow(xdiff, 2) + Math.pow(ydiff, 2), 0.5);
+				double normalPower = Math
+						.sqrt(Math.pow(xdiff, 2) + Math.pow(ydiff, 2));
 				return Math.min(normalPower / 18, 7.5);
 			}
 

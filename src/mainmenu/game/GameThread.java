@@ -37,14 +37,11 @@ class GameThread extends Thread {
 
 			oldTime = newTime;
 		}
-		
-		// handle game ending 
+
+		// handle game ending
 		// (make cyan box fill screen for example)
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+
+		safesleep(1000);
 		panel.endGame.run();
 	}
 
