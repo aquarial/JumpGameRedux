@@ -18,8 +18,6 @@ public class MainMenu {
 	private SelectPanel selectpanel;
 	private GamePanel gamepanel;
 
-	private MenuState menustate;
-
 	private int width = 800;
 	private int height = 600;
 
@@ -56,7 +54,6 @@ public class MainMenu {
 	 */
 	void initState(MenuState newstate) {
 		contentPanel.removeAll();
-		menustate = newstate;
 		switch (newstate) {
 		case SPLASH_SCREEN:
 			selectpanel.setBounds(0, 0, width, height);
