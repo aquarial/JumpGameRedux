@@ -26,11 +26,12 @@ class GameThread extends Thread {
 		long newTime;
 		long deltaTime;
 		while (!model.jumperReachedEnd()) {
-			newTime = System.currentTimeMillis();
-			deltaTime = newTime - oldTime;
+		
 			model.updateModel(minimumSleepTime / 1000.0);
 			panel.renderGame();
 
+			newTime = System.currentTimeMillis();
+			deltaTime = newTime - oldTime;
 			if (deltaTime < minimumSleepTime) {
 				safesleep(minimumSleepTime - deltaTime);
 			}
