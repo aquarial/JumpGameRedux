@@ -79,11 +79,13 @@ public class MainMenu {
 	}
 
 	/**
-	 * Closure to wait, then change MenuState to LEVEL_SELECT
+	 * Thread that waits, then changes MenuState to LEVEL_SELECT
 	 * 
 	 * @return
 	 */
 	public Thread waitSecondsThenGoToSelectPanel() {
+		// I can't use use a more functional closure because I use
+		// Thread.sleep(), and I don't want to hold up the main thread.
 		return new Thread() {
 			public void run() {
 				try {
@@ -111,11 +113,10 @@ public class MainMenu {
 	 * @return
 	 */
 	public RunCode goToSelectPanel() {
-		return new RunCode() {
-			public void run() {
-				initState(MenuState.LEVEL_SELECT);
-			}
+		return () -> {
+			initState(MenuState.LEVEL_SELECT);
 		};
+
 	}
 
 	/**
@@ -124,11 +125,8 @@ public class MainMenu {
 	 * @return
 	 */
 	ActionListener goToGameStartLevel() {
-		return new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				initState(MenuState.PLAY_GAME);
-			}
+		return (ActionEvent e) -> {
+			initState(MenuState.PLAY_GAME);
 		};
 	}
 
