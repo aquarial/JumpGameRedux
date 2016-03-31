@@ -6,27 +6,27 @@ package mainmenu.levelselect.savestates;
  */
 public class LevelRecord {
 
-	private boolean isUnlocked;
-	
-	LevelRecord(String levelname) {
-		
-	}
+    private boolean isUnlocked;
+    
+    LevelRecord(String levelname) {
+        
+    }
 
-	// Getters & setters
+    // Getters & setters
 
-	/**
-	 * @return the isUnlocked
-	 */
-	public boolean isUnlocked() {
-		return isUnlocked;
-	}
+    /**
+     * @return the isUnlocked
+     */
+    public boolean isUnlocked() {
+        return isUnlocked;
+    }
 
-	/**
-	 * @param isUnlocked
-	 *            the state to set
-	 */
-	public void setUnlocked(boolean isUnlocked) {
-		this.isUnlocked = isUnlocked;
-	}
+    /**
+     * @param isUnlocked
+     *            the state to set
+     */
+    public void setUnlocked(boolean isUnlocked) {
+        this.isUnlocked = isUnlocked;
+    }
 
 }

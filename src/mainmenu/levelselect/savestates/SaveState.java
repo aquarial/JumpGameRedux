@@ -13,20 +13,20 @@ import io.Resources;
  */
 public class SaveState {
 
-	List<LevelRecord> levelrecords;
+    List<LevelRecord> levelrecords;
 
-	public SaveState() {
+    public SaveState() {
 
-		Resources.getLevelNames().stream()
-			.map(level -> new LevelRecord(level))
-			.collect(Collectors.toList());
+        Resources.getLevelNames().stream()
+            .map(level -> new LevelRecord(level))
+            .collect(Collectors.toList());
 
-		levelrecords = new ArrayList<>();
-		List<String> levels = Resources.getLevelNames();
+        levelrecords = new ArrayList<>();
+        List<String> levels = Resources.getLevelNames();
 
-		for (String level : levels) {
-			levelrecords.add(new LevelRecord(level));
-		}
-	}
+        for (String level : levels) {
+            levelrecords.add(new LevelRecord(level));
+        }
+    }
 
 }
