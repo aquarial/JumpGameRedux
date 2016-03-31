@@ -7,7 +7,7 @@ import java.util.Optional;
 import mainmenu.game.model.block.Block;
 import mainmenu.game.model.block.BlockType;
 import mainmenu.game.model.comparator.PairComparator;
-import mainmenu.game.model.level.Level;
+import mainmenu.game.model.level.LevelData;
 import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
 
@@ -25,7 +25,7 @@ public class MainModel {
 
     public MainModel(String levelname) {
         jumperReachedEnd = false;
-        Level level = new Level(levelname);
+        LevelData level = LevelData.parseLevelFromName(levelname);
 
         // System.out.println(level);
         this.jumper = new Jumper(level.getPlayerPosition());
