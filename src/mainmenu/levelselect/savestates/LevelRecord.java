@@ -6,10 +6,10 @@ package mainmenu.levelselect.savestates;
  */
 public class LevelRecord {
 
-    private boolean isUnlocked;
-    
+    private boolean isUnlocked = false;
+
     LevelRecord(String levelname) {
-        
+
     }
 
     // Getters & setters
