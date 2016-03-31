@@ -55,9 +55,7 @@ class Jumper {
 	void update(double deltaTime) {
 		xposition += deltaTime * xvelocity;
 		yposition += deltaTime * yvelocity;
-		// if (yvelocity > -5) {
 		yvelocity += deltaTime * GRAVITY_CONSTANT;
-		// }
 	}
 
 	/**
