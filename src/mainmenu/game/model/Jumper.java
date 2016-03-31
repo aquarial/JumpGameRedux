@@ -8,8 +8,6 @@ class Jumper {
 	static final double GRAVITY_CONSTANT = -8f;
 	static final double JUMPER_WIDTH = 1;
 
-	private static double[] corners = new double[4];
-
 	/**
 	 * Calculates the coordinates of the jumper's corners
 	 * 
@@ -20,6 +18,7 @@ class Jumper {
 	 */
 	static double[] calculateCornersAtPosition(Point pos) {
 		double radius = JUMPER_WIDTH / 2;
+		double[] corners = new double[4];
 		corners[0] = pos.getX() - radius;
 		corners[1] = pos.getY() - radius;
 		corners[2] = pos.getX() + radius;
