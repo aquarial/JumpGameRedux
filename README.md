@@ -5,3 +5,8 @@ In Jump Game, the player controls a square centered on the screen. The square us
 This is a remake of a game I made in 2014.
 
 This code is cleaner, and more organized. Structure influenced by the Model-View pattern.
+
+
+![Raw ingame footage of player jumping](res/screenshots/in_game.png?raw=true "Jumping")
+
+The player is dark blue, the finish is cyan, and the walls are black. The outer green ring shows the minimum distance from the player you must click to get the maximum power in a jump.

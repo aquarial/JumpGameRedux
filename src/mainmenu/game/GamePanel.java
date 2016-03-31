@@ -30,7 +30,7 @@ public class GamePanel extends JPanel {
 
 	private BufferedImage bufferedImage;
 	private Graphics2D graphicsForBufferedImage;
-	private MainModel model;
+    private MainModel model;
 
 	RunCode endGame;
 
