@@ -15,20 +15,32 @@ class GameThread extends Thread {
 
 	static final long minimumSleepTime = 33;
 
+	/**
+	 * Initialize the Thread with references
+	 * 
+	 * @param gp
+	 * @param model
+	 */
 	GameThread(GamePanel gp, MainModel model) {
 		this.panel = gp;
 		this.model = model;
 	}
 
+	/**
+	 * Runs game loop
+	 * <p>
+	 * Updates GamePanel
+	 */
 	@Override
 	public void run() {
 		long oldTime = System.currentTimeMillis();
 		long newTime;
 		long deltaTime;
+
 		while (!model.jumperReachedEnd()) {
-		
+
 			model.updateModel(minimumSleepTime / 1000.0);
-			panel.renderGame();
+			panel.repaint();
 
 			newTime = System.currentTimeMillis();
 			deltaTime = newTime - oldTime;
@@ -46,6 +58,14 @@ class GameThread extends Thread {
 		panel.endGame.run();
 	}
 
+	/**
+	 * Remove try-catch clutter
+	 * <p>
+	 * I can't really do anything if an exception is actually thrown, so I move
+	 * the clutter out of the game loop for clarity.
+	 * 
+	 * @param mili
+	 */
 	private void safesleep(long mili) {
 		try {
 			Thread.sleep(mili);

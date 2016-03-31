@@ -35,32 +35,43 @@ public class GamePanel extends JPanel {
 
 	RunCode endGame;
 
+	/**
+	 * Sets the closure to run when the player reaches the end
+	 * 
+	 * @param goToSelectPanel
+	 */
 	public void setOnFinish(RunCode goToSelectPanel) {
 		endGame = goToSelectPanel;
 	}
 
+	/**
+	 * Sets up instance variables
+	 * 
+	 * @param width
+	 * @param height
+	 */
 	public GamePanel(int width, int height) {
 		addClickToJumpListener();
 
 		xcenter = width / 2;
 		ycenter = height / 2;
-		bufferedImage = new BufferedImage(xcenter * 2, ycenter * 2, BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
 	}
 
+	/**
+	 * Starts running/rendering a game in this gamepanel
+	 * 
+	 * @param levelname
+	 */
 	public void startlevel(String levelname) {
 		model = new MainModel(levelname);
-		Thread th = new GameThread(this, model);
-		th.start();
+		new GameThread(this, model).start();
 	}
 
 	/**
-	 * Just calls repaint(). Clarity method.
+	 * Never call paint directly
 	 */
-	void renderGame() {
-		repaint();
-	}
-
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2 = graphicsForBufferedImage;
