@@ -1,4 +1,4 @@
-package mainmenu.levelselect.savestates;
+package mainmenu.savestates;
 
 import java.util.ArrayList;
 import java.util.Collections;
