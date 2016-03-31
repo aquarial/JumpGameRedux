@@ -73,7 +73,8 @@ public class GamePanel extends JPanel {
 	 * Never call paint directly
 	 */
 	@Override
-	public void paint(Graphics g) {
+	public void paintComponent(Graphics g) {
+		// Shorter name for local scope
 		Graphics2D g2 = graphicsForBufferedImage;
 
 		g2.setColor(Color.WHITE);
