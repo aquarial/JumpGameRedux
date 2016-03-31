@@ -1,5 +1,5 @@
 package mainmenu;
 
 public interface RunCode {
-	public void run();
+    public void run();
 }
