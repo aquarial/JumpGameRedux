@@ -48,9 +48,10 @@ class Jumper {
 	}
 
 	/**
-	 * Updates jumper position based on time
+	 * Updates jumper position based on current velocitys and delta time
 	 * 
 	 * @param deltaTime
+	 * @see #moveBy(double, double)
 	 */
 	void update(double deltaTime) {
 		xposition += deltaTime * xvelocity;
@@ -107,7 +108,7 @@ class Jumper {
 	 * @param deltaX
 	 * @param deltaY
 	 * 
-	 * @see update(double deltaTime)
+	 * @see #update(double deltaTime)
 	 */
 	void moveBy(double deltaX, double deltaY) {
 		xposition += deltaX;
