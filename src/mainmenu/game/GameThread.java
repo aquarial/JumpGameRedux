@@ -29,7 +29,7 @@ class GameThread extends Thread {
     /**
      * Runs game loop
      * <p>
-     * Updates GamePanel
+     * CALL USING start()
      */
     @Override
     public void run() {
