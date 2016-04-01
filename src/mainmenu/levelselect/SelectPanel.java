@@ -54,10 +54,18 @@ public class SelectPanel extends JPanel {
 
     }
 
-    public void addActionListenerToStartLevel(ActionListener al) {
-        startLevelButton.addActionListener(al);
+    /**
+     * Action listener to <i>start level</i> button
+     * 
+     * @param listner
+     */
+    public void addActionListenerToStartLevel(ActionListener listener) {
+        startLevelButton.addActionListener(listener);
     }
 
+    /**
+     * @return Name of the level selected to play
+     */
     public String getSelectedLevel() {
         return levelSelecter.getSelectedItem().toString();
     }
