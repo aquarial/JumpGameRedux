@@ -63,7 +63,7 @@ public class GamePanel extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paintComponent(Graphics g) {
 		Graphics2D g2 = graphicsForBufferedImage;
 
 		g2.setColor(Color.WHITE);
