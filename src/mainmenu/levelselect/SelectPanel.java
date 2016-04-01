@@ -11,7 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-import io.Resources;
+import mainmenu.savestates.GameSave;
 
 public class SelectPanel extends JPanel {
 
@@ -38,10 +38,6 @@ public class SelectPanel extends JPanel {
 
         // 2nd element - "Select level" combo box
         levelSelecter = new JComboBox<>();
-        for (String filename : Resources.getLevelNames()) {
-            String withoutxml = filename.substring(0, filename.length() - 4);
-            levelSelecter.addItem(withoutxml);
-        }
         LevelSelectPanel.add(levelSelecter);
 
         //
@@ -52,6 +48,18 @@ public class SelectPanel extends JPanel {
         add(LevelSelectPanel, BorderLayout.WEST);
         add(levelInfoPanel, BorderLayout.CENTER);
 
+    }
+
+    /**
+     * Update level select combobox with unlocked levels
+     * 
+     * @param state
+     */
+    public void updateAvailableLevels(GameSave state) {
+        levelSelecter.removeAll();
+        for (String level : state.getUnlockedLevels()) {
+            levelSelecter.addItem(level);
+        }
     }
 
     /**

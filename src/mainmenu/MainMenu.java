@@ -9,6 +9,7 @@ import javax.swing.JLayeredPane;
 
 import mainmenu.game.GamePanel;
 import mainmenu.levelselect.SelectPanel;
+import mainmenu.savestates.GameSave;
 import mainmenu.splashscreen.SplashPanel;
 
 public class MainMenu {
@@ -17,6 +18,7 @@ public class MainMenu {
     private SplashPanel splashpanel;
     private SelectPanel selectpanel;
     private GamePanel gamepanel;
+    private GameSave save;
 
     private int width = 800;
     private int height = 600;
@@ -27,6 +29,8 @@ public class MainMenu {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(width, height);
         f.setResizable(false);
+
+        save = new GameSave();
 
         contentPanel = new JLayeredPane();
         // contentPanel.setLayout(new BorderLayout());
@@ -64,6 +68,7 @@ public class MainMenu {
             break;
         case LEVEL_SELECT:
             selectpanel.setBounds(0, 0, width, height);
+            selectpanel.updateAvailableLevels(save);
             contentPanel.add(selectpanel);
             break;
         case PLAY_GAME:
