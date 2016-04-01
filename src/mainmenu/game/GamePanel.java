@@ -54,14 +54,7 @@ public class GamePanel extends JPanel {
 		Thread th = new GameThread(this, model);
 		th.start();
 	}
-
-	/**
-	 * Just calls repaint(). Clarity method.
-	 */
-	void renderGame() {
-		repaint();
-	}
-
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = graphicsForBufferedImage;
