@@ -2,6 +2,7 @@ package mainmenu.savestates;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +21,12 @@ public class GameSave {
      * Creates an empty game save
      */
     public GameSave() {
-        levelrecords = Collections.emptyMap();
+        levelrecords = new HashMap<>();
         for (String name : Resources.getLevelNames()) {
             String withoutEnding = name.substring(0, name.length() - 4);
             levelrecords.put(withoutEnding, new LevelRecord(withoutEnding));
         }
+        levelrecords.get("001").setUnlocked(true);
     }
 
     /**
