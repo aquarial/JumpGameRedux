@@ -57,7 +57,7 @@ public class SelectPanel extends JPanel {
      */
     public void updateAvailableLevels(GameSave state) {
         levelSelecter.removeAll();
-        for (String level : state.getUnlockedLevels()) {
+        for (String level : state.getLevelNamess()) {
             levelSelecter.addItem(level);
         }
     }

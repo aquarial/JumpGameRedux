@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.activation.registries.MailcapParseException;
+
 import io.Resources;
 
 /**
@@ -26,19 +28,13 @@ public class GameSave {
             String withoutEnding = name.substring(0, name.length() - 4);
             levelrecords.put(withoutEnding, new LevelRecord(withoutEnding));
         }
-        levelrecords.get("001").setUnlocked(true);
     }
 
     /**
-     * @return List of levels
+     * @return List of levels names
      */
-    public List<String> getLevels() {
-        List<String> unlockedlevels = new ArrayList<String>();
-        for (Map.Entry<String, LevelRecord> entry : levelrecords.entrySet()) {
-            unlockedlevels.add(entry.getKey());
-        }
-        Collections.sort(unlockedlevels);
-        return unlockedlevels;
+    public List<String> getLevelNamess() {
+        return new ArrayList<String>(levelrecords.keySet());
     }
 
 }
