@@ -28,34 +28,15 @@ public class GameSave {
     }
 
     /**
-     * @return List of unlocked levels
+     * @return List of levels
      */
-    public List<String> getUnlockedLevels() {
+    public List<String> getLevels() {
         List<String> unlockedlevels = new ArrayList<String>();
         for (Map.Entry<String, LevelRecord> entry : levelrecords.entrySet()) {
-            if (entry.getValue().isUnlocked()) {
-                unlockedlevels.add(entry.getKey());
-            }
+            unlockedlevels.add(entry.getKey());
         }
         Collections.sort(unlockedlevels);
         return unlockedlevels;
-    }
-
-    /**
-     * @param levelname
-     * @return Whether this game save has unlocked a level
-     */
-    public boolean isLevelUnlocked(String levelname) {
-        return levelrecords.get(levelname).isUnlocked();
-    }
-
-    /**
-     * Sets a level to unlocked by name
-     * 
-     * @param levelname
-     */
-    public void unlockALevel(String levelname) {
-        levelrecords.get(levelname).setUnlocked(true);
     }
 
 }
