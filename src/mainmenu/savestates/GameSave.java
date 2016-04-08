@@ -30,7 +30,7 @@ public class GameSave {
     /**
      * @return List of levels names
      */
-    public List<String> getLevelNamess() {
+    public List<String> getLevelNames() {
         return new ArrayList<String>(levelrecords.keySet());
     }
 

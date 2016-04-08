@@ -4,14 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
-
-import mainmenu.savestates.GameSave;
 
 public class SelectPanel extends JPanel {
 
@@ -28,7 +27,8 @@ public class SelectPanel extends JPanel {
         this.setLayout(new BorderLayout());
         // *******LEFT HAND SIDE
         JPanel LevelSelectPanel = new JPanel();
-        LevelSelectPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        LevelSelectPanel
+                .setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         LevelSelectPanel.setBackground(Color.BLUE);
 
         // 1st element - "Play Level" Button
@@ -55,9 +55,8 @@ public class SelectPanel extends JPanel {
      * 
      * @param state
      */
-    public void updateAvailableLevels(GameSave state) {
-        levelSelecter.removeAll();
-        for (String level : state.getLevelNamess()) {
+    public void addLevels(List<String> state) {
+        for (String level : state) {
             levelSelecter.addItem(level);
         }
     }
