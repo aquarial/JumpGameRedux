@@ -18,13 +18,9 @@ import mainmenu.game.model.level.Quad;
  */
 public class MainModel {
 
-    /** Represents the player */
     private Jumper jumper;
-
-    /** The rectangles the player sticks to */
     private List<Block> blocks;
-
-    /** Whether the game is finished or not */
+    private List<double[]> jumpHistory;
     private boolean jumperReachedEnd;
 
     public MainModel(String levelname) {
@@ -33,7 +29,9 @@ public class MainModel {
 
         this.jumper = new Jumper(level.getPlayerPosition());
 
-        blocks = new ArrayList<Block>();
+        jumpHistory = new ArrayList<>();
+
+        blocks = new ArrayList<>();
         for (Quad quad : level.getQuadData()) {
             blocks.add(Block.fromQuad(quad, BlockType.STICKY));
         }
@@ -133,6 +131,7 @@ public class MainModel {
 
     public void addJumpPowerToJumper(double angle, double power) {
         if (jumper.isStuck()) {
+            jumpHistory.add(new double[] { angle, power });
             jumper.setAngularVelocity(angle, power);
             jumper.setStuck(false);
         }
