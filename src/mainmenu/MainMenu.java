@@ -33,9 +33,7 @@ public class MainMenu {
         save = new GameSave();
 
         contentPanel = new JLayeredPane();
-        // contentPanel.setLayout(new BorderLayout());
         f.getContentPane().add(contentPanel, BorderLayout.CENTER);
-
         f.setVisible(true);
         f.validate();
 
