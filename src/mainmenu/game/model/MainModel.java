@@ -18,16 +18,19 @@ import mainmenu.game.model.level.Quad;
  */
 public class MainModel {
 
+    /** Represents the player */
     private Jumper jumper;
+
+    /** The rectangles the player sticks to */
     private List<Block> blocks;
 
+    /** Whether the game is finished or not */
     private boolean jumperReachedEnd;
 
     public MainModel(String levelname) {
         jumperReachedEnd = false;
         LevelData level = LevelData.parseLevelFromName(levelname);
 
-        // System.out.println(level);
         this.jumper = new Jumper(level.getPlayerPosition());
 
         blocks = new ArrayList<Block>();
@@ -38,8 +41,6 @@ public class MainModel {
         blocks.add(Block.fromQuad(level.getFinishQuad(), BlockType.FINISH));
 
     }
-
-    private ArrayList<Pair<Block, Point>> minMovements = new ArrayList<>();
 
     /**
      * Updates the model based on time passed. Moves the Jumper/Player.
@@ -61,15 +62,15 @@ public class MainModel {
             }
 
             if (encounteredBlock) {
-                minMovements.clear();
-                double x = jumper.getXvelocity();
-                double y = jumper.getYvelocity();
+                double dx = jumper.getXvelocity();
+                double dy = jumper.getYvelocity();
                 double[] currentJumperQuad = jumper.getCurrentCorners();
 
+                ArrayList<Pair<Block, Point>> minMovements = new ArrayList<>();
                 for (Block blockade : blocks) {
                     if (blockade.containsCornerArray(futureJumperCorners)) {
 
-                        Optional<Point> newMinMovement = blockade.calculatePushingQuadToThis(currentJumperQuad, x, y);
+                        Optional<Point> newMinMovement = blockade.calculatePushingQuadToThis(currentJumperQuad, dx, dy);
                         if (newMinMovement.isPresent()) {
                             minMovements.add(new Pair<>(blockade, newMinMovement.get()));
                         }

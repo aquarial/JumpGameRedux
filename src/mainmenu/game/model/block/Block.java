@@ -11,7 +11,7 @@ import mainmenu.game.model.level.Quad;
 public class Block extends Quad {
 
     /**
-     * Construct a FinishBlock from a Quad
+     * Construct a Block from a Quad
      * 
      * @param q
      * @return
@@ -19,16 +19,6 @@ public class Block extends Quad {
     public static Block fromQuad(Quad q, BlockType type) {
         return new Block(q.getX1(), q.getY1(), q.getX2(), q.getY2(), type);
     }
-
-    // /**
-    // * Construct a Block from an array instead of passing doubles
-    // *
-    // * @param corners
-    // * Array with <b>LENGTH OF 4</b>
-    // */
-    // Block(double[] corners) {
-    // super(corners[0], corners[1], corners[2], corners[3]);
-    // }
 
     /**
      * Construct a Block by passing values
@@ -63,10 +53,10 @@ public class Block extends Quad {
     }
 
     /**
-     * Whether or not a rectangle defined by the corners is inside this.
+     * Whether or not the argument is inside the Block.
      * 
      * @param corners
-     *            the bounds of a rectangle
+     *            a rectangle defined by the corners
      * @return true if part is inside, false otherwise
      */
     public boolean containsCornerArray(double[] corners) {
@@ -104,7 +94,7 @@ public class Block extends Quad {
      *            velocity of other
      * @return
      */
-     public Optional<Point> calculatePushingQuadToThis(double[] corners, double xvelocity, double yvelocity) {
+    public Optional<Point> calculatePushingQuadToThis(double[] corners, double xvelocity, double yvelocity) {
 
         double angle = Math.atan2(yvelocity, xvelocity);
         double m = yvelocity / xvelocity;

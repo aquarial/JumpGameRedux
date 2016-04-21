@@ -127,7 +127,7 @@ public class GamePanel extends JPanel {
      */
     private void addClickListener() {
         // Jump Listener
-        addMouseListener(new MouseAdapter() {
+        this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 double xdiff = e.getX() - xcenter;
