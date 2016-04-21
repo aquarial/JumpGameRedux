@@ -97,7 +97,7 @@ public class SplashPanel extends JPanel {
     private void createSplashImage() {
         splashimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         g2splashimage = (Graphics2D) splashimage.getGraphics();
-        g2splashimage.setBackground(new Color(0f, 1f, 1f, 1f));
+        g2splashimage.setBackground(new Color(1f, 1f, 1f, 1f));
         g2splashimage.clearRect(0, 0, width, height);
     }
 

@@ -95,10 +95,10 @@ public class MainMenu {
             public void run() {
                 try {
 
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                     int reps = 200;
                     for (int i = 0; i < reps; i++) {
-                        Thread.sleep(1000 / reps);
+                        Thread.sleep(1500 / reps);
                         splashpanel.changeSplashAlphaBy(-1.0f / reps);
                         splashpanel.repaint();
                     }
