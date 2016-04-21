@@ -20,22 +20,21 @@ public class MainModel {
 
     private Jumper jumper;
     private List<Block> blocks;
-    private List<double[]> jumpHistory;
+    private ModelHistory history;
     private boolean jumperReachedEnd;
 
     public MainModel(String levelname) {
         jumperReachedEnd = false;
         LevelData level = LevelData.parseLevelFromName(levelname);
 
-        this.jumper = new Jumper(level.getPlayerPosition());
+        history = new ModelHistory(levelname);
 
-        jumpHistory = new ArrayList<>();
+        this.jumper = new Jumper(level.getPlayerPosition());
 
         blocks = new ArrayList<>();
         for (Quad quad : level.getQuadData()) {
             blocks.add(Block.fromQuad(quad, BlockType.STICKY));
         }
-
         blocks.add(Block.fromQuad(level.getFinishQuad(), BlockType.FINISH));
 
     }
@@ -124,6 +123,10 @@ public class MainModel {
     public List<Block> getBlockData() {
         return blocks;
     }
+    
+    public ModelHistory getHistory() {
+        return history;
+    }
 
     public boolean jumperReachedEnd() {
         return jumperReachedEnd;
@@ -131,7 +134,7 @@ public class MainModel {
 
     public void addJumpPowerToJumper(double angle, double power) {
         if (jumper.isStuck()) {
-            jumpHistory.add(new double[] { angle, power });
+            history.addToJumpHistory(new double[] { angle, power });
             jumper.setAngularVelocity(angle, power);
             jumper.setStuck(false);
         }
