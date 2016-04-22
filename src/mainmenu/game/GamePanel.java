@@ -76,7 +76,7 @@ public class GamePanel extends JPanel {
             if (stickyQuad.getBLockType() == BlockType.FINISH) {
                 g2.setColor(Color.CYAN);
             }
-            drawStickyQuad(stickyQuad, g2);
+            this.drawStickyQuad(stickyQuad, g2);
         }
 
         g.drawImage(bufferedImage, 0, 0, null);
@@ -98,10 +98,6 @@ public class GamePanel extends JPanel {
         g2.fillRect(xcenter + x1, ycenter + y1, x2 - x1, y2 - y1);
     }
 
-    /**
-     * 
-     * @param g2
-     */
     private void drawPlayerAtCenter(Graphics2D g2) {
         int playerRad = modelUnitToPixels(model.getPlayerWidth() / 2);
         g2.fillRect(xcenter - playerRad, ycenter - playerRad, playerRad * 2, playerRad * 2);
@@ -109,7 +105,7 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * Scale from model to pixels
+     * Scale from model units to pixels
      * 
      * @param unit
      * @return
