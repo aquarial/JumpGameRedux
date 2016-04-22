@@ -48,6 +48,10 @@ public class GamePanel extends JPanel {
         graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
     }
 
+    /**
+     * Sets up GamePanel to run a level
+     * @param levelname
+     */
     public void startlevel(String levelname) {
         model = new MainModel(levelname);
         Thread th = new GameThread(this, model);
