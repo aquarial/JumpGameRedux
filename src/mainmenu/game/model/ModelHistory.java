@@ -43,9 +43,9 @@ public class ModelHistory {
     }
 
     /**
-     * Records the time the player finished at internally.
+     * Internally records the time the player finished at.
      */
-    public void setPlayerHasFinished() {
+    public void setPlayerJustFinished() {
         finishTime = System.currentTimeMillis();
     }
 
