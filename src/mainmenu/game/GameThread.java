@@ -27,9 +27,9 @@ class GameThread extends Thread {
     }
 
     /**
-     * Runs game loop
+     * <b>CALL USING start()</b>
      * <p>
-     * CALL USING start()
+     * Runs game loop
      */
     @Override
     public void run() {
@@ -37,7 +37,7 @@ class GameThread extends Thread {
         long newTime;
         long deltaTime;
 
-        while (!model.jumperReachedEnd()) {
+        while (!model.levelComplete()) {
 
             model.updateModel(minimumSleepTime / 1000.0);
             panel.repaint();

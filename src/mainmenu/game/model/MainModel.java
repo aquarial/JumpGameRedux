@@ -21,10 +21,8 @@ public class MainModel {
     private Jumper jumper;
     private List<Block> blocks;
     private ModelHistory history;
-    private boolean jumperReachedEnd;
 
     public MainModel(String levelname) {
-        jumperReachedEnd = false;
         LevelData level = LevelData.parseLevelFromName(levelname);
 
         history = new ModelHistory(levelname);
@@ -37,6 +35,10 @@ public class MainModel {
         }
         blocks.add(Block.fromQuad(level.getFinishQuad(), BlockType.FINISH));
 
+    }
+
+    public boolean levelComplete() {
+        return history.getPlayerFinished();
     }
 
     /**
@@ -87,7 +89,7 @@ public class MainModel {
                     Pair<Block, Point> impact = minimum.get();
 
                     if (impact.getItem1().getBLockType() == BlockType.FINISH) {
-                        jumperReachedEnd = true;
+                        history.setPlayerJustFinished();
                     }
 
                     // general block stuff:
@@ -108,6 +110,18 @@ public class MainModel {
 
     }
 
+    public void addJumpPowerToJumper(double angle, double power) {
+        if (jumper.isStuck()) {
+            history.addToJumpHistory(new double[] { history.getTimeFromStart(), angle, power });
+            jumper.setAngularVelocity(angle, power);
+            jumper.setStuck(false);
+        }
+    }
+
+    public ModelHistory getHistory() {
+        return history;
+    }
+
     public double getPlayerXPos() {
         return jumper.getXposition();
     }
@@ -122,22 +136,6 @@ public class MainModel {
 
     public List<Block> getBlockData() {
         return blocks;
-    }
-    
-    public ModelHistory getHistory() {
-        return history;
-    }
-
-    public boolean jumperReachedEnd() {
-        return jumperReachedEnd;
-    }
-
-    public void addJumpPowerToJumper(double angle, double power) {
-        if (jumper.isStuck()) {
-            history.addToJumpHistory(new double[] { angle, power });
-            jumper.setAngularVelocity(angle, power);
-            jumper.setStuck(false);
-        }
     }
 
 }
