@@ -55,7 +55,7 @@ public class SelectPanel extends JPanel {
      * 
      * @param state
      */
-    public void addLevels(List<String> state) {
+    public void setLevels(List<String> state) {
         for (String level : state) {
             levelSelecter.addItem(level);
         }

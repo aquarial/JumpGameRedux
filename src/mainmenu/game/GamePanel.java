@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import mainmenu.RunCode;
 import mainmenu.game.model.MainModel;
+import mainmenu.game.model.ModelHistory;
 import mainmenu.game.model.block.Block;
 import mainmenu.game.model.block.BlockType;
 
@@ -48,10 +49,26 @@ public class GamePanel extends JPanel {
         graphicsForBufferedImage = (Graphics2D) bufferedImage.getGraphics();
     }
 
+    /**
+     * Sets up GamePanel to run a level
+     * 
+     * @param levelname
+     */
     public void startlevel(String levelname) {
         model = new MainModel(levelname);
         Thread th = new GameThread(this, model);
         th.start();
+    }
+
+    /**
+     * Will return null sometimes
+     * 
+     * @return History of the game that was run
+     */
+    public ModelHistory getModelHistory() {
+        if (model == null)
+            return null;
+        return model.getHistory();
     }
 
     @Override

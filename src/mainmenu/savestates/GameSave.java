@@ -36,14 +36,18 @@ public class GameSave {
     }
 
     /**
-     * Updates the records for the level the history was played on
+     * Updates the records for the level the history was played on.
+     * <p>
+     * Checks for null
      * 
      * @param history
      *            History of a completed level
      */
     public void updateLevelRecord(ModelHistory history) {
-        LevelRecord level = levelrecords.get(history.getLevelName());
-        level.updateRecords(history);
+        if (history != null) {
+            LevelRecord level = levelrecords.get(history.getLevelName());
+            level.updateRecords(history);
+        }
     }
 
 }

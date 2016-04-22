@@ -45,7 +45,7 @@ public class MainMenu {
 
         selectpanel = new SelectPanel();
         selectpanel.addActionListenerToStartLevel(goToGameStartLevel());
-        selectpanel.addLevels(save.getLevelNames());
+        selectpanel.setLevels(save.getLevelNames());
 
         gamepanel = new GamePanel(width, height);
         gamepanel.setOnFinish(goToSelectPanel());
@@ -69,6 +69,7 @@ public class MainMenu {
             splashpanel.waitThenFade();
             break;
         case LEVEL_SELECT:
+            save.updateLevelRecord(gamepanel.getModelHistory());
             selectpanel.setBounds(0, 0, width, height);
             contentPanel.add(selectpanel);
             break;
