@@ -45,7 +45,7 @@ public class MainMenu {
 
         selectpanel = new SelectPanel();
         selectpanel.addActionListenerToStartLevel(goToGameStartLevel());
-        selectpanel.addLevels(save.getLevelNames());
+        selectpanel.setLevels(save.getLevelNames());
 
         gamepanel = new GamePanel(width, height);
         gamepanel.setOnFinish(goToSelectPanel());
