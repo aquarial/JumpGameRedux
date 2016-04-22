@@ -43,13 +43,6 @@ public class ModelHistory {
     }
 
     /**
-     * Internally records the time the player finished at.
-     */
-    public void setPlayerJustFinished() {
-        finishTime = System.currentTimeMillis();
-    }
-
-    /**
      * For use by MainModel while the level is being played.
      * 
      * @return Difference (in double seconds) from the start of the level
@@ -60,35 +53,16 @@ public class ModelHistory {
     }
 
     /**
-     * @return true once the player has finished.
-     */
-    public boolean playerFinished() {
-        return finishTime > -1;
-    }
-
-    /**
      * If the player did not finish, this method returns -1;
      * 
      * @return Difference (in double seconds) from the start to the finish of
      *         the level
      */
     public double getTimeOfFinish() {
-        if (playerFinished()) {
+        if (getPlayerFinished()) {
             return (finishTime - startTime) / 1000.0;
         } else {
             return -1;
-        }
-    }
-
-    /**
-     * Adds the jump onto the historical record.
-     * 
-     * @param nextDataPoint
-     *            Must be in <code>{timeofjump, angle, power}<code> format
-     */
-    public void addToJumpHistory(double[] nextDataPoint) {
-        if (nextDataPoint.length == 3) {
-            jumpHistory.add(nextDataPoint);
         }
     }
 
@@ -108,6 +82,32 @@ public class ModelHistory {
      */
     public List<double[]> getJumpHistory() {
         return jumpHistory;
+    }
+
+    /**
+     * @return true once the player has finished.
+     */
+    public boolean getPlayerFinished() {
+        return finishTime > -1;
+    }
+
+    /**
+     * Internally records the time the player finished at.
+     */
+    public void setPlayerJustFinished() {
+        finishTime = System.currentTimeMillis();
+    }
+
+    /**
+     * Adds the jump onto the historical record.
+     * 
+     * @param nextDataPoint
+     *            Must be in <code>{timeofjump, angle, power}<code> format
+     */
+    public void addToJumpHistory(double[] nextDataPoint) {
+        if (nextDataPoint.length == 3) {
+            jumpHistory.add(nextDataPoint);
+        }
     }
 
 }
