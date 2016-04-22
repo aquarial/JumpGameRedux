@@ -22,6 +22,11 @@ public class MainModel {
     private List<Block> blocks;
     private ModelHistory history;
 
+    /**
+     * Constructs a Model based on a level
+     * 
+     * @param levelname
+     */
     public MainModel(String levelname) {
         LevelData level = LevelData.parseLevelFromName(levelname);
 
@@ -37,6 +42,9 @@ public class MainModel {
 
     }
 
+    /**
+     * @return If the player has reached the finish block
+     */
     public boolean levelComplete() {
         return history.getPlayerFinished();
     }
@@ -45,6 +53,7 @@ public class MainModel {
      * Updates the model based on time passed. Moves the Jumper/Player.
      * 
      * @param deltaTime
+     *            The change in time the model updates on
      */
     public void updateModel(double deltaTime) {
 
@@ -101,15 +110,24 @@ public class MainModel {
                 }
 
             } else {
-                // move to new Position
+                // if no block was encounterd, the player continues free fall
                 jumper.update(deltaTime);
             }
         } else {
-            // if I ever add moving platforms!
+            // the player is stuck on a block
+
+            // if I ever add moving platforms I can update the player position
+            // based on how the block moves
         }
 
     }
 
+    /**
+     * Tries to launch the player off of a stuck block with an angle and power.
+     * 
+     * @param angle
+     * @param power
+     */
     public void addJumpPowerToJumper(double angle, double power) {
         if (jumper.isStuck()) {
             history.addToJumpHistory(new double[] { history.getTimeFromStart(), angle, power });
@@ -118,22 +136,39 @@ public class MainModel {
         }
     }
 
+    /**
+     * @return ModelHistory of what happened
+     */
     public ModelHistory getHistory() {
         return history;
     }
 
+    /**
+     * @return Player's current x coordinate
+     */
     public double getPlayerXPos() {
         return jumper.getXposition();
     }
 
+    /**
+     * Note: the model graphing coordinates. Positive is up.
+     * 
+     * @return Player's current y coordinate
+     */
     public double getPlayerYPos() {
         return jumper.getYposition();
     }
 
+    /**
+     * @return Player width in coordinate units.
+     */
     public double getPlayerWidth() {
         return Jumper.JUMPER_WIDTH;
     }
 
+    /**
+     * @return List of blocks in the level
+     */
     public List<Block> getBlockData() {
         return blocks;
     }
