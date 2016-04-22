@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import io.Resources;
+import mainmenu.game.model.ModelHistory;
 
 /**
  * Represents the player's progress through JumpGame. Holds unlocked levels,
  * times, and maybe more.
- *
  */
 public class GameSave {
 
+    /** levelname -> LevelRecord */
     Map<String, LevelRecord> levelrecords;
 
     /**
@@ -32,6 +33,17 @@ public class GameSave {
      */
     public List<String> getLevelNames() {
         return new ArrayList<String>(levelrecords.keySet());
+    }
+
+    /**
+     * Updates the records for the level the history was played on
+     * 
+     * @param history
+     *            History of a completed level
+     */
+    public void updateLevelRecord(ModelHistory history) {
+        LevelRecord level = levelrecords.get(history.getLevelName());
+        level.updateRecords(history);
     }
 
 }
