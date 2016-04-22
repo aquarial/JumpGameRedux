@@ -23,6 +23,9 @@ public class MainMenu {
     private int width = 800;
     private int height = 600;
 
+    /**
+     * Runs the program
+     */
     public MainMenu() {
 
         JFrame f = new JFrame("Demo");
