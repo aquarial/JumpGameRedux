@@ -69,6 +69,7 @@ public class MainMenu {
             splashpanel.waitThenFade();
             break;
         case LEVEL_SELECT:
+            save.updateLevelRecord(gamepanel.getModelHistory());
             selectpanel.setBounds(0, 0, width, height);
             contentPanel.add(selectpanel);
             break;
