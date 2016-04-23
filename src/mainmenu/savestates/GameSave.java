@@ -49,4 +49,23 @@ public class GameSave {
         }
     }
 
+    /**
+     * 
+     * @param levelname
+     * @return time formatted as mm:ss.
+     * 
+     */
+    public String fastestTimeForLevel(String levelname) {
+        return levelrecords.get(levelname).fastestTimeToString();
+    }
+
+    /**
+     * 
+     * @param levelname
+     * @return jumps formatted as 000.
+     */
+    public String leastJumpsForLevel(String levelname) {
+        return levelrecords.get(levelname).leastJumpsToString();
+    }
+
 }

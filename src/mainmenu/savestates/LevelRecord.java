@@ -38,4 +38,24 @@ public class LevelRecord {
 
         }
     }
+
+    /**
+     * Formats time into mm:ss.
+     * 
+     * @return
+     */
+    String fastestTimeToString() {
+        double speed = fastestTime.getTimeOfFinish();
+        return String.format("%02d:%02d", speed / 60, speed % 60);
+    }
+
+    /**
+     * Formats jumps into 000.
+     * 
+     * @return
+     */
+    String leastJumpsToString() {
+        int jumps = leastJumps.getNumberOfJumpsSoFar();
+        return String.format("%03d", jumps);
+    }
 }
