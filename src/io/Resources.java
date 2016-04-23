@@ -1,11 +1,13 @@
 package io;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -44,6 +46,19 @@ public class Resources {
 
     private static InputStream getInputStream(String level) {
         return classloader.getResourceAsStream("/levels/" + level + ".xml");
+    }
+
+    public BufferedImage getImageForLevel(String level) {
+        InputStream inputstream = classloader.getResourceAsStream("/levelpics/" + level + ".png");
+        try {
+            return ImageIO.read(inputstream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Could not find image " + level + ".png");
+            System.err.println("Check if you added it.");
+        }
+        // Will not happen naturally. I will supply the levelpics data.
+        return null;
     }
 
     /**
