@@ -27,8 +27,7 @@ public class SelectPanel extends JPanel {
         this.setLayout(new BorderLayout());
         // *******LEFT HAND SIDE
         JPanel LevelSelectPanel = new JPanel();
-        LevelSelectPanel
-                .setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        LevelSelectPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         LevelSelectPanel.setBackground(Color.BLUE);
 
         // 1st element - "Play Level" Button
