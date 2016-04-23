@@ -54,7 +54,7 @@ public class Resources {
      * @param levelname
      * @return Buffered image of a similar name
      */
-    public BufferedImage getImageForLevel(String levelname) {
+    public static BufferedImage getImageForLevel(String levelname) {
         InputStream inputstream = classloader.getResourceAsStream("/levelpics/" + levelname + ".png");
         try {
             return ImageIO.read(inputstream);
@@ -74,7 +74,7 @@ public class Resources {
      * @param new_width
      * @return Scaled image
      */
-    public BufferedImage scaleImage(BufferedImage imageToScale, int new_width) {
+    public static BufferedImage scaleImage(BufferedImage imageToScale, int new_width) {
         int ratio = imageToScale.getHeight() / imageToScale.getWidth();
         int new_height = ratio * new_width;
 
