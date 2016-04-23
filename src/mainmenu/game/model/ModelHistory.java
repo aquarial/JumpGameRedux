@@ -119,10 +119,11 @@ public class ModelHistory {
      * Adds the jump onto the historical record.
      * 
      * @param nextDataPoint
-     *            Must be in <code>{timeofjump, angle, power}<code> format
+     *            Assumes input is in <code>{timeofjump, angle, power}
+     *            <code> format
      */
     public void addToJumpHistory(double[] nextDataPoint) {
-        if (nextDataPoint.length == 3) {
+        if (jumpHistory.size() < 1000) {
             jumpHistory.add(nextDataPoint);
         }
     }
