@@ -12,7 +12,9 @@ public class LevelRecord {
     ModelHistory leastJumps;
 
     LevelRecord(String levelname) {
-
+        ModelHistory defaultRecords = new ModelHistory(levelname, 99 * 60 + 99, 999);
+        fastestTime = defaultRecords;
+        leastJumps = defaultRecords;
     }
 
     // Getters & setters
@@ -26,11 +28,11 @@ public class LevelRecord {
     void updateRecords(ModelHistory history) {
         if (history.getPlayerFinished()) {
 
-            if (fastestTime == null || history.getTimeOfFinish() < fastestTime.getTimeOfFinish()) {
+            if (history.getTimeOfFinish() < fastestTime.getTimeOfFinish()) {
                 fastestTime = history;
             }
 
-            if (leastJumps == null || history.getNumberOfJumpsSoFar() < leastJumps.getNumberOfJumpsSoFar()) {
+            if (history.getNumberOfJumpsSoFar() < leastJumps.getNumberOfJumpsSoFar()) {
                 leastJumps = history;
             }
 
