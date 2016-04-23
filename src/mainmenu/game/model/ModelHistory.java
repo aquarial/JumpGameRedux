@@ -19,9 +19,9 @@ public class ModelHistory {
     /** A list of <timeofjump, angle, power> elements */
     private List<double[]> jumpHistory;
     /** When the level started */
-    private double startTime;
+    private long startTime;
     /** When the level finishd or <code>-1<code> */
-    private double finishTime;
+    private long finishTime;
 
     /**
      * Starts the record of hisrtory.
