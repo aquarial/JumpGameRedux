@@ -68,6 +68,22 @@ public class Resources {
     }
 
     /**
+     * Scales input image so its width is new_width
+     * 
+     * @param imageToScale
+     * @param new_width
+     * @return Scaled image
+     */
+    public BufferedImage scaleImage(BufferedImage imageToScale, int new_width) {
+        int ratio = imageToScale.getHeight() / imageToScale.getWidth();
+        int new_height = ratio * new_width;
+
+        BufferedImage newImage = new BufferedImage(new_width, new_height, imageToScale.getType());
+        newImage.createGraphics().drawImage(imageToScale, 0, 0, new_width, new_height, null);
+        return newImage;
+    }
+
+    /**
      * All the levels in res/levels
      * 
      * @return Level names (eg 001)
