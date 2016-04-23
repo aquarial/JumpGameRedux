@@ -31,7 +31,7 @@ public class ModelHistory {
     public ModelHistory(String level_name) {
         levelname = level_name;
         jumpHistory = new ArrayList<>();
-        startTime = System.currentTimeMillis();
+        startTime = 0;
         finishTime = -1;
     }
 
@@ -123,6 +123,11 @@ public class ModelHistory {
      *            <code> format
      */
     public void addToJumpHistory(double[] nextDataPoint) {
+
+        if (jumpHistory.size() == 0) {
+            startTime = System.currentTimeMillis();
+        }
+
         if (jumpHistory.size() < 1000) {
             jumpHistory.add(nextDataPoint);
         }
