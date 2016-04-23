@@ -48,13 +48,19 @@ public class Resources {
         return classloader.getResourceAsStream("/levels/" + level + ".xml");
     }
 
-    public BufferedImage getImageForLevel(String level) {
-        InputStream inputstream = classloader.getResourceAsStream("/levelpics/" + level + ".png");
+    /**
+     * Gets the picture of the start for the levelname supplied
+     * 
+     * @param levelname
+     * @return Buffered image of a similar name
+     */
+    public BufferedImage getImageForLevel(String levelname) {
+        InputStream inputstream = classloader.getResourceAsStream("/levelpics/" + levelname + ".png");
         try {
             return ImageIO.read(inputstream);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Could not find image " + level + ".png");
+            System.err.println("Could not find image " + levelname + ".png");
             System.err.println("Check if you added it.");
         }
         // Will not happen naturally. I will supply the levelpics data.
