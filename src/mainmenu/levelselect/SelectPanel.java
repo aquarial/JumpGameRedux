@@ -8,8 +8,11 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
+
+import javafx.scene.layout.Border;
 
 public class SelectPanel extends JPanel {
 
@@ -22,21 +25,26 @@ public class SelectPanel extends JPanel {
      * Constructs all of the components that make up the level select panel
      */
     public SelectPanel(int width, int height) {
+        width = 800;
+        height = 600;
 
         setLayout(null);
 
         // *******LEFT HAND SIDE
         JPanel levelSelectPanel = new JPanel();
         levelSelectPanel.setBounds(0, 0, 130, height);
-        levelSelectPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-        levelSelectPanel.setBackground(Color.BLUE);
+        levelSelectPanel.setBackground(new Color(180, 180, 180));
 
-        // 1st element - "Select level" combo box
+        // 1st element - "Level" label
+        JLabel showLevel = new JLabel("Level");
+        levelSelectPanel.add(showLevel);
+
+        // 2nd element - "Select level" combo box
         levelSelecter = new JComboBox<>();
         levelSelecter.setToolTipText("Choose level to start");
         levelSelectPanel.add(levelSelecter);
 
-        // 2nd element - "Play Level" Button
+        // 3rd element - "Play Level" Button
         startLevelButton = new JButton("Start Level");
         startLevelButton.setToolTipText("Start selected level");
         levelSelectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
