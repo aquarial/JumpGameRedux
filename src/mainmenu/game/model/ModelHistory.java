@@ -36,6 +36,23 @@ public class ModelHistory {
     }
 
     /**
+     * Construcst a mock history based on the information provided.
+     * 
+     * @param level_name
+     * @param seconds
+     * @param clicks
+     */
+    public ModelHistory(String level_name, double seconds, int clicks) {
+        levelname = level_name;
+        jumpHistory = new ArrayList<>(clicks);
+        for (int i = 0; i < clicks; i++) {
+            jumpHistory.add(new double[] { i / 1000.0, 0, 0 });
+        }
+        startTime = 0;
+        finishTime = (long) seconds * 1000;
+    }
+
+    /**
      * @return Which level this history takes place on
      */
     public String getLevelName() {
