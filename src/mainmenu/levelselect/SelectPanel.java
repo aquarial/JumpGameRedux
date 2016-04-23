@@ -2,6 +2,7 @@ package mainmenu.levelselect;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class SelectPanel extends JPanel {
 
     private JButton startLevelButton;
     private JComboBox<String> levelSelecter;
+    private LevelInfoPanel levelInfoPanel;
 
     /**
      * Constructs all of the components that make up the level select panel
@@ -36,6 +38,7 @@ public class SelectPanel extends JPanel {
         // 2nd element - "Select level" combo box
         levelSelecter = new JComboBox<>();
         levelSelecter.setToolTipText("Choose level to start");
+        levelSelecter.addActionListener(setupLevelInfoPanelForLevel());
         levelSelectPanel.add(levelSelecter);
 
         // 3rd element - "Play Level" Button
@@ -46,9 +49,8 @@ public class SelectPanel extends JPanel {
 
         //
         // ********MIDDLE BOX
-        LevelInfoPanel levelInfoPanel = new LevelInfoPanel(width - 130, height);
+        levelInfoPanel = new LevelInfoPanel(width - 130, height);
         levelInfoPanel.setBounds(130, 0, width - 130, height);
-        levelInfoPanel.setBackground(Color.GREEN);
 
         add(levelSelectPanel);
         add(levelInfoPanel);
@@ -80,6 +82,12 @@ public class SelectPanel extends JPanel {
      */
     public String getSelectedLevel() {
         return levelSelecter.getSelectedItem().toString();
+    }
+
+    private ActionListener setupLevelInfoPanelForLevel() {
+        return (ActionEvent e) -> {
+            levelInfoPanel.setupPanelForLevel(levelSelecter.getSelectedItem().toString());
+        };
     }
 
 }

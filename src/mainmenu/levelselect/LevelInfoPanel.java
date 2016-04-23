@@ -1,9 +1,10 @@
 package mainmenu.levelselect;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.nio.BufferOverflowException;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import io.Resources;
@@ -12,15 +13,12 @@ public class LevelInfoPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private static final int BORDER_BUFFER = 30;// px
+    private static final int IMAGE_WIDTH = 610;
+    private static final int IMAGE_HEIGHT = 440;
 
     private int width;
-    private int height;
 
-    private BufferedImage panel;
-    private Graphics2D g2_panel;
-
-    private BufferedImage levelimage;
-    private Graphics2D g2_levelimage;
+    private Icon levelimage;
 
     /**
      * @param width
@@ -28,7 +26,12 @@ public class LevelInfoPanel extends JPanel {
      */
     LevelInfoPanel(int width, int height) {
         this.width = width;
-        this.height = height;
+        // this.height = height;
+
+        this.setLayout(null);
+        JLabel l_levelimage = new JLabel(levelimage);
+        l_levelimage.setBounds(BORDER_BUFFER, BORDER_BUFFER, IMAGE_WIDTH, IMAGE_HEIGHT);
+        this.add(l_levelimage);
     }
 
     /**
@@ -38,9 +41,9 @@ public class LevelInfoPanel extends JPanel {
      *            name of the selected level
      */
     void setupPanelForLevel(String levelname) {
-        levelimage = Resources.getImageForLevel(levelname);
-        levelimage = Resources.scaleImage(levelimage, width - 2 * BORDER_BUFFER);
-        g2_panel.drawImage(levelimage, BORDER_BUFFER, BORDER_BUFFER, null);
+        BufferedImage tmp = Resources.getImageForLevel(levelname);
+        tmp = Resources.scaleImage(tmp, width - 2 * BORDER_BUFFER);
+        levelimage = new ImageIcon(tmp);
         this.repaint();
     }
 
