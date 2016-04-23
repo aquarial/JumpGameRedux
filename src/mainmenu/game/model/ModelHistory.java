@@ -19,9 +19,9 @@ public class ModelHistory {
     /** A list of <timeofjump, angle, power> elements */
     private List<double[]> jumpHistory;
     /** When the level started */
-    private double startTime;
+    private long startTime;
     /** When the level finishd or <code>-1<code> */
-    private double finishTime;
+    private long finishTime;
 
     /**
      * Starts the record of hisrtory.
@@ -31,8 +31,25 @@ public class ModelHistory {
     public ModelHistory(String level_name) {
         levelname = level_name;
         jumpHistory = new ArrayList<>();
-        startTime = System.currentTimeMillis();
+        startTime = 0;
         finishTime = -1;
+    }
+
+    /**
+     * Construcst a mock history based on the information provided.
+     * 
+     * @param level_name
+     * @param seconds
+     * @param clicks
+     */
+    public ModelHistory(String level_name, double seconds, int clicks) {
+        levelname = level_name;
+        jumpHistory = new ArrayList<>(clicks);
+        for (int i = 0; i < clicks; i++) {
+            jumpHistory.add(new double[] { i / 1000.0, 0, 0 });
+        }
+        startTime = 0;
+        finishTime = (long) seconds * 1000;
     }
 
     /**
@@ -102,10 +119,16 @@ public class ModelHistory {
      * Adds the jump onto the historical record.
      * 
      * @param nextDataPoint
-     *            Must be in <code>{timeofjump, angle, power}<code> format
+     *            Assumes input is in <code>{timeofjump, angle, power}
+     *            <code> format
      */
     public void addToJumpHistory(double[] nextDataPoint) {
-        if (nextDataPoint.length == 3) {
+
+        if (jumpHistory.size() == 0) {
+            startTime = System.currentTimeMillis();
+        }
+
+        if (jumpHistory.size() < 1000) {
             jumpHistory.add(nextDataPoint);
         }
     }

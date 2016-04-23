@@ -23,8 +23,7 @@ public class GameSave {
     public GameSave() {
         levelrecords = new HashMap<>();
         for (String name : Resources.getLevelNames()) {
-            String withoutEnding = name.substring(0, name.length() - 4);
-            levelrecords.put(withoutEnding, new LevelRecord(withoutEnding));
+            levelrecords.put(name, new LevelRecord(name));
         }
     }
 

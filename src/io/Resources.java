@@ -1,12 +1,13 @@
 package io;
 
-import java.io.File;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,6 +16,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class Resources {
+
+    private static Class<? extends Thread> classloader = Thread.currentThread().getClass();
 
     /**
      * Returns the Document made from the named resource
@@ -41,20 +44,59 @@ public class Resources {
         return null;
     }
 
-    static InputStream getInputStream(String level) {
-        Class<? extends Thread> classloader = Thread.currentThread().getClass();
+    private static InputStream getInputStream(String level) {
         return classloader.getResourceAsStream("/levels/" + level + ".xml");
     }
 
     /**
-     * All the level data files in the resources directory
+     * Gets the picture of the start for the levelname supplied
      * 
-     * @return
+     * @param levelname
+     * @return Buffered image of a similar name
+     */
+    public static BufferedImage getImageForLevel(String levelname) {
+        InputStream inputstream = classloader.getResourceAsStream("/levelpics/" + levelname + ".png");
+        try {
+            return ImageIO.read(inputstream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Could not find image " + levelname + ".png");
+            System.err.println("Check if you added it.");
+        }
+        // Will not happen naturally. I will supply the levelpics data.
+        return null;
+    }
+
+    /**
+     * Scales input image so its width is new_width
+     * 
+     * @param imageToScale
+     * @param new_width
+     * @return Scaled image
+     */
+    public static BufferedImage scaleImage(BufferedImage imageToScale, int new_width) {
+        int ratio = imageToScale.getHeight() / imageToScale.getWidth();
+        int new_height = ratio * new_width;
+
+        BufferedImage newImage = new BufferedImage(new_width, new_height, imageToScale.getType());
+        newImage.createGraphics().drawImage(imageToScale, 0, 0, new_width, new_height, null);
+        return newImage;
+    }
+
+    /**
+     * All the levels in res/levels
+     * 
+     * @return Level names (eg 001)
      */
     public static List<String> getLevelNames() {
-        File levelsDir = new File("res/levels");
-        List<String> levels = Arrays.asList(levelsDir.list());
-        Collections.sort(levels);
+        InputStream inputstream = classloader.getResourceAsStream("/info/levels.txt");
+
+        Scanner filescanner = new Scanner(inputstream);
+        List<String> levels = new ArrayList<>();
+        while (filescanner.hasNext()) {
+            levels.add(filescanner.nextLine());
+        }
+        filescanner.close();
         return levels;
     }
 }
