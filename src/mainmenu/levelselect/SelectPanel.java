@@ -46,7 +46,7 @@ public class SelectPanel extends JPanel {
 
         //
         // ********MIDDLE BOX
-        LevelInfoPanel levelInfoPanel = new LevelInfoPanel();
+        LevelInfoPanel levelInfoPanel = new LevelInfoPanel(width - 130, height);
         levelInfoPanel.setBounds(130, 0, width - 130, height);
         levelInfoPanel.setBackground(Color.GREEN);
 
