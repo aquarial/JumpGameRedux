@@ -5,14 +5,10 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
-
-import javafx.scene.layout.Border;
 
 public class SelectPanel extends JPanel {
 
@@ -25,8 +21,6 @@ public class SelectPanel extends JPanel {
      * Constructs all of the components that make up the level select panel
      */
     public SelectPanel(int width, int height) {
-        width = 800;
-        height = 600;
 
         setLayout(null);
 
