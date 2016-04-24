@@ -28,11 +28,11 @@ public class LevelRecord {
     void updateRecords(ModelHistory history) {
         if (history.getPlayerFinished()) {
 
-            if (history.getTimeOfFinish() < fastestTime.getTimeOfFinish()) {
+            if (history.getTimeOfFinish() <= fastestTime.getTimeOfFinish()) {
                 fastestTime = history;
             }
 
-            if (history.getNumberOfJumpsSoFar() < leastJumps.getNumberOfJumpsSoFar()) {
+            if (history.getNumberOfJumpsSoFar() <= leastJumps.getNumberOfJumpsSoFar()) {
                 leastJumps = history;
             }
 
