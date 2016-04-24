@@ -70,6 +70,7 @@ public class MainMenu {
             break;
         case LEVEL_SELECT:
             save.updateLevelRecord(gamepanel.getModelHistory());
+            selectpanel.refreshLevelRecords();
             selectpanel.setBounds(0, 0, width, height);
             contentPanel.add(selectpanel);
             break;
