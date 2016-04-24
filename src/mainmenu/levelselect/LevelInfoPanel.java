@@ -2,7 +2,6 @@ package mainmenu.levelselect;
 
 import java.awt.image.BufferedImage;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +17,7 @@ public class LevelInfoPanel extends JPanel {
 
     private int width;
 
-    private Icon levelimage;
+    private JLabel l_levelimage;
 
     /**
      * @param width
@@ -29,7 +28,8 @@ public class LevelInfoPanel extends JPanel {
         // this.height = height;
 
         this.setLayout(null);
-        JLabel l_levelimage = new JLabel(levelimage);
+
+        l_levelimage = new JLabel();
         l_levelimage.setBounds(BORDER_BUFFER, BORDER_BUFFER, IMAGE_WIDTH, IMAGE_HEIGHT);
         this.add(l_levelimage);
     }
@@ -43,8 +43,7 @@ public class LevelInfoPanel extends JPanel {
     void setupPanelForLevel(String levelname) {
         BufferedImage tmp = Resources.getImageForLevel(levelname);
         tmp = Resources.scaleImage(tmp, width - 2 * BORDER_BUFFER);
-        levelimage = new ImageIcon(tmp);
-        this.repaint();
+        l_levelimage.setIcon(new ImageIcon(tmp));
     }
 
 }
