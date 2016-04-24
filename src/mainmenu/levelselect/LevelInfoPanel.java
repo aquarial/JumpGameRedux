@@ -12,7 +12,7 @@ import io.Resources;
 public class LevelInfoPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int BORDER_BUFFER = 55;// px
-    private static final int labelHeight = 4343; // px
+    private static final int labelHeight = 450; // px
     private int width;
 
     private JLabel lLevelimage;
@@ -37,11 +37,11 @@ public class LevelInfoPanel extends JPanel {
         this.add(lLevelimage);
 
         lLeastjumpsText = new JLabel();
-        lLeastjumpsText.setBounds(100, 450, 200, 80);
+        lLeastjumpsText.setBounds(100, labelHeight, 200, 80);
         this.add(lLeastjumpsText);
 
         lFastestTimeText = new JLabel();
-        lFastestTimeText.setBounds(440, 450, 200, 80);
+        lFastestTimeText.setBounds(440, labelHeight, 200, 80);
         this.add(lFastestTimeText);
         System.out.println(height);
     }
