@@ -10,7 +10,7 @@ import io.Resources;
 
 public class LevelInfoPanel extends JPanel {
     private static final long serialVersionUID = 1L;
-    private static final int BORDER_BUFFER = 35;// px
+    private static final int BORDER_BUFFER = 55;// px
 
     private int width;
 
@@ -43,6 +43,9 @@ public class LevelInfoPanel extends JPanel {
         BufferedImage tmp = Resources.getImageForLevel(levelname);
         tmp = Resources.scaleImage(tmp, width - 2 * BORDER_BUFFER);
         l_levelimage.setIcon(new ImageIcon(tmp));
+
+        // TODO add display for current records
+
     }
 
 }
