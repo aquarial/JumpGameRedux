@@ -14,7 +14,7 @@ public class LevelInfoPanel extends JPanel {
     private static final int BORDER_BUFFER = 55;
     private static final int label_y_pos = 450;
     private static final int label_x_distance = 150;
-    private static final int label_height = 80;
+    private static final int label_height = 20;
     private static final int label_width = 100;
     private int width;
 
@@ -44,7 +44,7 @@ public class LevelInfoPanel extends JPanel {
         // least jumps
         lLeastJumpsText = new JLabel();
         lLeastJumpsText.setBounds(label_x_distance, label_y_pos, label_width, label_height);
-        lLeastJumpsText.setText("Least Jumps ");
+        lLeastJumpsText.setText("Least Jumps:");
         this.add(lLeastJumpsText);
 
         lLeastJumpsRecord = new JLabel();
@@ -55,7 +55,7 @@ public class LevelInfoPanel extends JPanel {
         int fastestXPos = width - label_x_distance - label_width;
 
         lFastestTimeText = new JLabel();
-        lFastestTimeText.setText("Fastest Time");
+        lFastestTimeText.setText("Fastest Time:");
         lFastestTimeText.setBounds(fastestXPos, label_y_pos, label_width, label_height);
         this.add(lFastestTimeText);
 
