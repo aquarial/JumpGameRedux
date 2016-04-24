@@ -75,8 +75,8 @@ public class Resources {
      * @return Scaled image
      */
     public static BufferedImage scaleImage(BufferedImage imageToScale, int new_width) {
-        int ratio = imageToScale.getHeight() / imageToScale.getWidth();
-        int new_height = ratio * new_width;
+        float ratio = imageToScale.getHeight() / (float) imageToScale.getWidth();
+        int new_height = (int) (ratio * new_width);
 
         BufferedImage newImage = new BufferedImage(new_width, new_height, imageToScale.getType());
         newImage.createGraphics().drawImage(imageToScale, 0, 0, new_width, new_height, null);
