@@ -11,10 +11,13 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mainmenu.savestates.GameSave;
+
 public class SelectPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
+    private GameSave save;
     private JButton startLevelButton;
     private JComboBox<String> levelSelecter;
     private LevelInfoPanel levelInfoPanel;
@@ -22,8 +25,9 @@ public class SelectPanel extends JPanel {
     /**
      * Constructs all of the components that make up the level select panel
      */
-    public SelectPanel(int width, int height) {
-
+    public SelectPanel(int width, int height, GameSave save) {
+        this.save = save;
+        
         setLayout(null);
 
         // *******LEFT HAND SIDE
@@ -86,7 +90,7 @@ public class SelectPanel extends JPanel {
 
     private ActionListener setupLevelInfoPanelForLevel() {
         return (ActionEvent e) -> {
-            levelInfoPanel.setupPanelForLevel(levelSelecter.getSelectedItem().toString());
+            levelInfoPanel.setupPanelForLevel(save, levelSelecter.getSelectedItem().toString());
         };
     }
 

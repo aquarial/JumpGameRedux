@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import io.Resources;
+import mainmenu.savestates.GameSave;
 
 public class LevelInfoPanel extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -69,11 +70,13 @@ public class LevelInfoPanel extends JPanel {
      * @param levelname
      *            name of the selected level
      */
-    void setupPanelForLevel(String levelname) {
+    void setupPanelForLevel(GameSave save, String levelname) {
         BufferedImage tmp = Resources.getImageForLevel(levelname);
         tmp = Resources.scaleImage(tmp, width - 2 * BORDER_BUFFER);
         lLevelimage.setIcon(new ImageIcon(tmp));
 
+        lLeastJumpsRecord.setText(save.leastJumpsForLevel(levelname));
+        lFastestTimeRecord.setText(save.fastestTimeForLevel(levelname));
     }
 
 }
