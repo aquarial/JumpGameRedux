@@ -27,7 +27,7 @@ public class SelectPanel extends JPanel {
      */
     public SelectPanel(int width, int height, GameSave save) {
         this.save = save;
-        
+
         setLayout(null);
 
         // *******LEFT HAND SIDE
@@ -88,9 +88,16 @@ public class SelectPanel extends JPanel {
         return levelSelecter.getSelectedItem().toString();
     }
 
+    /**
+     * Updates the select panel's records
+     */
+    public void refreshLevelRecords() {
+        levelInfoPanel.setupPanelForLevel(save, levelSelecter.getSelectedItem().toString());
+    }
+
     private ActionListener setupLevelInfoPanelForLevel() {
         return (ActionEvent e) -> {
-            levelInfoPanel.setupPanelForLevel(save, levelSelecter.getSelectedItem().toString());
+            refreshLevelRecords();
         };
     }
 
