@@ -12,7 +12,7 @@ public class LevelRecord {
     ModelHistory leastJumps;
 
     LevelRecord(String levelname) {
-        ModelHistory defaultRecords = new ModelHistory(levelname, 59 * 60 + 59, 999);
+        ModelHistory defaultRecords = new ModelHistory(levelname, (59 * 60) + 59.59, 999);
         fastestTime = defaultRecords;
         leastJumps = defaultRecords;
     }
@@ -46,7 +46,7 @@ public class LevelRecord {
      */
     String fastestTimeToString() {
         double speed = fastestTime.getTimeOfFinish();
-        return String.format("%02d:%02d", (int) speed / 60, (int) speed % 60);
+        return String.format("%02d:%02d:%02d", (int) speed / 60, (int) speed % 60, (int) (speed * 100 % 100));
     }
 
     /**
