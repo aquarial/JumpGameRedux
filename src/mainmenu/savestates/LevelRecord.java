@@ -12,7 +12,7 @@ public class LevelRecord {
     ModelHistory leastJumps;
 
     LevelRecord(String levelname) {
-        ModelHistory defaultRecords = new ModelHistory(levelname, 99 * 60 + 59, 999);
+        ModelHistory defaultRecords = new ModelHistory(levelname, 59 * 60 + 59, 999);
         fastestTime = defaultRecords;
         leastJumps = defaultRecords;
     }
