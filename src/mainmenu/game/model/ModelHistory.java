@@ -36,7 +36,7 @@ public class ModelHistory {
     }
 
     /**
-     * Construcst a mock history based on the information provided.
+     * Constructs a mock history based on the information provided.
      * 
      * @param level_name
      * @param seconds
