@@ -11,8 +11,11 @@ import io.Resources;
 
 public class LevelInfoPanel extends JPanel {
     private static final long serialVersionUID = 1L;
-    private static final int BORDER_BUFFER = 55;// px
-    private static final int labelHeight = 450; // px
+    private static final int BORDER_BUFFER = 55;
+    private static final int label_y_pos = 450;
+    private static final int label_x_distance = 150;
+    private static final int label_height = 80;
+    private static final int label_width = 100;
     private int width;
 
     private JLabel lLevelimage;
@@ -37,13 +40,13 @@ public class LevelInfoPanel extends JPanel {
         this.add(lLevelimage);
 
         lLeastjumpsText = new JLabel();
-        lLeastjumpsText.setBounds(100, labelHeight, 200, 80);
+        lLeastjumpsText.setBounds(label_x_distance, label_y_pos, label_width, label_height);
         this.add(lLeastjumpsText);
 
         lFastestTimeText = new JLabel();
-        lFastestTimeText.setBounds(440, labelHeight, 200, 80);
+        int fastestXPos = width - label_x_distance - label_width;
+        lFastestTimeText.setBounds(fastestXPos, label_y_pos, label_width, label_height);
         this.add(lFastestTimeText);
-        System.out.println(height);
     }
 
     /**
@@ -57,8 +60,8 @@ public class LevelInfoPanel extends JPanel {
         tmp = Resources.scaleImage(tmp, width - 2 * BORDER_BUFFER);
         lLevelimage.setIcon(new ImageIcon(tmp));
 
-        lLeastjumpsText.setText("Least Jumps " + "999");
-        lFastestTimeText.setText("Fastest Time " + "99:99");
+        lLeastjumpsText.setText("Least Jumps ");
+        lFastestTimeText.setText("Fastest Time");
     }
 
 }
