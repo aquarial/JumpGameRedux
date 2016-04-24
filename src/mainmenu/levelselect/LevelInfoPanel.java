@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import io.Resources;
 
@@ -20,7 +19,9 @@ public class LevelInfoPanel extends JPanel {
 
     private JLabel lLevelimage;
     private JLabel lLeastJumpsText;
+    private JLabel lLeastJumpsRecord;
     private JLabel lFastestTimeText;
+    private JLabel lFastestTimeRecord;
 
     /**
      * @param width
@@ -39,14 +40,27 @@ public class LevelInfoPanel extends JPanel {
         lLevelimage.setBounds(BORDER_BUFFER, BORDER_BUFFER, IMAGE_WIDTH, IMAGE_HEIGHT);
         this.add(lLevelimage);
 
+        // least jumps
         lLeastJumpsText = new JLabel();
         lLeastJumpsText.setBounds(label_x_distance, label_y_pos, label_width, label_height);
+        lLeastJumpsText.setText("Least Jumps ");
         this.add(lLeastJumpsText);
 
-        lFastestTimeText = new JLabel();
+        lLeastJumpsRecord = new JLabel();
+        lLeastJumpsRecord.setBounds(label_x_distance, label_y_pos + label_height, label_width, label_height);
+        this.add(lLeastJumpsRecord);
+
+        // fastest time
         int fastestXPos = width - label_x_distance - label_width;
+
+        lFastestTimeText = new JLabel();
+        lFastestTimeText.setText("Fastest Time");
         lFastestTimeText.setBounds(fastestXPos, label_y_pos, label_width, label_height);
         this.add(lFastestTimeText);
+
+        lFastestTimeRecord = new JLabel();
+        lFastestTimeRecord.setBounds(fastestXPos, label_y_pos + label_height, label_width, label_height);
+        this.add(lFastestTimeRecord);
     }
 
     /**
@@ -60,8 +74,6 @@ public class LevelInfoPanel extends JPanel {
         tmp = Resources.scaleImage(tmp, width - 2 * BORDER_BUFFER);
         lLevelimage.setIcon(new ImageIcon(tmp));
 
-        lLeastJumpsText.setText("Least Jumps ");
-        lFastestTimeText.setText("Fastest Time");
     }
 
 }
