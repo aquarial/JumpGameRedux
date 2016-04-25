@@ -101,6 +101,7 @@ public class SelectPanel extends JPanel {
     private ActionListener setupLevelInfoPanelForLevel() {
         return (ActionEvent e) -> {
             refreshLevelRecords();
+            startLevelButton.requestFocusInWindow();
         };
     }
 
