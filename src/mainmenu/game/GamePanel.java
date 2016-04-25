@@ -1,6 +1,7 @@
 package mainmenu.game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
@@ -99,6 +100,10 @@ public class GamePanel extends JPanel {
             }
             this.drawStickyQuad(stickyQuad, g2);
         }
+
+        g2.setColor(new Color(250, 0, 0));
+        g2.setFont(Font.decode("serif 150"));
+        g2.drawString(model.getFormattedTimeFromStart(), 40, 200);
 
         g.drawImage(bufferedImage, 0, 0, null);
     }
