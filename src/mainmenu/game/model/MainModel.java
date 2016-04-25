@@ -188,9 +188,14 @@ public class MainModel {
      * @return Difference (in a formatted string) from the start of the level
      */
     public String getFormattedTimeFromStart() {
-        double speed = history.getTimeFromStart();
-        if ((int) speed / 60 < 60) {
-            return String.format("%02d:%02d:%02d", (int) speed / 60, (int) speed % 60, (int) (speed * 100 % 100));
+        if (history.getNumberOfJumpsSoFar() == 0) {
+            return "00:00:00";
+        }
+
+        double time = history.getTimeFromStart();
+        double maxTime = (59 * 60) + 59.59;
+        if (time < maxTime) {
+            return String.format("%02d:%02d:%02d", (int) time / 60, (int) time % 60, (int) (time * 100 % 100));
         } else {
             return "59:59:59";
         }
