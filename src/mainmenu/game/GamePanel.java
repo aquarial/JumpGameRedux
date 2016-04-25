@@ -3,6 +3,8 @@ package mainmenu.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -41,6 +43,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel(int width, int height) {
         addClickListener();
+        addSpaceBarListener();
         setBackground(Color.WHITE);
 
         xcenter = width / 2;
@@ -155,6 +158,29 @@ public class GamePanel extends JPanel {
             private double calculatePowerFromDiffs(double xdiff, double ydiff) {
                 double normalPower = Math.sqrt(Math.pow(xdiff, 2) + Math.pow(ydiff, 2));
                 return Math.min(normalPower / 18, 7.5);
+            }
+
+        });
+    }
+
+    /**
+     * Quit if the user hits space twice very quickly
+     */
+    private void addSpaceBarListener() {
+        // quit listener
+        this.addKeyListener(new KeyAdapter() {
+            static final long smallDifference = 500;
+            long timeOfLastPush = 0;
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == ' ') {
+                    long timeOfPush = System.currentTimeMillis();
+                    if (timeOfPush - timeOfLastPush < smallDifference) {
+                        endGame.run();
+                    }
+                    timeOfLastPush = timeOfPush;
+                }
             }
 
         });
