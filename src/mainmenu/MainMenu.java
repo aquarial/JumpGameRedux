@@ -78,6 +78,7 @@ public class MainMenu {
             gamepanel.setBounds(0, 0, width, height);
             gamepanel.startlevel(selectpanel.getSelectedLevel());
             contentPanel.add(gamepanel);
+            gamepanel.requestFocusInWindow();
             break;
         default:
             break;
