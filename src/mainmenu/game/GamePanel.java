@@ -33,6 +33,7 @@ public class GamePanel extends JPanel {
 
     private BufferedImage bufferedImage;
     private Graphics2D graphicsForBufferedImage;
+    private Thread gameThread;
     private MainModel model;
 
     RunCode endGame;
@@ -59,8 +60,8 @@ public class GamePanel extends JPanel {
      */
     public void startlevel(String levelname) {
         model = new MainModel(levelname);
-        Thread th = new GameThread(this, model);
-        th.start();
+        gameThread = new GameThread(this, model);
+        gameThread.start();
     }
 
     /**
@@ -176,9 +177,16 @@ public class GamePanel extends JPanel {
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == ' ') {
                     long timeOfPush = System.currentTimeMillis();
-                    if (timeOfPush - timeOfLastPush < smallDifference) {
-                        endGame.run();
+
+                    try {
+                        gameThread.interrupt();
+                        gameThread.join();
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
                     }
+
+                    GamePanel.this.startlevel(model.getLevelName());
+
                     timeOfLastPush = timeOfPush;
                 }
             }
