@@ -180,4 +180,19 @@ public class MainModel {
         return history.getLevelName();
     }
 
+    /**
+     * For use by MainModel while the level is being played
+     * <p>
+     * in mm:ss:ms
+     * 
+     * @return Difference (in a formatted string) from the start of the level
+     */
+    public String getFormattedTimeFromStart() {
+        double speed = history.getTimeFromStart();
+        if ((int) speed / 60 < 60) {
+            return String.format("%02d:%02d:%02d", (int) speed / 60, (int) speed % 60, (int) (speed * 100 % 100));
+        } else {
+            return "59:59:59";
+        }
+    }
 }
