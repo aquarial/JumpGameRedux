@@ -200,4 +200,12 @@ public class MainModel {
             return "59:59:59";
         }
     }
+
+    /**
+     * 
+     * @return # of jumps in 000 format
+     */
+    public String getFormattedJumpsFromStart() {
+        return String.format("%03d", history.getNumberOfJumpsSoFar());
+    }
 }
