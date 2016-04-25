@@ -173,4 +173,11 @@ public class MainModel {
         return blocks;
     }
 
+    /**
+     * @return The level this model actually models
+     */
+    public String getLevelName() {
+        return history.getLevelName();
+    }
+
 }
