@@ -175,7 +175,7 @@ public class GamePanel extends JPanel {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == ' ') {
+                if (e.getKeyChar() == ' ' && !model.levelComplete()) {
                     long timeOfPush = System.currentTimeMillis();
 
                     stopGameThread();
