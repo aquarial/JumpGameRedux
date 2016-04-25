@@ -45,17 +45,26 @@ class GameThread extends Thread {
             newTime = System.currentTimeMillis();
             deltaTime = newTime - oldTime;
             if (deltaTime < minimumSleepTime) {
-                safesleep(minimumSleepTime - deltaTime);
+
+                try {
+                    Thread.sleep(minimumSleepTime - deltaTime);
+                } catch (InterruptedException e) {
+                    break;
+                }
+
             }
 
             oldTime = newTime;
         }
 
-        // handle game ending
-        // (make cyan box fill screen for example)
+        // we need to recheck beacuse this thread might have been interrupted
+        if (model.levelComplete()) {
+            // handle game ending
+            // (make cyan box fill screen for example)
 
-        safesleep(1000);
-        panel.endGame.run();
+            safesleep(1000);
+            panel.endGame.run();
+        }
     }
 
     /**
