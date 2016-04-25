@@ -170,7 +170,7 @@ public class GamePanel extends JPanel {
     private void addSpaceBarListener() {
         // quit listener
         this.addKeyListener(new KeyAdapter() {
-            static final long smallDifference = 500;
+            static final long smallDifference = 300;
             long timeOfLastPush = 0;
 
             @Override
@@ -178,16 +178,27 @@ public class GamePanel extends JPanel {
                 if (e.getKeyChar() == ' ') {
                     long timeOfPush = System.currentTimeMillis();
 
-                    try {
-                        gameThread.interrupt();
-                        gameThread.join();
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
+                    stopGameThread();
+
+                    boolean quicklyPushed = timeOfPush - timeOfLastPush < smallDifference;
+                    boolean hasntStarted = model.getHistory().getNumberOfJumpsSoFar() == 0;
+
+                    if (quicklyPushed && hasntStarted) {
+                        endGame.run();
+                    } else {
+                        GamePanel.this.startlevel(model.getLevelName());
                     }
 
-                    GamePanel.this.startlevel(model.getLevelName());
-
                     timeOfLastPush = timeOfPush;
+                }
+            }
+
+            private void stopGameThread() {
+                try {
+                    gameThread.interrupt();
+                    gameThread.join();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
             }
 
