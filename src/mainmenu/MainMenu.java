@@ -73,6 +73,7 @@ public class MainMenu {
             selectpanel.refreshLevelRecords();
             selectpanel.setBounds(0, 0, width, height);
             contentPanel.add(selectpanel);
+            selectpanel.requestFocusInWindow();
             break;
         case PLAY_GAME:
             gamepanel.setBounds(0, 0, width, height);

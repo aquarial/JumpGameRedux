@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -48,6 +50,7 @@ public class SelectPanel extends JPanel {
         // 3rd element - "Play Level" Button
         startLevelButton = new JButton("Start Level");
         startLevelButton.setToolTipText("Start selected level");
+        addSpaceBarListener();
         levelSelectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         levelSelectPanel.add(startLevelButton);
 
@@ -99,6 +102,22 @@ public class SelectPanel extends JPanel {
         return (ActionEvent e) -> {
             refreshLevelRecords();
         };
+    }
+
+    /**
+     * Start level if user hits space
+     */
+    private void addSpaceBarListener() {
+        // quit listener
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == ' ') {
+                    startLevelButton.doClick();
+                }
+            }
+
+        });
     }
 
 }
