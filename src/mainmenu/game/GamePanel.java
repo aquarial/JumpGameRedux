@@ -101,7 +101,7 @@ public class GamePanel extends JPanel {
             this.drawStickyQuad(stickyQuad, g2);
         }
 
-        g2.setColor(new Color(0, 255, 0, (int) 128));
+        g2.setColor(new Color(250, 0, 0, (int) 150));
         g2.setFont(Font.decode("serif 150"));
         g2.drawString(model.getFormattedTimeFromStart(), 63, 170);
         g2.drawString(model.getFormattedJumpsFromStart(), 258, 500);
