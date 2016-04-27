@@ -38,49 +38,31 @@ class GameThread extends Thread {
         long deltaTime;
 
         while (!model.levelComplete()) {
-
             model.updateModel(minimumSleepTime / 1000.0);
             panel.repaint();
 
             newTime = System.currentTimeMillis();
             deltaTime = newTime - oldTime;
-            if (deltaTime < minimumSleepTime) {
 
+            if (deltaTime < minimumSleepTime) {
                 try {
                     Thread.sleep(minimumSleepTime - deltaTime);
                 } catch (InterruptedException e) {
-                    break;
+                    return; // IF interrupted THEN return;
                 }
-
             }
 
             oldTime = newTime;
         }
 
-        // we need to recheck beacuse this thread might have been interrupted
-        if (model.levelComplete()) {
-            // handle game ending
-            // (make cyan box fill screen for example)
+        // handle game ending
 
-            safesleep(1000);
-            panel.endGame.run();
-        }
-    }
-
-    /**
-     * Remove try-catch clutter
-     * <p>
-     * I can't really do anything if an exception is actually thrown, so I move
-     * the clutter out of the game loop for clarity.
-     * 
-     * @param mili
-     */
-    private void safesleep(long mili) {
         try {
-            Thread.sleep(mili);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            return; // IF interrupted THEN return;
         }
+        panel.endGame.run();
     }
 
 }
