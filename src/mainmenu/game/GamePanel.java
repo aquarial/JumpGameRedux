@@ -1,8 +1,11 @@
 package mainmenu.game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -31,6 +34,7 @@ public class GamePanel extends JPanel {
 
     private BufferedImage bufferedImage;
     private Graphics2D graphicsForBufferedImage;
+    private Thread gameThread;
     private MainModel model;
 
     RunCode endGame;
@@ -41,6 +45,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel(int width, int height) {
         addClickListener();
+        addSpaceBarListener();
         setBackground(Color.WHITE);
 
         xcenter = width / 2;
@@ -56,8 +61,8 @@ public class GamePanel extends JPanel {
      */
     public void startlevel(String levelname) {
         model = new MainModel(levelname);
-        Thread th = new GameThread(this, model);
-        th.start();
+        gameThread = new GameThread(this, model);
+        gameThread.start();
     }
 
     /**
@@ -95,6 +100,11 @@ public class GamePanel extends JPanel {
             }
             this.drawStickyQuad(stickyQuad, g2);
         }
+
+        g2.setColor(new Color(250, 0, 0, (int) 150));
+        g2.setFont(Font.decode("serif 150"));
+        g2.drawString(model.getFormattedTimeFromStart(), 63, 170);
+        g2.drawString(model.getFormattedJumpsFromStart(), 258, 500);
 
         g.drawImage(bufferedImage, 0, 0, null);
     }
@@ -155,6 +165,47 @@ public class GamePanel extends JPanel {
             private double calculatePowerFromDiffs(double xdiff, double ydiff) {
                 double normalPower = Math.sqrt(Math.pow(xdiff, 2) + Math.pow(ydiff, 2));
                 return Math.min(normalPower / 18, 7.5);
+            }
+
+        });
+    }
+
+    /**
+     * Quit if the user hits space twice very quickly
+     */
+    private void addSpaceBarListener() {
+        // quit listener
+        this.addKeyListener(new KeyAdapter() {
+            static final long smallDifference = 300;
+            long timeOfLastPush = 0;
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == ' ' && !model.levelComplete()) {
+                    long timeOfPush = System.currentTimeMillis();
+
+                    stopGameThread();
+
+                    boolean quicklyPushed = timeOfPush - timeOfLastPush < smallDifference;
+                    boolean hasntStarted = model.getHistory().getNumberOfJumpsSoFar() == 0;
+
+                    if (quicklyPushed && hasntStarted) {
+                        endGame.run();
+                    } else {
+                        GamePanel.this.startlevel(model.getLevelName());
+                    }
+
+                    timeOfLastPush = timeOfPush;
+                }
+            }
+
+            private void stopGameThread() {
+                try {
+                    gameThread.interrupt();
+                    gameThread.join();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
             }
 
         });

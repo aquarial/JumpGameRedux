@@ -3,10 +3,10 @@ package mainmenu.savestates;
 import mainmenu.game.model.ModelHistory;
 
 /**
- * Represents how
+ * Represents how well the player is doing on a level
  *
  */
-public class LevelRecord {
+class LevelRecord {
 
     ModelHistory fastestTime;
     ModelHistory leastJumps;
