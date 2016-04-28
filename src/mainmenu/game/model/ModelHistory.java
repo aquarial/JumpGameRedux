@@ -128,7 +128,7 @@ public class ModelHistory {
             startTime = System.currentTimeMillis();
         }
 
-        if (jumpHistory.size() < 1000) {
+        if (jumpHistory.size() < 99) {
             jumpHistory.add(nextDataPoint);
         }
     }
