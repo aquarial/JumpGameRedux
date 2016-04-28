@@ -28,7 +28,7 @@ public class MainMenu {
      */
     public MainMenu() {
 
-        JFrame f = new JFrame("Demo");
+        JFrame f = new JFrame("Jump Game Redux");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(width, height);
         f.setResizable(false);
