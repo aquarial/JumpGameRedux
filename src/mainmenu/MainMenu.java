@@ -41,7 +41,7 @@ public class MainMenu {
         f.validate();
 
         splashpanel = new SplashPanel(width, height);
-        splashpanel.setOnRunFunction(waitSecondsThenGoToSelectPanel());
+        splashpanel.setOnRunFunction(goToSelectPanel());
 
         selectpanel = new SelectPanel(width, height, save);
         selectpanel.addActionListenerToStartLevel(goToGameStartLevel());
@@ -58,7 +58,7 @@ public class MainMenu {
      * 
      * @param newstate
      */
-    void initState(MenuState newstate) {
+    private void initState(MenuState newstate) {
         contentPanel.removeAll();
         switch (newstate) {
         case SPLASH_SCREEN:
@@ -85,35 +85,6 @@ public class MainMenu {
         }
         contentPanel.revalidate();
         contentPanel.repaint();
-    }
-
-    /**
-     * Thread that waits, then changes MenuState to LEVEL_SELECT
-     * 
-     * @return
-     */
-    public Thread waitSecondsThenGoToSelectPanel() {
-        // I can't use use a more functional closure because I use
-        // Thread.sleep(), and I don't want to hold up the main thread.
-        return new Thread() {
-            public void run() {
-                try {
-
-                    Thread.sleep(500);
-                    int reps = 200;
-                    for (int i = 0; i < reps; i++) {
-                        Thread.sleep(1500 / reps);
-                        splashpanel.changeSplashAlphaBy(-1.0f / reps);
-                        splashpanel.repaint();
-                    }
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                initState(MenuState.LEVEL_SELECT);
-            }
-        };
     }
 
     /**

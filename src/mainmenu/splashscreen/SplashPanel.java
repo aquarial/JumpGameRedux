@@ -9,10 +9,12 @@ import java.awt.image.WritableRaster;
 
 import javax.swing.JPanel;
 
+import mainmenu.RunCode;
+
 public class SplashPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    private Thread runOnStart;
+    private RunCode runOnStart;
     private float alphavalue;
     private BufferedImage splashimage;
     private Graphics2D g2splashimage;
@@ -54,7 +56,25 @@ public class SplashPanel extends JPanel {
      * Starts the thread that fades this
      */
     public void waitThenFade() {
-        runOnStart.start();
+        new Thread() {
+            public void run() {
+                try {
+
+                    Thread.sleep(500);
+                    int reps = 200;
+                    for (int i = 0; i < reps; i++) {
+                        Thread.sleep(1500 / reps);
+                        SplashPanel.this.changeSplashAlphaBy(-1.0f / reps);
+                        SplashPanel.this.repaint();
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                runOnStart.run();
+            }
+        }.start();
     }
 
     /**
@@ -79,7 +99,7 @@ public class SplashPanel extends JPanel {
      * @param runCode
      * @see #waitThenFade()
      */
-    public void setOnRunFunction(Thread runCode) {
+    public void setOnRunFunction(RunCode runCode) {
         runOnStart = runCode;
     }
 
