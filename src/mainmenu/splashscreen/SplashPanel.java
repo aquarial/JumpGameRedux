@@ -94,7 +94,7 @@ public class SplashPanel extends JPanel {
     }
 
     /**
-     * Pass the closure for how to waitThenFade()
+     * Pass the closure for how to change mainmenu to levelselect
      * 
      * @param runCode
      * @see #waitThenFade()
