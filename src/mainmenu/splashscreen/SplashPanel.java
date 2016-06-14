@@ -14,7 +14,7 @@ import mainmenu.RunCode;
 public class SplashPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    private RunCode runOnStart;
+    private RunCode changeMainMenu;
     private float alphavalue;
     private BufferedImage splashimage;
     private Graphics2D g2splashimage;
@@ -72,7 +72,7 @@ public class SplashPanel extends JPanel {
                     e.printStackTrace();
                 }
 
-                runOnStart.run();
+                changeMainMenu.run();
             }
         }.start();
     }
@@ -100,7 +100,7 @@ public class SplashPanel extends JPanel {
      * @see #waitThenFade()
      */
     public void setOnRunFunction(RunCode runCode) {
-        runOnStart = runCode;
+        changeMainMenu = runCode;
     }
 
     /**
