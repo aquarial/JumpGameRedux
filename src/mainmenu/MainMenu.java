@@ -2,7 +2,6 @@ package mainmenu;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -40,14 +39,14 @@ public class MainMenu {
         f.validate();
 
         splashpanel = new SplashPanel(width, height);
-        splashpanel.setOnRunFunction(goToSelectPanel());
+        splashpanel.setOnRunFunction(() -> initState(MenuState.LEVEL_SELECT));
 
         selectpanel = new SelectPanel(width, height, save);
-        selectpanel.addActionListenerToStartLevel(goToGameStartLevel());
+        selectpanel.addActionListenerToStartLevel((ActionEvent e) -> initState(MenuState.PLAY_GAME));
         selectpanel.setLevels(save.getLevelNames());
 
         gamepanel = new GamePanel(width, height);
-        gamepanel.setOnFinish(goToSelectPanel());
+        gamepanel.setOnFinish(() -> initState(MenuState.LEVEL_SELECT));
 
         initState(MenuState.SPLASH_SCREEN);
     }
@@ -82,20 +81,6 @@ public class MainMenu {
         }
         contentPanel.revalidate();
         contentPanel.repaint();
-    }
-
-    /**
-     * Closure to change MenuState to LEVEL_SELECT
-     */
-    public RunCode goToSelectPanel() {
-        return () -> initState(MenuState.LEVEL_SELECT);
-    }
-
-    /**
-     * Closure to change MenuState to PLAY_GAME
-     */
-    ActionListener goToGameStartLevel() {
-        return (ActionEvent e) -> initState(MenuState.PLAY_GAME);
     }
 
 }
