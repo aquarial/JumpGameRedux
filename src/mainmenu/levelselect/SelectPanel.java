@@ -3,6 +3,7 @@ package mainmenu.levelselect;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javax.swing.*;
@@ -18,10 +19,15 @@ public class SelectPanel extends JPanel {
     private JComboBox<String> levelSelecter;
     private LevelInfoPanel levelInfoPanel;
 
+    private int width;
+    private int height;
+
     /**
      * Constructs all of the components that make up the level select panel
      */
     public SelectPanel(int width, int height, GameSave save) {
+        this.width = width;
+        this.height = height;
         this.save = save;
 
         setLayout(null);
@@ -92,6 +98,16 @@ public class SelectPanel extends JPanel {
             refreshLevelRecords();
             startLevelButton.requestFocusInWindow();
         };
+    }
+
+    /**
+     * @return Renders this onto a new BufferedImage
+     */
+    public BufferedImage createImage() {
+        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = bi.createGraphics();
+        this.paintComponent(g);
+        return bi;
     }
 
 }
