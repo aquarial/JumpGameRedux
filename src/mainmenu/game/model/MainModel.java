@@ -26,11 +26,11 @@ public class MainModel {
     public MainModel(String levelname) {
         LevelData level = LevelData.parseLevelFromName(levelname);
 
-        history = new ModelHistory(levelname);
+        this.history = new ModelHistory(levelname);
 
         this.jumper = new Jumper(level.getPlayerPosition());
 
-        blocks = new ArrayList<>();
+        this.blocks = new ArrayList<>();
         for (Quad quad : level.getQuadData()) {
             blocks.add(Block.fromQuad(quad, BlockType.STICKY));
         }
