@@ -4,8 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
+import javax.swing.*;
 
 import mainmenu.game.GamePanel;
 import mainmenu.levelselect.SelectPanel;
@@ -29,7 +28,7 @@ public class MainMenu {
     public MainMenu() {
 
         JFrame f = new JFrame("Jump Game Redux");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setSize(width, height);
         f.setResizable(false);
 
@@ -93,10 +92,7 @@ public class MainMenu {
      * @return
      */
     public RunCode goToSelectPanel() {
-        return () -> {
-            initState(MenuState.LEVEL_SELECT);
-        };
-
+        return () -> initState(MenuState.LEVEL_SELECT);
     }
 
     /**
@@ -105,9 +101,7 @@ public class MainMenu {
      * @return
      */
     ActionListener goToGameStartLevel() {
-        return (ActionEvent e) -> {
-            initState(MenuState.PLAY_GAME);
-        };
+        return (ActionEvent e) -> initState(MenuState.PLAY_GAME);
     }
 
 }
