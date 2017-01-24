@@ -14,6 +14,7 @@ public class SplashPanel extends JPanel {
 
     private RunCode changeMainMenu;
     private float alphavalue;
+    private BufferedImage backgroundImage;
     private BufferedImage splashimage;
     private Graphics2D g2splashimage;
     private WritableRaster imageraster;
@@ -77,6 +78,8 @@ public class SplashPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        g.drawImage(backgroundImage, 0, 0, null);
+
         // Updates each pixel's alpha value
         for (int index = 0; index < image_alpha_values.length; index++) {
             image_alpha_values[index] = alphavalue * 255f;
@@ -112,4 +115,7 @@ public class SplashPanel extends JPanel {
         g2splashimage.clearRect(0, 0, width, height);
     }
 
+    public void setFadeBackground(BufferedImage image) {
+        this.backgroundImage = image;
+    }
 }

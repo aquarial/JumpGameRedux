@@ -44,6 +44,7 @@ public class MainMenu {
 
         splashpanel = new SplashPanel(width, height);
         splashpanel.setOnRunFunction(() -> initState(MenuState.LEVEL_SELECT));
+        splashpanel.setFadeBackground(selectpanel.createImage());
 
         gamepanel = new GamePanel(width, height);
         gamepanel.setOnFinish(() -> initState(MenuState.LEVEL_SELECT));
