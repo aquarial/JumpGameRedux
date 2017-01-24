@@ -141,10 +141,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point lowerRightCornerToTopLine(double[] other, double slope) {
 
@@ -167,10 +166,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point lowerRightCornerToLeftLine(double[] other, double slope) {
 
@@ -193,10 +191,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point lowerLeftCornerToTopLine(double[] other, double slope) {
 
@@ -219,10 +216,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point lowerLeftCornerToRightLine(double[] other, double slope) {
 
@@ -245,10 +241,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point upperLeftCornerToBottomLine(double[] other, double slope) {
 
@@ -271,10 +266,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point upperLeftCornerToRightLine(double[] other, double slope) {
 
@@ -297,10 +291,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point  upperRightCornerToBottomtLine(double[] other, double slope) {
 
@@ -323,10 +316,9 @@ public class Block extends Quad {
      * Returns <tt>(0, 0)</tt> if other can't be pushed against
      * <code>this</code> at the velocity it's going at.
      *
-     * @param other
-     * @param slope
-     * @return Point representing movement
-     * @return (0, 0) if can't be pushed against this
+     * @param other Rectangle of object pushed against
+     * @param slope Angle other is moving at
+     * @return null if can't be pushed against other
      */
     private Point  upperRightCornerToLeftLine(double[] other, double slope) {
 
