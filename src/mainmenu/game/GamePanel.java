@@ -22,9 +22,9 @@ import mainmenu.game.model.block.BlockType;
  * A panel that should be added to a parent component to show a game.
  * <p>
  * Runs one game through completion.
- * 
+ *
  * @author karl
- * 
+ *
  */
 public class GamePanel extends JPanel {
 
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Sets up GamePanel to run a level
-     * 
+     *
      * @param levelname
      */
     public void startlevel(String levelname) {
@@ -67,7 +67,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Will return null sometimes
-     * 
+     *
      * @return History of the game that was run
      */
     public ModelHistory getModelHistory() {
@@ -102,7 +102,7 @@ public class GamePanel extends JPanel {
         }
 
         // finely tuned
-        g2.setColor(new Color(250, 0, 0, (int) 140));
+        g2.setColor(new Color(250, 0, 0, 140));
         g2.setFont(Font.decode("serif 120"));
         g2.drawString(model.getFormattedTimeFromStart(), 228, 120);
         g2.drawString(model.getFormattedJumpsFromStart(), 324, 550);
@@ -113,7 +113,7 @@ public class GamePanel extends JPanel {
     /**
      * Translates the model coordinates to screen coordinates, and fills in the
      * pixel rectangle at that location
-     * 
+     *
      * @param stickyQuad
      * @param g2
      */
@@ -134,7 +134,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Scale from model units to pixels
-     * 
+     *
      * @param unit
      * @return
      */
@@ -143,11 +143,11 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * 
+     *
      * Adds mouseListener to <code>this</code>
      * <p>
      * Clears up constructor
-     * 
+     *
      */
     private void addClickListener() {
         // Jump Listener
