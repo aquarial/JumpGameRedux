@@ -184,8 +184,8 @@ class Jumper {
      * @param power
      */
     void setAngularVelocity(double angle, double power) {
-        xvelocity = (double) (Math.cos(angle) * power);
-        yvelocity = -(double) (Math.sin(angle) * power);
+        xvelocity = Math.cos(angle) * power;
+        yvelocity = -(Math.sin(angle) * power);
     }
 
     /**
