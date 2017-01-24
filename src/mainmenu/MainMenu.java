@@ -38,12 +38,12 @@ public class MainMenu {
         f.setVisible(true);
         f.validate();
 
-        splashpanel = new SplashPanel(width, height);
-        splashpanel.setOnRunFunction(() -> initState(MenuState.LEVEL_SELECT));
-
         selectpanel = new SelectPanel(width, height, save);
         selectpanel.addActionListenerToStartLevel((ActionEvent e) -> initState(MenuState.PLAY_GAME));
         selectpanel.setLevels(save.getLevelNames());
+
+        splashpanel = new SplashPanel(width, height);
+        splashpanel.setOnRunFunction(() -> initState(MenuState.LEVEL_SELECT));
 
         gamepanel = new GamePanel(width, height);
         gamepanel.setOnFinish(() -> initState(MenuState.LEVEL_SELECT));
