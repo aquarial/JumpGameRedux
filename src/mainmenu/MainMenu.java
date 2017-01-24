@@ -12,7 +12,7 @@ import mainmenu.splashscreen.SplashPanel;
 
 public class MainMenu {
 
-    private JLayeredPane contentPanel;
+    private JPanel contentPanel;
     private SplashPanel splashpanel;
     private SelectPanel selectpanel;
     private GamePanel gamepanel;
@@ -33,7 +33,8 @@ public class MainMenu {
 
         save = new GameSave();
 
-        contentPanel = new JLayeredPane();
+        contentPanel = new JPanel();
+        contentPanel.setLayout(new BorderLayout());
         f.getContentPane().add(contentPanel, BorderLayout.CENTER);
         f.setVisible(true);
         f.validate();
@@ -59,20 +60,15 @@ public class MainMenu {
         contentPanel.removeAll();
         switch (newstate) {
             case SPLASH_SCREEN:
-                selectpanel.setBounds(0, 0, width, height);
-                splashpanel.setBounds(0, 0, width, height);
-                contentPanel.add(selectpanel, new Integer(0));
-                contentPanel.add(splashpanel, new Integer(1));
+                contentPanel.add(splashpanel);
                 splashpanel.waitThenFade();
                 break;
             case LEVEL_SELECT:
                 save.updateLevelRecord(gamepanel.getModelHistory());
                 selectpanel.refreshLevelRecords();
-                selectpanel.setBounds(0, 0, width, height);
                 contentPanel.add(selectpanel);
                 break;
             case PLAY_GAME:
-                gamepanel.setBounds(0, 0, width, height);
                 gamepanel.startlevel(selectpanel.getSelectedLevel());
                 contentPanel.add(gamepanel);
                 gamepanel.requestFocusInWindow();
