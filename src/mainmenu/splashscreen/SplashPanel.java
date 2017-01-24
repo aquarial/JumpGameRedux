@@ -51,25 +51,23 @@ public class SplashPanel extends JPanel {
      * Starts the thread that fades this
      */
     public void waitThenFade() {
-        new Thread() {
-            public void run() {
-                try {
+        new Thread(() -> {
+            try {
 
-                    Thread.sleep(500);
-                    int reps = 200;
-                    for (int i = 0; i < reps; i++) {
-                        Thread.sleep(1500 / reps);
-                        SplashPanel.this.changeSplashAlphaBy(-1.0f / reps);
-                        SplashPanel.this.repaint();
-                    }
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                Thread.sleep(500);
+                int reps = 200;
+                for (int i = 0; i < reps; i++) {
+                    Thread.sleep(1500 / reps);
+                    SplashPanel.this.changeSplashAlphaBy(-1.0f / reps);
+                    SplashPanel.this.repaint();
                 }
 
-                changeMainMenu.run();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        }.start();
+
+            changeMainMenu.run();
+        }).start();
     }
 
     /**
