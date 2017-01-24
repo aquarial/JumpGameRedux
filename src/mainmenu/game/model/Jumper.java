@@ -77,10 +77,7 @@ class Jumper {
     /**
      * <tt>(0,0)</tt> is in the bottom left corner
      * 
-     * @param xpos
-     *            X position
-     * @param ypos
-     *            Y position
+     * @param position
      */
     Jumper(Point position) {
         this.xposition = position.getX();
