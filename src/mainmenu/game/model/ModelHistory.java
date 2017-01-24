@@ -10,23 +10,28 @@ import java.util.List;
  * 3 if the player finished the level <br>
  * 4 how long it took <br>
  * 5 how many jumps they took <br>
- * 
  */
 public class ModelHistory {
 
-    /** Which level the history is on */
+    /**
+     * Which level the history is on
+     */
     private String levelname;
-    /** A list of <timeofjump, angle, power> elements */
+    /**
+     * A list of <timeofjump, angle, power> elements
+     */
     private List<double[]> jumpHistory;
-    /** When the level started */
+    /**
+     * When the level started
+     */
     private long startTime;
-    /** When the level finishd or <code>-1<code> */
+    /**
+     * When the level finishd or <code>-1<code>
+     */
     private long finishTime;
 
     /**
      * Starts the record of hisrtory.
-     * 
-     * @param level_name
      */
     public ModelHistory(String level_name) {
         levelname = level_name;
@@ -37,16 +42,12 @@ public class ModelHistory {
 
     /**
      * Constructs a mock history based on the information provided.
-     * 
-     * @param level_name
-     * @param seconds
-     * @param clicks
      */
     public ModelHistory(String level_name, double seconds, int clicks) {
         levelname = level_name;
         jumpHistory = new ArrayList<>(clicks);
         for (int i = 0; i < clicks; i++) {
-            jumpHistory.add(new double[] { i / 1000.0, 0, 0 });
+            jumpHistory.add(new double[]{i / 1000.0, 0, 0});
         }
         startTime = 0;
         finishTime = (long) (seconds * 1000);
@@ -61,7 +62,7 @@ public class ModelHistory {
 
     /**
      * For use by MainModel while the level is being played.
-     * 
+     *
      * @return Difference (in double seconds) from the start of the level
      * @see #getTimeOfFinish
      */
@@ -71,9 +72,8 @@ public class ModelHistory {
 
     /**
      * If the player did not finish, this method returns -1;
-     * 
-     * @return Difference (in double seconds) from the start to the finish of
-     *         the level
+     *
+     * @return Difference (in double seconds) from the start to the finish of the level
      */
     public double getTimeOfFinish() {
         if (getPlayerFinished()) {
@@ -85,7 +85,7 @@ public class ModelHistory {
 
     /**
      * For use by MainModel while the level is being played.
-     * 
+     *
      * @return Number of jumps taken so far
      */
     public int getNumberOfJumpsSoFar() {
@@ -94,7 +94,7 @@ public class ModelHistory {
 
     /**
      * Get the list of data directly
-     * 
+     *
      * @return Raw jump history data
      */
     public List<double[]> getJumpHistory() {
@@ -117,10 +117,8 @@ public class ModelHistory {
 
     /**
      * Adds the jump onto the historical record.
-     * 
-     * @param nextDataPoint
-     *            Assumes input is in <code>{timeofjump, angle, power}
-     *            <code> format
+     *
+     * @param nextDataPoint Assumes input is in <code>{timeofjump, angle, power} <code> format
      */
     public void addToJumpHistory(double[] nextDataPoint) {
 

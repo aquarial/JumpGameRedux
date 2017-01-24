@@ -10,10 +10,8 @@ class Jumper {
 
     /**
      * Calculates the coordinates of the jumper's corners
-     * 
-     * @param pos
-     *            Point representing position
-     * 
+     *
+     * @param pos Point representing position
      * @return A quadrilateral representing the corners.
      */
     static double[] calculateCornersAtPosition(Point pos) {
@@ -36,8 +34,7 @@ class Jumper {
      * Calculates a potential update
      * <p>
      * Does <b>NOT</b> change state
-     * 
-     * @param deltaTime
+     *
      * @return new x and y positions.
      */
     Point calculateUpdate(double deltaTime) {
@@ -48,8 +45,7 @@ class Jumper {
 
     /**
      * Updates jumper position based on current velocitys and delta time
-     * 
-     * @param deltaTime
+     *
      * @see #moveBy(double, double)
      */
     void update(double deltaTime) {
@@ -60,11 +56,9 @@ class Jumper {
 
     /**
      * <tt>(0,0)</tt> is in the bottom left corner
-     * 
-     * @param xpos
-     *            X position
-     * @param ypos
-     *            Y position
+     *
+     * @param xpos X position
+     * @param ypos Y position
      */
     Jumper(double xpos, double ypos) {
         this.xposition = xpos;
@@ -76,8 +70,6 @@ class Jumper {
 
     /**
      * <tt>(0,0)</tt> is in the bottom left corner
-     * 
-     * @param position
      */
     Jumper(Point position) {
         this.xposition = position.getX();
@@ -100,10 +92,7 @@ class Jumper {
      * Moves player position by arguments.
      * <p>
      * Use <code>update(deltaTime)</code> to update position by current velocity
-     * 
-     * @param deltaX
-     * @param deltaY
-     * 
+     *
      * @see #update(double deltaTime)
      */
     void moveBy(double deltaX, double deltaY) {
@@ -113,7 +102,7 @@ class Jumper {
 
     /**
      * Changes position coordinates into a Quad
-     * 
+     *
      * @return Quad representing corners
      */
     double[] getCurrentCorners() {
@@ -123,11 +112,10 @@ class Jumper {
         x2 = this.xposition + radius;
         y1 = this.yposition - radius;
         y2 = this.yposition + radius;
-        return new double[] { x1, y1, x2, y2 };
+        return new double[]{x1, y1, x2, y2};
     }
 
     /**
-     * 
      * @return p the x and y position
      */
     Point getPosition() {
@@ -135,9 +123,7 @@ class Jumper {
     }
 
     /**
-     * 
-     * @param p
-     *            the x and y position to set
+     * @param p the x and y position to set
      */
     void setPosition(Point p) {
         xposition = p.getX();
@@ -152,8 +138,7 @@ class Jumper {
     }
 
     /**
-     * @param xposition
-     *            the x position to set
+     * @param xposition the x position to set
      */
     void setXposition(double xposition) {
         this.xposition = xposition;
@@ -167,8 +152,7 @@ class Jumper {
     }
 
     /**
-     * @param yposition
-     *            the y position to set
+     * @param yposition the y position to set
      */
     void setYposition(double yposition) {
         this.yposition = yposition;
@@ -176,9 +160,6 @@ class Jumper {
 
     /**
      * Sets velocity based on radial coordinates
-     * 
-     * @param angle
-     * @param power
      */
     void setAngularVelocity(double angle, double power) {
         xvelocity = Math.cos(angle) * power;
@@ -193,8 +174,7 @@ class Jumper {
     }
 
     /**
-     * @param xvelocity
-     *            the x velocity to set
+     * @param xvelocity the x velocity to set
      */
     void setXvelocity(double xvelocity) {
         this.xvelocity = xvelocity;
@@ -208,8 +188,7 @@ class Jumper {
     }
 
     /**
-     * @param yvelocity
-     *            the y velocity to set
+     * @param yvelocity the y velocity to set
      */
     void setYvelocity(double yvelocity) {
         this.yvelocity = yvelocity;
@@ -223,8 +202,7 @@ class Jumper {
     }
 
     /**
-     * @param isStuck
-     *            the isStuck to set
+     * @param isStuck the isStuck to set
      */
     void setStuck(boolean isStuck) {
         this.isStuck = isStuck;

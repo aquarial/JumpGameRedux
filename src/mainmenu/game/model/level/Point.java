@@ -4,9 +4,8 @@ package mainmenu.game.model.level;
  * Represents a point
  * <p>
  * Wraps x and y value
- * 
+ *
  * @author karl
- * 
  */
 public class Point {
 

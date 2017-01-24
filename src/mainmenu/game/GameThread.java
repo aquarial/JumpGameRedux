@@ -4,9 +4,8 @@ import mainmenu.game.model.MainModel;
 
 /**
  * Provides a game loop for updating a GamePanel
- * 
- * @author karl
  *
+ * @author karl
  */
 class GameThread extends Thread {
 
@@ -17,9 +16,6 @@ class GameThread extends Thread {
 
     /**
      * Initialize the Thread with references
-     * 
-     * @param gp
-     * @param model
      */
     GameThread(GamePanel gp, MainModel model) {
         this.panel = gp;

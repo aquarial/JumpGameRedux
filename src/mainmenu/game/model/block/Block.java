@@ -13,9 +13,6 @@ public class Block extends Quad {
 
     /**
      * Construct a Block from a Quad
-     *
-     * @param q
-     * @return
      */
     public static Block fromQuad(Quad q, BlockType type) {
         return new Block(q.getX1(), q.getY1(), q.getX2(), q.getY2(), type);
@@ -23,11 +20,6 @@ public class Block extends Quad {
 
     /**
      * Construct a Block by passing values
-     *
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
      */
     private Block(double x1, double y1, double x2, double y2, BlockType type) {
         super(x1, y1, x2, y2);
@@ -39,8 +31,7 @@ public class Block extends Quad {
     /**
      * Whether or not the other is partly inside this.
      *
-     * @param other
-     *            another Quad
+     * @param other another Quad
      * @return true if part is inside, false otherwise
      */
     public boolean containsQuad(Quad other) {
@@ -56,8 +47,7 @@ public class Block extends Quad {
     /**
      * Whether or not the argument is inside the Block.
      *
-     * @param corners
-     *            a rectangle defined by the corners
+     * @param corners a rectangle defined by the corners
      * @return true if part is inside, false otherwise
      */
     public boolean containsCornerArray(double[] corners) {
@@ -71,7 +61,6 @@ public class Block extends Quad {
     }
 
     /**
-     *
      * This method answers the question:<br>
      * <i>"I have a Jumper moving at a velocity, and I know it's going to hit
      * this StickyBlock. Calculate distance the Jumper will move before hitting
@@ -86,13 +75,9 @@ public class Block extends Quad {
      * moving. Then I find the smallest movement (the first obstruction by this
      * Quad) that is not zero (still hits this Quad).
      *
-     *
-     * @param corners
-     *            the Jumper Quad
-     * @param xvelocity
-     *            velocity of other
-     * @param yvelocity
-     *            velocity of other
+     * @param corners   the Jumper Quad
+     * @param xvelocity velocity of other
+     * @param yvelocity velocity of other
      * @return Point represents how far until other hits this block
      */
     public Optional<Point> calculatePushingQuadToThis(double[] corners, double xvelocity, double yvelocity) {

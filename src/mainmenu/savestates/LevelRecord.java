@@ -4,7 +4,6 @@ import mainmenu.game.model.ModelHistory;
 
 /**
  * Represents how well the player is doing on a level
- *
  */
 class LevelRecord {
 
@@ -21,9 +20,8 @@ class LevelRecord {
 
     /**
      * Updates the records with recently completed level
-     * 
-     * @param history
-     *            The completed level history
+     *
+     * @param history The completed level history
      */
     void updateRecords(ModelHistory history) {
         if (history.getPlayerFinished()) {
@@ -41,8 +39,6 @@ class LevelRecord {
 
     /**
      * Formats time into mm:ss.
-     * 
-     * @return
      */
     String fastestTimeToString() {
         double speed = fastestTime.getTimeOfFinish();
@@ -51,8 +47,6 @@ class LevelRecord {
 
     /**
      * Formats jumps into 000.
-     * 
-     * @return
      */
     String leastJumpsToString() {
         int jumps = leastJumps.getNumberOfJumpsSoFar();

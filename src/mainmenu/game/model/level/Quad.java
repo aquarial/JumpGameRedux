@@ -9,9 +9,8 @@ public class Quad {
 
     /**
      * Construct a quad from an array instead of passing doubles
-     * 
-     * @param corners
-     *            Array with <b>LENGTH OF 4</b>
+     *
+     * @param corners Array with <b>LENGTH OF 4</b>
      */
     public Quad(double[] corners) {
         this(corners[0], corners[1], corners[2], corners[3]);
@@ -19,11 +18,6 @@ public class Quad {
 
     /**
      * Construct a quad from each value separately
-     * 
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
      */
     public Quad(double x1, double y1, double x2, double y2) {
         // Keep quad positive, helps calculating if a point is inside

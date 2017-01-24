@@ -14,7 +14,9 @@ import mainmenu.game.model.ModelHistory;
  */
 public class GameSave {
 
-    /** levelname -> LevelRecord */
+    /**
+     * levelname -> LevelRecord
+     */
     Map<String, LevelRecord> levelrecords;
 
     /**
@@ -38,9 +40,8 @@ public class GameSave {
      * Updates the records for the level the history was played on.
      * <p>
      * Checks for null
-     * 
-     * @param history
-     *            History of a completed level
+     *
+     * @param history History of a completed level
      */
     public void updateLevelRecord(ModelHistory history) {
         if (history != null) {
@@ -50,18 +51,13 @@ public class GameSave {
     }
 
     /**
-     * 
-     * @param levelname
      * @return time formatted as mm:ss.
-     * 
      */
     public String fastestTimeForLevel(String levelname) {
         return levelrecords.get(levelname).fastestTimeToString();
     }
 
     /**
-     * 
-     * @param levelname
      * @return jumps formatted as 000.
      */
     public String leastJumpsForLevel(String levelname) {

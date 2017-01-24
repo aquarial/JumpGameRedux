@@ -1,15 +1,11 @@
 package mainmenu.levelselect;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import mainmenu.savestates.GameSave;
 
@@ -63,8 +59,6 @@ public class SelectPanel extends JPanel {
 
     /**
      * Update level select combobox with unlocked levels
-     * 
-     * @param state
      */
     public void setLevels(List<String> state) {
         for (String level : state) {
@@ -74,8 +68,6 @@ public class SelectPanel extends JPanel {
 
     /**
      * Action listener to <i>start level</i> button
-     * 
-     * @param listner
      */
     public void addActionListenerToStartLevel(ActionListener listener) {
         startLevelButton.addActionListener(listener);

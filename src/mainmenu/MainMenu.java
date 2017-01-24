@@ -1,6 +1,6 @@
 package mainmenu;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -54,33 +54,31 @@ public class MainMenu {
 
     /**
      * Resets the menu. Sets up parts ready for the state provided
-     * 
-     * @param newstate
      */
     private void initState(MenuState newstate) {
         contentPanel.removeAll();
         switch (newstate) {
-        case SPLASH_SCREEN:
-            selectpanel.setBounds(0, 0, width, height);
-            splashpanel.setBounds(0, 0, width, height);
-            contentPanel.add(selectpanel, new Integer(0));
-            contentPanel.add(splashpanel, new Integer(1));
-            splashpanel.waitThenFade();
-            break;
-        case LEVEL_SELECT:
-            save.updateLevelRecord(gamepanel.getModelHistory());
-            selectpanel.refreshLevelRecords();
-            selectpanel.setBounds(0, 0, width, height);
-            contentPanel.add(selectpanel);
-            break;
-        case PLAY_GAME:
-            gamepanel.setBounds(0, 0, width, height);
-            gamepanel.startlevel(selectpanel.getSelectedLevel());
-            contentPanel.add(gamepanel);
-            gamepanel.requestFocusInWindow();
-            break;
-        default:
-            break;
+            case SPLASH_SCREEN:
+                selectpanel.setBounds(0, 0, width, height);
+                splashpanel.setBounds(0, 0, width, height);
+                contentPanel.add(selectpanel, new Integer(0));
+                contentPanel.add(splashpanel, new Integer(1));
+                splashpanel.waitThenFade();
+                break;
+            case LEVEL_SELECT:
+                save.updateLevelRecord(gamepanel.getModelHistory());
+                selectpanel.refreshLevelRecords();
+                selectpanel.setBounds(0, 0, width, height);
+                contentPanel.add(selectpanel);
+                break;
+            case PLAY_GAME:
+                gamepanel.setBounds(0, 0, width, height);
+                gamepanel.startlevel(selectpanel.getSelectedLevel());
+                contentPanel.add(gamepanel);
+                gamepanel.requestFocusInWindow();
+                break;
+            default:
+                break;
         }
         contentPanel.revalidate();
         contentPanel.repaint();
@@ -88,8 +86,6 @@ public class MainMenu {
 
     /**
      * Closure to change MenuState to LEVEL_SELECT
-     * 
-     * @return
      */
     public RunCode goToSelectPanel() {
         return () -> initState(MenuState.LEVEL_SELECT);
@@ -97,8 +93,6 @@ public class MainMenu {
 
     /**
      * Closure to change MenuState to PLAY_GAME
-     * 
-     * @return
      */
     ActionListener goToGameStartLevel() {
         return (ActionEvent e) -> initState(MenuState.PLAY_GAME);

@@ -2,9 +2,7 @@ package mainmenu.levelselect;
 
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import io.Resources;
 import mainmenu.savestates.GameSave;
@@ -66,9 +64,8 @@ public class LevelInfoPanel extends JPanel {
 
     /**
      * Displays stats and image for the level
-     * 
-     * @param levelname
-     *            name of the selected level
+     *
+     * @param levelname name of the selected level
      */
     void setupPanelForLevel(GameSave save, String levelname) {
         BufferedImage tmp = Resources.getImageForLevel(levelname);

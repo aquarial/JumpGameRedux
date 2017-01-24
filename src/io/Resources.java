@@ -21,8 +21,7 @@ public class Resources {
 
     /**
      * Returns the Document made from the named resource
-     * 
-     * @param level
+     *
      * @return Dom document for parsing
      */
     public static Document getDocumentForLevel(String level) {
@@ -46,8 +45,7 @@ public class Resources {
 
     /**
      * Gets the picture of the start for the levelname supplied
-     * 
-     * @param levelname
+     *
      * @return Buffered image of a similar name
      */
     public static BufferedImage getImageForLevel(String levelname) {
@@ -65,9 +63,7 @@ public class Resources {
 
     /**
      * Scales input image so its width is new_width
-     * 
-     * @param imageToScale
-     * @param new_width
+     *
      * @return Scaled image
      */
     public static BufferedImage scaleImage(BufferedImage imageToScale, int new_width) {
@@ -81,7 +77,7 @@ public class Resources {
 
     /**
      * All the levels in res/levels
-     * 
+     *
      * @return Level names (eg 001)
      */
     public static List<String> getLevelNames() {

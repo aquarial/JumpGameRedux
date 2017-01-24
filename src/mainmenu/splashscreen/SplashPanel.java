@@ -1,13 +1,11 @@
 package mainmenu.splashscreen;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import mainmenu.RunCode;
 
@@ -26,9 +24,6 @@ public class SplashPanel extends JPanel {
 
     /**
      * Initialize SplashPanel
-     * 
-     * @param width
-     * @param height
      */
     public SplashPanel(int width, int height) {
         this.width = width;
@@ -95,8 +90,7 @@ public class SplashPanel extends JPanel {
 
     /**
      * Pass the closure for how to change mainmenu to levelselect
-     * 
-     * @param runCode
+     *
      * @see #waitThenFade()
      */
     public void setOnRunFunction(RunCode runCode) {
@@ -105,8 +99,6 @@ public class SplashPanel extends JPanel {
 
     /**
      * Call repaint after this method
-     * 
-     * @param delta_alpha
      */
     public void changeSplashAlphaBy(float delta_alpha) {
         alphavalue += delta_alpha;

@@ -12,9 +12,7 @@ import mainmenu.game.model.level.Point;
 import mainmenu.game.model.level.Quad;
 
 /**
- * 
  * @author karl
- * 
  */
 public class MainModel {
 
@@ -24,8 +22,6 @@ public class MainModel {
 
     /**
      * Constructs a Model based on a level
-     * 
-     * @param levelname
      */
     public MainModel(String levelname) {
         LevelData level = LevelData.parseLevelFromName(levelname);
@@ -51,9 +47,8 @@ public class MainModel {
 
     /**
      * Updates the model based on time passed. Moves the Jumper/Player.
-     * 
-     * @param deltaTime
-     *            The change in time the model updates on
+     *
+     * @param deltaTime The change in time the model updates on
      */
     public void updateModel(double deltaTime) {
 
@@ -124,13 +119,10 @@ public class MainModel {
 
     /**
      * Tries to launch the player off of a stuck block with an angle and power.
-     * 
-     * @param angle
-     * @param power
      */
     public void addJumpPowerToJumper(double angle, double power) {
         if (jumper.isStuck()) {
-            history.addToJumpHistory(new double[] { history.getTimeFromStart(), angle, power });
+            history.addToJumpHistory(new double[]{history.getTimeFromStart(), angle, power});
             jumper.setAngularVelocity(angle, power);
             jumper.setStuck(false);
         }
@@ -152,7 +144,7 @@ public class MainModel {
 
     /**
      * Note: the model graphing coordinates. Positive is up.
-     * 
+     *
      * @return Player's current y coordinate
      */
     public double getPlayerYPos() {
@@ -184,7 +176,7 @@ public class MainModel {
      * For use by MainModel while the level is being played
      * <p>
      * in mm:ss:ms
-     * 
+     *
      * @return Difference (in a formatted string) from the start of the level
      */
     public String getFormattedTimeFromStart() {
@@ -202,7 +194,6 @@ public class MainModel {
     }
 
     /**
-     * 
      * @return # of jumps in 000 format
      */
     public String getFormattedJumpsFromStart() {

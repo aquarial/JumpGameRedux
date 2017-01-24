@@ -1,16 +1,13 @@
 package mainmenu.game;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import mainmenu.RunCode;
 import mainmenu.game.model.MainModel;
@@ -24,7 +21,6 @@ import mainmenu.game.model.block.BlockType;
  * Runs one game through completion.
  *
  * @author karl
- *
  */
 public class GamePanel extends JPanel {
 
@@ -56,8 +52,6 @@ public class GamePanel extends JPanel {
 
     /**
      * Sets up GamePanel to run a level
-     *
-     * @param levelname
      */
     public void startlevel(String levelname) {
         model = new MainModel(levelname);
@@ -113,9 +107,6 @@ public class GamePanel extends JPanel {
     /**
      * Translates the model coordinates to screen coordinates, and fills in the
      * pixel rectangle at that location
-     *
-     * @param stickyQuad
-     * @param g2
      */
     private void drawStickyQuad(Block stickyQuad, Graphics2D g2) {
         int x1 = modelUnitToPixels(stickyQuad.getX1() - model.getPlayerXPos());
@@ -134,20 +125,15 @@ public class GamePanel extends JPanel {
 
     /**
      * Scale from model units to pixels
-     *
-     * @param unit
-     * @return
      */
     private int modelUnitToPixels(double unit) {
         return (int) (unit * 25);
     }
 
     /**
-     *
      * Adds mouseListener to <code>this</code>
      * <p>
      * Clears up constructor
-     *
      */
     private void addClickListener() {
         // Jump Listener
