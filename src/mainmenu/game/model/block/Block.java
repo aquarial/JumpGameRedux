@@ -29,7 +29,7 @@ public class Block extends Quad {
      * @param x2
      * @param y2
      */
-    Block(double x1, double y1, double x2, double y2, BlockType type) {
+    private Block(double x1, double y1, double x2, double y2, BlockType type) {
         super(x1, y1, x2, y2);
         blockType = type;
     }
@@ -93,7 +93,7 @@ public class Block extends Quad {
      *            velocity of other
      * @param yvelocity
      *            velocity of other
-     * @return
+     * @return Point represents how far until other hits this block
      */
     public Optional<Point> calculatePushingQuadToThis(double[] corners, double xvelocity, double yvelocity) {
 
