@@ -97,7 +97,7 @@ public class MainModel {
                     // type uniquely
                     Pair<Block, Point> impact = minimum.get();
 
-                    if (impact.getItem1().getBLockType() == BlockType.FINISH) {
+                    if (impact.getItem1().getBlockType() == BlockType.FINISH) {
                         history.setPlayerJustFinished();
                     }
 

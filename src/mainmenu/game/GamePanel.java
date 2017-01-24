@@ -92,10 +92,10 @@ public class GamePanel extends JPanel {
 
         for (Block stickyQuad : model.getBlockData()) {
 
-            if (stickyQuad.getBLockType() == BlockType.STICKY) {
+            if (stickyQuad.getBlockType() == BlockType.STICKY) {
                 g2.setColor(Color.BLACK);
             }
-            if (stickyQuad.getBLockType() == BlockType.FINISH) {
+            if (stickyQuad.getBlockType() == BlockType.FINISH) {
                 g2.setColor(Color.CYAN);
             }
             this.drawStickyQuad(stickyQuad, g2);

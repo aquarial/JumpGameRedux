@@ -334,25 +334,10 @@ public class Block extends Quad {
     }
 
     /**
-     * Setter
-     *
-     * @param newtype
+     * @return BlockType
      */
-    public void setBlockType(BlockType newtype) {
-        this.blockType = newtype;
-    }
-
-    /**
-     * Getter
-     *
-     * @return
-     */
-    public BlockType getBLockType() {
+    public BlockType getBlockType() {
         return this.blockType;
-    }
-
-    public boolean moves() {
-        return false;
     }
 
 }
