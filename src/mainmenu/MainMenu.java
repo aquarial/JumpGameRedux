@@ -57,12 +57,25 @@ public class MainMenu {
     /**
      * @return Renders argument onto a new BufferedImage
      */
-    public BufferedImage createImage(JPanel panel) {
+    private BufferedImage createImage(JPanel panel) {
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = bi.createGraphics();
         panel.setSize(width, height);
+        layoutComponent(panel);
         panel.print(g);
         return bi;
+    }
+
+    private void layoutComponent(Component component) {
+        synchronized (component.getTreeLock()) {
+            component.doLayout();
+
+            if (component instanceof Container) {
+                for (Component child : ((Container) component).getComponents()) {
+                    layoutComponent(child);
+                }
+            }
+        }
     }
 
     /**
