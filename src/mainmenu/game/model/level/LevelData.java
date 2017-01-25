@@ -13,16 +13,9 @@ import io.Resources;
  */
 public class LevelData {
 
-    /**
-     * Builds a level from the an xml file of the level name.
-     * <p>
-     * Provides methods to access data about that level.
-     *
-     * @param levelName
-     */
-    public static LevelData parseLevelFromName(String levelName) {
-        return new LevelData(levelName);
-    }
+    private Point playerPosition;
+    private ArrayList<Quad> allQuads;
+    private Quad finishQuad;
 
     private LevelData(String levelName) {
         Document level = Resources.getDocumentForLevel(levelName);
@@ -46,9 +39,14 @@ public class LevelData {
                 level.getElementsByTagName("finishblock").item(0));
     }
 
-    private Point playerPosition;
-    private ArrayList<Quad> allQuads;
-    private Quad finishQuad;
+    /**
+     * Builds a level from the an xml file of the level name.
+     * <p>
+     * Provides methods to access data about that level.
+     */
+    public static LevelData parseLevelFromName(String levelName) {
+        return new LevelData(levelName);
+    }
 
     /**
      * @return the playerPosition
@@ -65,7 +63,6 @@ public class LevelData {
     }
 
     /**
-     *
      * @return Quad representing finish area
      */
     public Quad getFinishQuad() {
@@ -73,10 +70,8 @@ public class LevelData {
     }
 
     /**
-     *
      * Parses player coordinate from xml node
      *
-     * @param playerNode
      * @return Point representing coordinate
      */
     private Point parsePlayerPosition(Node playerNode) {
@@ -89,10 +84,8 @@ public class LevelData {
     }
 
     /**
-     *
      * Parses the corner coordinates from xml node
      *
-     * @param childOfLevelData
      * @return The coordinates the child held
      */
     private Quad parseQuads(Node childOfLevelData) {
@@ -110,8 +103,7 @@ public class LevelData {
      *
      * Removes whitespace and #text nodes
      *
-     * @param node
-     *            Node to clean
+     * @param node Node to clean
      */
     private void clean(Node node) {
         NodeList childNodes = node.getChildNodes();
