@@ -67,16 +67,15 @@ public class MainModel {
             if (encounteredBlock) {
                 double dx = jumper.getXvelocity();
                 double dy = jumper.getYvelocity();
-                double[] currentJumperQuad = jumper.getCurrentCorners();
+                double[] jumperQuad = jumper.getCurrentCorners();
 
                 ArrayList<Pair<Block, Point>> minMovements = new ArrayList<>();
                 for (Block blockade : blocks) {
                     if (blockade.containsCornerArray(futureJumperCorners)) {
 
-                        Optional<Point> newMinMovement = blockade.calculatePushingQuadToThis(currentJumperQuad, dx, dy);
-                        if (newMinMovement.isPresent()) {
-                            minMovements.add(new Pair<>(blockade, newMinMovement.get()));
-                        }
+                        Optional<Point> minMoves;
+                        minMoves = blockade.calculatePushingQuadToThis(jumperQuad, dx, dy);
+                        minMoves.ifPresent(point -> minMovements.add(new Pair<>(blockade, point)));
 
                     }
 
@@ -85,7 +84,8 @@ public class MainModel {
                 // if encountered platform...
                 // find the most we can move before hitting something
                 // (the min distance) that's not zero
-                Optional<Pair<Block, Point>> minimum = minMovements.stream().min(new PairComparator());
+                Optional<Pair<Block, Point>> minimum;
+                minimum = minMovements.stream().min(new PairComparator());
 
                 if (minimum.isPresent()) {
                     // Now I can use the type of block here to react to each
