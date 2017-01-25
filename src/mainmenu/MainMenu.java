@@ -2,6 +2,7 @@ package mainmenu;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -45,12 +46,23 @@ public class MainMenu {
 
         splashpanel = new SplashPanel(width, height);
         splashpanel.setOnRunFunction(() -> initState(MenuState.LEVEL_SELECT));
-        splashpanel.setFadeBackground(selectpanel.createImage());
+        splashpanel.setFadeBackground(createImage(selectpanel));
 
         gamepanel = new GamePanel(width, height);
         gamepanel.setOnFinish(() -> initState(MenuState.LEVEL_SELECT));
 
         initState(MenuState.SPLASH_SCREEN);
+    }
+
+    /**
+     * @return Renders argument onto a new BufferedImage
+     */
+    public BufferedImage createImage(JPanel panel) {
+        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = bi.createGraphics();
+        panel.setSize(width, height);
+        panel.print(g);
+        return bi;
     }
 
     /**

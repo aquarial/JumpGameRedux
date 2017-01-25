@@ -3,7 +3,6 @@ package mainmenu.levelselect;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javax.swing.*;
@@ -98,17 +97,6 @@ public class SelectPanel extends JPanel {
             refreshLevelRecords();
             startLevelButton.requestFocusInWindow();
         };
-    }
-
-    /**
-     * @return Renders this onto a new BufferedImage
-     */
-    public BufferedImage createImage() {
-        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = bi.createGraphics();
-        this.setSize(width, height);
-        this.print(g);
-        return bi;
     }
 
 }
