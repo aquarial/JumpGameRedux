@@ -8,51 +8,11 @@ class Jumper {
     static final double GRAVITY_CONSTANT = -8f;
     static final double JUMPER_WIDTH = 1;
 
-    /**
-     * Calculates the coordinates of the jumper's corners
-     *
-     * @param pos Point representing position
-     * @return A quadrilateral representing the corners.
-     */
-    static double[] calculateCornersAtPosition(Point pos) {
-        double radius = JUMPER_WIDTH / 2;
-        double[] corners = new double[4];
-        corners[0] = pos.getX() - radius;
-        corners[1] = pos.getY() - radius;
-        corners[2] = pos.getX() + radius;
-        corners[3] = pos.getY() + radius;
-        return corners;
-    }
-
     private double xposition;
     private double yposition;
     private double xvelocity;
     private double yvelocity;
     private boolean isStuck;
-
-    /**
-     * Calculates a potential update
-     * <p>
-     * Does <b>NOT</b> change state
-     *
-     * @return new x and y positions.
-     */
-    Point calculateUpdate(double deltaTime) {
-        double tmpxpos = xposition + deltaTime * xvelocity;
-        double tmpypos = yposition + deltaTime * yvelocity;
-        return new Point(tmpxpos, tmpypos);
-    }
-
-    /**
-     * Updates jumper position based on current velocitys and delta time
-     *
-     * @see #moveBy(double, double)
-     */
-    void update(double deltaTime) {
-        xposition += deltaTime * xvelocity;
-        yposition += deltaTime * yvelocity;
-        yvelocity += deltaTime * GRAVITY_CONSTANT;
-    }
 
     /**
      * <tt>(0,0)</tt> is in the bottom left corner
@@ -76,6 +36,46 @@ class Jumper {
         this.yposition = position.getY();
         this.xvelocity = 0;
         this.yvelocity = 0;
+    }
+
+    /**
+     * Calculates the coordinates of the jumper's corners
+     *
+     * @param pos Point representing position
+     * @return A quadrilateral representing the corners.
+     */
+    static double[] calculateCornersAtPosition(Point pos) {
+        double radius = JUMPER_WIDTH / 2;
+        double[] corners = new double[4];
+        corners[0] = pos.getX() - radius;
+        corners[1] = pos.getY() - radius;
+        corners[2] = pos.getX() + radius;
+        corners[3] = pos.getY() + radius;
+        return corners;
+    }
+
+    /**
+     * Calculates a potential update
+     * <p>
+     * Does <b>NOT</b> change state
+     *
+     * @return new x and y positions.
+     */
+    Point calculateUpdate(double deltaTime) {
+        double tmpxpos = xposition + deltaTime * xvelocity;
+        double tmpypos = yposition + deltaTime * yvelocity;
+        return new Point(tmpxpos, tmpypos);
+    }
+
+    /**
+     * Updates jumper position based on current velocitys and delta time
+     *
+     * @see #moveBy(double, double)
+     */
+    void update(double deltaTime) {
+        xposition += deltaTime * xvelocity;
+        yposition += deltaTime * yvelocity;
+        yvelocity += deltaTime * GRAVITY_CONSTANT;
     }
 
     /**
