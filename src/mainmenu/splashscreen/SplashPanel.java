@@ -78,7 +78,9 @@ public class SplashPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawImage(backgroundImage, 0, 0, null);
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.drawImage(backgroundImage, 0, 0, null);
 
         // Updates each pixel's alpha value
         for (int index = 0; index < image_alpha_values.length; index++) {
@@ -86,7 +88,7 @@ public class SplashPanel extends JPanel {
         }
         imageraster.setPixels(0, 0, width, height, image_alpha_values);
 
-        g.drawImage(splashimage, 0, 0, null);
+        g2.drawImage(splashimage, 0, 0, null);
     }
 
     /**
