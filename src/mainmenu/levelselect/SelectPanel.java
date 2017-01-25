@@ -106,9 +106,8 @@ public class SelectPanel extends JPanel {
     public BufferedImage createImage() {
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = bi.createGraphics();
+        this.setSize(width, height);
         this.print(g);
-        g.setColor(Color.MAGENTA);
-        g.fillRect(0, 0, 100, 100);
         return bi;
     }
 
