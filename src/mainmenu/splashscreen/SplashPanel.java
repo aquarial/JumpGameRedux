@@ -1,7 +1,6 @@
 package mainmenu.splashscreen;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
@@ -40,12 +39,6 @@ public class SplashPanel extends JPanel {
         image_alpha_values = new float[width * height];
         imageraster = splashimage.getAlphaRaster();
         imageraster.getPixels(0, 0, width, height, image_alpha_values);
-
-        // When SplashPanel is on top, we don't want anything 'under' it to
-        // recieve clicks. So, consume them
-        this.addMouseListener(new MouseAdapter() {
-            // extends MouseAdapter, overrides nothing
-        });
     }
 
     /**
