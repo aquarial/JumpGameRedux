@@ -143,3 +143,6 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+.idea/libraries/
+!jumpgameredux.jar
+.idea/workspace.xml
