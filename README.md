@@ -9,4 +9,4 @@ This code is cleaner, and more organized. Structure influenced by the Model-View
 
 ![Raw ingame footage of player jumping](res/screenshots/jumpgame.gif)
 
-The player is dark blue, the finish is cyan, and the walls are black. The outer green ring shows the minimum distance from the player you must click to get the maximum power in a jump.
+The player is dark blue, the finish is cyan, and the walls are black.
