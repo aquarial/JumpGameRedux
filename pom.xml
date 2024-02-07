@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.stephan55</groupId>
 	<artifactId>jumpgameswing</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>jump game</name>
 	<description>Platforming game</description>
 	<properties>
