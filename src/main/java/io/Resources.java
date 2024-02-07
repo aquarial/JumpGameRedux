@@ -17,7 +17,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class Resources {
 
-    private static Class<? extends Thread> classloader = Thread.currentThread().getClass();
+    private static Class<io.Resources> classloader = Resources.class;
 
     /**
      * Returns the Document made from the named resource
@@ -40,7 +40,7 @@ public class Resources {
     }
 
     private static InputStream getInputStream(String level) {
-        return classloader.getResourceAsStream("/levels/" + level + ".xml");
+        return classloader.getResourceAsStream("levels/" + level + ".xml");
     }
 
     /**
@@ -49,7 +49,7 @@ public class Resources {
      * @return Buffered image of a similar name
      */
     public static BufferedImage getImageForLevel(String levelname) {
-        InputStream inputstream = classloader.getResourceAsStream("/levelpics/" + levelname + ".png");
+        InputStream inputstream = classloader.getResourceAsStream("levelpics/" + levelname + ".png");
         try {
             return ImageIO.read(inputstream);
         } catch (IOException e) {
@@ -81,7 +81,7 @@ public class Resources {
      * @return Level names (eg 001)
      */
     public static List<String> getLevelNames() {
-        InputStream inputstream = classloader.getResourceAsStream("/info/levels.txt");
+        InputStream inputstream = classloader.getResourceAsStream("info/levels.txt");
 
         Scanner filescanner = new Scanner(inputstream);
         List<String> levels = new ArrayList<>();
