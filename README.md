@@ -6,7 +6,13 @@ This is a remake of a game I made in 2014.
 
 This code is cleaner, and more organized. Structure influenced by the Model-View pattern.
 
-
 ![Raw ingame footage of player jumping](res/screenshots/jumpgame.gif)
 
-The player is dark blue, the finish is cyan, and the walls are black.
+Spacebar to reset. Click to jump. The player is dark blue, the finish is cyan, and the walls are black.
+
+
+### Building
+
+Clone the repository and run `mvn compile  exec:java -Dexec.mainClass="main.Main"`
+
+To create a jar use `mvn clean package` and then `java -jar target/jumpgameswing-*.jar`
